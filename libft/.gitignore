@@ -1,0 +1,8 @@
+*.o
+.vscode
+libft.a
+.DS_Store
+*.dSYM/
+main.c
+test.sh
+a.out

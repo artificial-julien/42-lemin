@@ -1,0 +1,14 @@
+# Template
+
+obj/
+*.o
+*.stackdump
+.vscode/
+*.dSYM/
+.*.swp
+test.sh
+tests/
+libft/libft.a
+libftprintf.a
+
+# User
