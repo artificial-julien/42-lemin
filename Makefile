@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/28 16:58:41 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/28 18:35:03 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,8 +26,7 @@ NAME = lem_in
 
 DEPS = $(IDIR)/lem_in.h
 
-OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
-		$(LIBFTDIR)/$(LIBFT)
+OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC))
 
 SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
@@ -36,15 +35,17 @@ _SRC =	main.c \
 		room.c \
 		lem_in.c \
 		parsing.c \
-		ft_parsing_tools.c\
+		ft_parsing_tools.c \
+		solve.c \
+		print_solution.c
 
 .PHONY: all clean fclean re
 
 all: $(NAME)
-	@make -C $(LIBFTDIR)
 
-$(NAME): $(OBJ)
-	$(CC) $(CFLAGS) $^ -o $@
+$(NAME): $(OBJ) $(LIBFTDIR)/$(LIBFT)
+	make -C $(LIBFTDIR)
+	$(CC) $(CFLAGS) $^ -o $@ $(LIBFTDIR)/$(LIBFT)
 
 # $(LIBFTDIR)/$(LIBFT):
 # 	make -C $(LIBFTDIR)
