@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 17:00:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 17:22:30 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 		if (ft_strlen(*line) <= 10 && (i = ft_atoi(*line)) > 0)
 			lem_in->total_ants = i;
 		else
-			lem_in->total_ants = 0;
+			lem_in_die();
 	}
 }
 
@@ -57,8 +57,7 @@ int		parsing_room(t_lem_in *lem_in, char **line, t_roomtype type)
 	y = ft_atoi(tab[2]);
 	if ((new = room_new(tab[0], type, x, y)) == NULL)
 		return (0);
-	if ((room_add_link(lem_in, new)) == NULL)
-		return (0);
+	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);
 	return (1);
 }
@@ -72,8 +71,8 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 	tab = NULL;
 	while(i != 0 && (i = get_next_line(0, line)) != -1 && line != NULL)
 	{
-		if (ft_strlen(*line) == 0 || ft_find_carac(*line,'-') != -1)
-			die();
+		if (ft_strlen(*line) == 0 || ft_strindex(*line, '-') != -1)
+			lem_in_die();
 		else if (ft_strncmp("##", *line, 2) == 0)
 		{
 			if (ft_strncmp("##start", *line, 7) == 0)
@@ -85,7 +84,7 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 			i = parsing_room(lem_in, line, standard);
 	}
 	if (*line == NULL || i == 0)
-		die();
+		lem_in_die();
 }
 
 void	parse_links(t_lem_in *lem_in, char **line)
@@ -99,8 +98,8 @@ void	parse_links(t_lem_in *lem_in, char **line)
 	{
 		if (ft_strncmp("##", *line, 2) != 0)
 		{
-			if ((i = ft_find_carac(*line,'-')) != -1)
-				die();
+			if ((i = ft_strindex(*line, '-')) != -1)
+				lem_in_die();
 			else
 			{
 				s1 = ft_strsub(*line, 0, i);
