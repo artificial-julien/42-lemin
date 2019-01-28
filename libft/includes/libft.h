@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 23:18:06 by juazouz           #+#    #+#             */
-/*   Updated: 2018/12/28 18:49:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 13:55:56 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
-
+# define BUFF_SIZE 100
 /*
 **	Types.
 */
@@ -54,7 +54,9 @@ void			ft_putnbr_fd(int n, int fd);
 */
 
 int				get_next_line(const int fd, char **line);
-
+int				get_next_line_bis(const int fd, char **line);
+int				gnl_lst(const int fd, t_list **tmp, char **str, t_list **lst);
+int				gnl_error(const int fd, char **line, t_list **lst);
 /*
 **	Memory.
 */
@@ -66,6 +68,7 @@ void			*ft_memccpy(void *dest, const void *src, int c, size_t n);
 void			*ft_memmove(void *dst, const void *src, size_t num);
 void			*ft_memchr(const void *ptr, int value, size_t num);
 int				ft_memcmp(const void *ptr1, const void *ptr2, size_t num);
+void			*ft_realloc(void *ptr, size_t size);
 
 /*
 **	String.
@@ -132,6 +135,10 @@ void			ft_lstdel(t_list **alst, void (*del)(void*, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);
 void			ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+void			ft_lst_del(t_list **lst);
+void			ft_lstadd_last(t_list **alst, t_list *n);
+t_list			*ft_lst_del_one(t_list *curr, void *value, size_t size);
+t_list			*ft_lstnewchar(void const *content, size_t content_size);
 
 /*
 **	Linq-like functions.

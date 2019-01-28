@@ -6,16 +6,14 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:47:56 by juazouz           #+#    #+#             */
-/*   Updated: 2018/12/17 18:35:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 14:00:29 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
-#include "libft.h"
-
-#define BUFF_SIZE 128
+#include "../includes/libft.h"
 
 static unsigned int	linelen(char *str)
 {
