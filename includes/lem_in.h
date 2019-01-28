@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 14:36:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:15:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,13 @@ struct s_point
 	int	y;
 };
 
+enum	e_roomtype
+{
+	standard,
+	start,
+	end,
+};
+
 struct	s_lem_in
 {
 	int		total_ants;
@@ -53,13 +60,6 @@ struct	s_room
 	t_point		pos;
 	int			ants;
 	t_list		*links;
-};
-
-enum	e_roomtype
-{
-	standard,
-	start,
-	end,
 };
 
 /*
