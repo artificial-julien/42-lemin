@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 15:15:39 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:25:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ void	parse_links(t_lem_in *lem_in);
 */
 
 t_room	*room_new(char *name, t_roomtype type, int x, int y);
-t_room	*room_add_link(t_room *room);
+void	room_add_link(t_room *room);
 void	room_set_ants(t_room *room, int ants);
-t_room	room_free(t_room *room);
+void	room_free(t_room **room);
 
 /*
 **	Functions.
