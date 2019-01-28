@@ -22,9 +22,9 @@ LIBFTIDIR = $(LIBFTDIR)/includes
 LIBFT = libft.a
 
 # Output file name
-NAME =
+NAME = lem_in
 
-DEPS = $(IDIR)/template.h
+DEPS = $(IDIR)/lem_in.h
 
 OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
 		$(LIBFTDIR)/$(LIBFT)
@@ -32,7 +32,7 @@ OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
 SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
 # Source files
-_SRC =	\
+_SRC =	main.c \
 
 .PHONY: all clean fclean re
 
