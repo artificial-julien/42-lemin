@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/28 12:00:44 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/28 14:09:22 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,13 @@ _SRC =	main.c \
 .PHONY: all clean fclean re
 
 all: $(NAME)
+	@make -C $(LIBFTDIR)
 
 $(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(LIBFTDIR)/$(LIBFT):
-	make -C $(LIBFTDIR)
+# $(LIBFTDIR)/$(LIBFT):
+# 	make -C $(LIBFTDIR)
 
 $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 	@mkdir -p $(dir $@)
