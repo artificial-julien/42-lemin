@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/28 14:09:22 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/28 16:47:56 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,8 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
 # Source files
 _SRC =	main.c \
+		parsing.c \
+		ft_parsing_tools.c\
 
 .PHONY: all clean fclean re
 

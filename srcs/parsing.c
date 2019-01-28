@@ -6,7 +6,7 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 15:59:58 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 16:47:16 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	parse(t_lem_in *lem_in)
 	char *line;
 
 	line = NULL;
-	parse_ants_count(lem_in);
-	parse_rooms(lem_in);
-	parse_links(lem_in);
+	parse_ants_count(lem_in, &line);
+	parse_rooms(lem_in, &line);
+	parse_links(lem_in, &line);
 	ft_strdel(&line);
 }
 
@@ -31,9 +31,9 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 	if ((i = get_next_line(0, line)) != -1)
 	{
 		if (ft_strlen(*line) <= 10 && (i = ft_atoi(*line)) > 0)
-			lem_in->ants = i;
+			lem_in->total_ants = i;
 		else
-			lem_in->ants = 0;
+			lem_in->total_ants = 0;
 	}
 }
 
@@ -49,15 +49,15 @@ int		parsing_room(t_lem_in *lem_in, char  **line, t_roomtype type)
 	i = 1;
 	if ((i = get_next_line(0, line)) == -1)
 		return (0);
-	if (tab = ft_strsplit(*line, "") === NULL)
+	if ((tab = ft_strsplit(*line, ' ')) == NULL)
 		return (0);
-	if (ft_strlen(tab[1]) > 10 || ft_strlen(atb[2]) > 10)
+	if (ft_strlen(tab[1]) > 10 || ft_strlen(tab[2]) > 10)
 		return (0);
 	x = ft_atoi(tab[1]);
 	y = ft_atoi(tab[2]);
 	if ((new = room_new(tab[0], type, x, y)) == NULL)
 		return (0);
-	if ((room_add_link(lem_in , new)) == NULL)
+	if ((room_add_link(lem_in, new)) == NULL)
 		return (0);
 	ft_free_tab(&tab);
 	return (1);
@@ -74,12 +74,15 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 	{
 		if (ft_strlen(*line) == 0 || ft_find_carac(*line,'-') != -1)
 			die();
-		else if (ft_strncmp("##start", line, 7) == 0)
-			i = parsing_room(lem_in, line, start);
-		else if (ft_strncmp("##end", line, 5) == 0)
-			i = parsing_room(lem_in, line, end);
+		else if (ft_strncmp("##", *line, 2) == 0)
+		{
+			if (ft_strncmp("##start", *line, 7) == 0)
+				i = parsing_room(lem_in, line, start);
+			else if (ft_strncmp("##end", *line, 5) == 0)
+				i = parsing_room(lem_in, line, end);
+		}
 		else
-			i = parsing_room(lem_in, line, standart);
+			i = parsing_room(lem_in, line, standard);
 	}
 	if (*line == NULL || i == 0)
 		die();
@@ -91,9 +94,21 @@ void	parse_links(t_lem_in *lem_in, char **line)
 	char	*s2;
 	int		i;
 
+	i = 1;
 	while (i != 0 && (i = get_next_line(0, line)) != -1 && line != NULL)
 	{
-		if (ft_find_carac(*line,'-') != -1)
-			die();
+		if (ft_strncmp("##", *line, 2) != 0)
+		{
+			if ((i = ft_find_carac(*line,'-')) != -1)
+				die();
+			else
+			{
+				s1 = ft_strsub(*line, 0, i);
+				s2 = ft_strsub(*line, i + 1, ft_strlen(*line) - i);
+
+				free(s1);
+				free(s2);
+			}
+		}
 	}
 }
