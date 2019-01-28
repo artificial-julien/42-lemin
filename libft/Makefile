@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2018/12/28 18:49:22 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/28 13:59:53 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,10 @@ _SRC =	./char/ft_isalnum.c \
 		./list/ft_lstiter.c \
 		./list/ft_lstmap.c \
 		./list/ft_lstnew.c \
+		./list/ft_lstnewchar.c \
+		./list/ft_lst_del_one.c \
+		./list/ft_lstadd_last.c \
+		./list/ft_lst_del.c \
 		./memory/ft_bzero.c \
 		./memory/ft_memalloc.c \
 		./memory/ft_memccpy.c \
@@ -59,6 +63,7 @@ _SRC =	./char/ft_isalnum.c \
 		./memory/ft_memdel.c \
 		./memory/ft_memmove.c \
 		./memory/ft_memset.c \
+		./memory/ft_realloc.c \
 		./output/ft_putchar.c \
 		./output/ft_putchar_fd.c \
 		./output/ft_putendl.c \
@@ -95,6 +100,8 @@ _SRC =	./char/ft_isalnum.c \
 		./string/ft_strsub.c \
 		./string/ft_strtrim.c \
 		./input/get_next_line.c \
+		./input/get_next_line_bis.c \
+		./input/get_next_line_aux.c \
 		./math/ft_powf.c \
 		./math/ft_abs.c
 
@@ -140,9 +147,9 @@ $(ODIR)/%.o: $(SDIR)/%.c $(DEPS)
 	$(CC) -c -o $@ $< $(CFLAGS)
 
 clean:
-	rm -f $(OBJ)
+	@rm -f $(OBJ)
 
 fclean:	clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
 
 re:	fclean all
