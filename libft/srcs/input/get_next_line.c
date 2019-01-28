@@ -6,14 +6,14 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:47:56 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 14:00:29 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:14:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <unistd.h>
 #include <limits.h>
-#include "../includes/libft.h"
+#include "libft.h"
 
 static unsigned int	linelen(char *str)
 {

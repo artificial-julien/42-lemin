@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_last.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:24:14 by agoulas           #+#    #+#             */
-/*   Updated: 2018/12/26 15:46:13 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:14:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 void	ft_lstadd_last(t_list **alst, t_list *n)

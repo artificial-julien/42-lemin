@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lst_del_one.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/11 14:52:42 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 13:41:49 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:14:38 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "../includes/libft.h"
+#include "libft.h"
 
 t_list	*ft_lst_del_one(t_list *curr, void *value, size_t size)
 {

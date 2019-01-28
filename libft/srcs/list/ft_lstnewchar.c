@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnewchar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/15 16:54:17 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 13:43:02 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 15:14:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "libft.h"
 #include <stdlib.h>
 
 t_list	*ft_lstnewchar(void const *content, size_t content_size)
