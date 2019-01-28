@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 14:36:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 16:09:29 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef	struct s_lem_in	t_lem_in;
 typedef	struct s_room	t_room;
 typedef	enum e_roomtype	t_roomtype;
 
-struct s_point
+struct	s_point
 {
 	int	x;
 	int	y;
@@ -46,7 +46,7 @@ struct	s_lem_in
 	t_list	*rooms;
 };
 
-struct	s_room
+typedef struct	s_room
 {
 	char		*name;
 	t_roomtype	type;
@@ -65,7 +65,6 @@ enum	e_roomtype
 /*
 **	Core.
 */
-
 
 /*
 **	Parse.
