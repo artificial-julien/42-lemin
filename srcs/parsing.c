@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 18:28:39 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/28 18:59:57 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int		parsing_room(t_lem_in *lem_in, char **line, t_roomtype type)
 	if ((new = room_new(tab[0], type, x, y)) == NULL)
 		return (0);
 	lem_in_add_room(lem_in, new);
-	ft_printf("[%d][%d]\n", tab[0], x, y);
 	ft_free_tab(&tab);
 	return (1);
 }
@@ -101,7 +100,6 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 				i = parsing_room(lem_in, line, start);
 			else if (ft_strncmp("##end", *line, 5) == 0)
 				i = parsing_room(lem_in, line, end);
-			ft_strdel(line);
 		}
 		else
 			i = parsing_room(lem_in, line, standard);
@@ -121,6 +119,8 @@ void	parse_links(t_lem_in *lem_in, char **line)
 	int		i;
 
 	i = 1;
+	s1 = NULL;
+	s2 = NULL;
 	(void)lem_in;
 	while (i != 0 && (i = get_next_line_bis(0, line)) != -1 && line != NULL)
 	{
@@ -132,7 +132,6 @@ void	parse_links(t_lem_in *lem_in, char **line)
 			{
 				s1 = ft_strsub(*line, 0, i);
 				s2 = ft_strsub(*line, i + 1, ft_strlen(*line) - i);
-				ft_printf("[%s]-[%s]\n", s1, s2);
 				free(s1);
 				free(s2);
 			}
