@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/28 16:58:41 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/28 18:15:51 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ _SRC =	main.c \
 		room.c \
 		lem_in.c \
 		parsing.c \
-		ft_parsing_tools.c\
+		utils.c\
 
 .PHONY: all clean fclean re
 
