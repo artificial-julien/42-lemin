@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 17:00:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 17:10:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,11 @@ void	room_set_ants(t_room *room, int ants);
 void	room_free(void *content, size_t size);
 
 /*
-**	Functions.
+**	Utils.
 */
+
+void	ft_free_tab(char ***tab);
+int		ft_strindex(const char *hay, char c);
+int		ft_strrindex(const char *hay, char c);
 
 #endif

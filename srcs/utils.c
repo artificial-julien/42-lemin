@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parsing_tool.c                                  :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 17:03:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 17:11:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_free_tab(char ***tab)
 	*tab = NULL;
 }
 
-int		ft_find_carac(const char *hay, char c)
+int		ft_strindex(const char *hay, char c)
 {
 	int i;
 
@@ -43,7 +43,7 @@ int		ft_find_carac(const char *hay, char c)
 	return (-1);
 }
 
-int		ft_find_last(const char *hay, char c)
+int		ft_strrindex(const char *hay, char c)
 {
 	int i;
 
