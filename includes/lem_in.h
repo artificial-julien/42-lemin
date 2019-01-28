@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 15:25:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/28 16:55:58 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ struct	s_room
 **	Core.
 */
 
+void	lem_in_init(t_lem_in *lem_in);
+void	lem_in_add_room(t_lem_in *lem_in, t_room *room);
+void	lem_in_free(t_lem_in *lem_in);
+void	lem_in_die();
 
 /*
 **	Parse.
@@ -81,9 +85,10 @@ void	parse_links(t_lem_in *lem_in);
 */
 
 t_room	*room_new(char *name, t_roomtype type, int x, int y);
-void	room_add_link(t_room *room);
+t_room	*room_find_by_name(t_lem_in *lem_in, char *name);
+void	room_add_link(t_lem_in *lem_in, char *origin, char *target);
 void	room_set_ants(t_room *room, int ants);
-void	room_free(t_room **room);
+void	room_free(void *content, size_t size);
 
 /*
 **	Functions.
