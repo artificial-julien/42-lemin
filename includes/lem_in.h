@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 14:11:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:28:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void	solve(t_lem_in *lem_in, t_solution *solution);
 **	Solution.
 */
 
+void	solution_init(t_solution *solution);
 void	solution_print(t_solution *solution);
 void	solution_add_round(t_solution *solution);
 void	solution_discard_round(t_solution *solution);

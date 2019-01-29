@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/28 19:58:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:42:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,12 @@ int		gnl_no_comm(const int fd, char **line)
 {
 	int	res;
 
+	ft_strdel(line);
 	while ((res = get_next_line(fd, line)) >= 0
 			&& ft_strnequ("#", *line, 1)
 			&& !ft_strnequ("##", *line, 2))
-		;
+	{
+		ft_strdel(line);
+	}
 	return (res);
 }

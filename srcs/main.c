@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 15:19:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:28:37 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int			main(void)
 
 	lem_in_init(&lem_in);
 	parse(&lem_in);
+	solution_init(&solution);
 	solve(&lem_in, &solution);
 	solution_print(&solution);
 	lem_in_free(&lem_in);
