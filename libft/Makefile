@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/28 13:59:53 by agoulas          ###   ########.fr        #
+#    Updated: 2019/01/29 12:17:17 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -108,7 +108,6 @@ _SRC =	./char/ft_isalnum.c \
 _SRC_FTFPRINTF = \
 				./core/ft_fprintf.c \
 				./core/print_argument.c \
-				./parse/parse.c \
 				./parse/parse_flags.c \
 				./parse/parse_length.c \
 				./parse/parse_number.c \

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 11:27:18 by juazouz           #+#    #+#             */
-/*   Updated: 2018/12/21 17:20:56 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 12:18:59 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int			value_is_zero(t_formatinfo *info, va_list ap);
 **	Parse.
 */
 
-void		parse(const char *restrict format, int *pos, t_formatinfo *info);
 int			parse_flags(t_formatinfo *info, const char *restrict str, int *pos);
 int			parse_width(t_formatinfo *info, const char *restrict str, int *pos);
 int			parse_precision(t_formatinfo *info,
