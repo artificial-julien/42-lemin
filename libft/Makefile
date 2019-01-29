@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/29 12:17:17 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/29 14:07:46 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,13 @@ _SRC =	./char/ft_isalnum.c \
 		./list/ft_lst_del_one.c \
 		./list/ft_lstadd_last.c \
 		./list/ft_lst_del.c \
+		./dlist/ft_dlstadd.c \
+		./dlist/ft_dlstdel.c \
+		./dlist/ft_dlstdelone.c \
+		./dlist/ft_dlstiter.c \
+		./dlist/ft_dlstmap.c \
+		./dlist/ft_dlstnew.c \
+		./dlist/ft_dlstfirst.c \
 		./memory/ft_bzero.c \
 		./memory/ft_memalloc.c \
 		./memory/ft_memccpy.c \

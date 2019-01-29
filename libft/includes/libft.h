@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 23:18:06 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 12:20:43 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 14:08:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,28 @@ typedef enum	e_bool
 	true
 }				t_bool;
 
+/*
+**	Singly linked list.
+*/
+
 typedef struct	s_list
 {
 	void			*content;
 	size_t			content_size;
 	struct s_list	*next;
 }				t_list;
+
+/*
+**	Double linked list.
+*/
+
+typedef struct	s_dlist
+{
+	void			*content;
+	size_t			content_size;
+	struct s_dlist	*next;
+	struct s_dlist	*prev;
+}				t_dlist;
 
 /*
 **	Output.
@@ -140,6 +156,18 @@ void			ft_lst_del(t_list **lst);
 void			ft_lstadd_last(t_list **alst, t_list *n);
 t_list			*ft_lst_del_one(t_list *curr, void *value, size_t size);
 t_list			*ft_lstnewchar(void const *content, size_t content_size);
+
+/*
+**	Double linked list functions.
+*/
+
+t_dlist			*ft_dlstnew(void const *content, size_t content_size);
+void			ft_dlstdelone(t_dlist **alst, void (*del)(void*, size_t));
+void			ft_dlstdel(t_dlist **alst, void (*del)(void*, size_t));
+void			ft_dlstadd(t_dlist **alst, t_dlist *new);
+void			ft_dlstiter(t_dlist *lst, void (*f)(t_dlist *elem));
+t_dlist			*ft_dlstmap(t_dlist *lst, t_dlist *(*f)(t_dlist *elem));
+t_dlist			*ft_dlstfirst(t_dlist *lst);
 
 /*
 **	Linq-like functions.
