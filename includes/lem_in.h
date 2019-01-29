@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 18:35:26 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 14:11:57 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ struct	s_room
 
 struct	s_solution
 {
-	t_list	*rounds;
+	t_dlist	*rounds;
 };
 
 /*
@@ -82,7 +82,7 @@ struct	s_solution
 
 struct	s_round
 {
-	t_list	*moves;
+	t_dlist	*moves;
 };
 
 /*
@@ -110,7 +110,9 @@ void	lem_in_die();
 
 void	parse(t_lem_in *lem_in);
 void	parse_ants_count(t_lem_in *lem_in, char **line);
-void	parse_rooms(t_lem_in *lem_in, char **line);
+t_bool	parse_rooms(t_lem_in *lem_in, char **line);
+int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
+int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
 void	parse_links(t_lem_in *lem_in, char **line);
 
 /*
@@ -133,7 +135,10 @@ void	solve(t_lem_in *lem_in, t_solution *solution);
 **	Solution.
 */
 
-void	print_solution(t_solution *solution);
+void	solution_print(t_solution *solution);
+void	solution_add_round(t_solution *solution);
+void	solution_discard_round(t_solution *solution);
+void	solution_add_move(t_solution *solution, t_move *move);
 
 /*
 **	Utils.
@@ -142,5 +147,6 @@ void	print_solution(t_solution *solution);
 void	ft_free_tab(char ***tab);
 int		ft_strindex(const char *hay, char c);
 int		ft_strrindex(const char *hay, char c);
+int		gnl_no_comm(const int fd, char **line);
 
 #endif

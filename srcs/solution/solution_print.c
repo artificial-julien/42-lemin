@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_solution.c                                   :+:      :+:    :+:   */
+/*   solution_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 18:24:30 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 18:31:56 by juazouz          ###   ########.fr       */
+/*   Created: 2019/01/29 12:33:38 by juazouz           #+#    #+#             */
+/*   Updated: 2019/01/29 14:50:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,29 @@
 
 static void	print_round(t_round *round)
 {
-	t_list	*curr;
+	t_dlist	*curr;
 	t_move	*move;
 
-	curr = round->moves;
+	curr = ft_dlstfirst(round->moves);
 	while (curr != NULL)
 	{
-		move = (t_move*)curr;
+		move = (t_move*)curr->content;
 		ft_printf("L%s-%s", move->origin->name, move->target->name);
-		curr = curr->next;
+		curr = curr->prev;
 		if (curr != NULL)
-			ft_putchar(" ");
+			ft_putchar(' ');
 	}
 	ft_putendl("");
 }
 
-void		print_solution(t_solution *solution)
+void		solution_print(t_solution *solution)
 {
-	t_list	*curr;
+	t_dlist	*curr;
 
-	curr = solution->rounds;
+	curr = ft_dlstfirst(solution->rounds);
 	while (curr != NULL)
 	{
-		print_round((t_round*)curr);
-		curr = curr->next;
+		print_round((t_round*)curr->content);
+		curr = curr->prev;
 	}
 }
