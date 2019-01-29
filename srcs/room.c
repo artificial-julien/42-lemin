@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 16:55:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:23:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_room	*room_new(char *name, t_roomtype type, int x, int y)
 	t_room	*res;
 
 	res = ft_memalloc(sizeof(t_room));
-	res->name = name;
+	res->name = ft_strdup(name);
 	res->type = type;
 	res->pos.x = x;
 	res->pos.y = y;
@@ -86,5 +86,4 @@ void	room_free(void *content, size_t size)
 	room = (t_room*)content;
 	free(room->name);
 	ft_lstdel(&room->links, NULL);
-	free(content);
 }

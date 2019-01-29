@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:24:30 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 14:14:45 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 15:41:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void		solution_add_round(t_solution *solution)
 	t_dlist	*new;
 
 	round = ft_memalloc(sizeof(t_round));
-	new = ft_dlstnew(round, sizeof(t_move));
+	new = ft_dlstnew(round, sizeof(t_round));
 	ft_dlstadd(&solution->rounds, new);
 }
 
