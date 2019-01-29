@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/29 15:20:40 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/29 15:26:29 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,8 @@ TEST_PRINT_SOL = lem_in_solution_print_test
 
 DEPS = $(IDIR)/lem_in.h
 
-OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC))
+OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
+		$(LIBFTDIR)/$(LIBFT)
 
 SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
@@ -44,10 +45,10 @@ _SRC =	room.c \
 
 all: $(NAME) $(TEST_PRINT_SOL)
 
-$(TEST_PRINT_SOL): $(OBJ) $(LIBFTDIR)/$(LIBFT) $(SDIR)/test/test_print.c
+$(TEST_PRINT_SOL): $(OBJ) $(SDIR)/test/test_print.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(NAME): $(OBJ) $(LIBFTDIR)/$(LIBFT) $(SDIR)/main.c
+$(NAME): $(OBJ) $(SDIR)/main.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFTDIR)/$(LIBFT):
