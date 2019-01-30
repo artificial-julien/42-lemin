@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 16:28:53 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/30 18:53:22 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ typedef	enum e_roomtype		t_roomtype;
 typedef	struct s_move		t_move;
 typedef struct s_round		t_round;
 typedef struct s_solution	t_solution;
+typedef struct s_route		t_route;
+typedef struct s_group		t_group;
 
 struct	s_point
 {
@@ -93,6 +95,20 @@ struct	s_move
 {
 	t_room	*origin;
 	t_room	*target;
+};
+
+struct	s_route
+{
+	int		len;
+	t_list	*rooms;
+};
+
+struct	s_group
+{
+	int		count;
+	int		high_len;
+	int		low_len;
+	t_list	*routes;
 };
 
 /*
