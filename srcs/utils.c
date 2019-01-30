@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/29 16:42:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/30 19:11:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,18 @@ int		gnl_no_comm(const int fd, char **line)
 		ft_strdel(line);
 	}
 	return (res);
+}
+
+/*
+**	Function testing the links for if the next room is empty
+*/
+
+t_bool		ants_cam_move(t_list *links)
+{
+	t_room *r;
+
+	r = *((t_room**)links->content);
+	if ((r->ants == 0 && r->type == standard) || (r->type == end))
+		return (1);
+	return (0);
 }

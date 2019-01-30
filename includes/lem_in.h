@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/30 18:53:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/30 19:21:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,26 @@ void	room_set_ants(t_room *room, int ants);
 void	room_free(void *content, size_t size);
 
 /*
+**	Route.
+*/
+
+void	route_free(void *content, size_t size);
+
+/*
+**	Group.
+*/
+
+void	group_free(void *content, size_t size);
+
+/*
 **	Solve.
 */
 
 void	solve(t_lem_in *lem_in, t_solution *solution);
+void	scan_routes(t_lem_in *lem_in, t_list **routes);
+void	build_groups(t_list **groups);
+t_group	*select_best_group(t_list *groups);
+void	build_solution(t_solution *solution);
 
 /*
 **	Solution.

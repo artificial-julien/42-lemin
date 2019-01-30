@@ -6,37 +6,28 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/30 16:57:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/30 19:21:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	Function testing the links for if the next room is empty
-*/
-
-t_bool		ants_cam_move(t_list *links)
-{
-	t_room *r;
-
-	r = *((t_room**)links->content);
-	if ((r->ants == 0 && r->type == standard) || (r->type == end))
-		return (1);
-	return (0);
-}
-
-/*
-** Function of resolution of the programme
+**	Core problem solving function.
 */
 
 void	solve(t_lem_in *lem_in, t_solution *solution)
 {
-	ft_printf("test solve\n");
-	return ;
-	while (lem_in->end->ants != lem_in->total_ants)
-	{
-		solution_add_round(solution);
+	t_list		*routes;
+	t_list		*groups;
+	t_group		*best_group;
 
-	}
+	routes = NULL;
+	groups = NULL;
+	scan_routes(lem_in, &routes);
+	build_groups(&groups);
+	best_group = select_best_group(groups);
+	build_solution(solution);
+	ft_lstdel(&routes, route_free);
+	ft_lstdel(&groups, group_free);
 }
