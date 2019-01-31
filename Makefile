@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/31 17:02:57 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/31 17:05:30 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,10 @@ _SRC =	room.c \
 		glist/ft_glstdelone.c \
 		glist/ft_glstiter.c \
 		glist/ft_glstmap.c \
-		glist/ft_glstnew.c
+		glist/ft_glstnew.c \
+		groups.c \
+		group.c \
+		route.c
 
 .PHONY: all clean fclean re
 
