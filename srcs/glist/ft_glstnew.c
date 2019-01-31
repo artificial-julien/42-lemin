@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_glstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+t_glist	*ft_glstnew(void const *content, size_t content_size)
 {
-	t_list	*result;
+	t_glist	*result;
 
-	result = malloc(sizeof(t_list));
+	result = malloc(sizeof(t_glist));
 	if (result == NULL)
 	{
 		return (NULL);

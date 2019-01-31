@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstiter.c                                       :+:      :+:    :+:   */
+/*   ft_glstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,11 +10,11 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-void			ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void			ft_glstiter(t_glist *lst, void (*f)(t_glist *elem))
 {
-	t_list	*curr;
+	t_glist	*curr;
 
 	curr = lst;
 	while (curr != NULL)

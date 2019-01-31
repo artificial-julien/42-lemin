@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 14:49:11 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:54:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int		route_cmp_conflit(t_route *route_a, t_route *route_b)
 {
-	t_list	*lst_a;
-	t_list	*lst_b;
+	t_glist	*lst_a;
+	t_glist	*lst_b;
 	t_room	*room_a;
 	t_room	*room_b;
 

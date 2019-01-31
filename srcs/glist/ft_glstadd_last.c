@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_last.c                                   :+:      :+:    :+:   */
+/*   ft_glstadd_last.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 #include <stdlib.h>
 
-void	ft_lstadd_last(t_list **alst, t_list *n)
+void	ft_glstadd_last(t_glist **alst, t_glist *n)
 {
-	t_list *cur;
+	t_glist *cur;
 
 	if (alst && n)
 	{

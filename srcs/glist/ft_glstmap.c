@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstmap.c                                        :+:      :+:    :+:   */
+/*   ft_glstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,13 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "lem_in.h"
 
-t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+t_glist	*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem))
 {
-	t_list	*begin;
-	t_list	*curr_in;
-	t_list	**curr_out;
+	t_glist	*begin;
+	t_glist	*curr_in;
+	t_glist	**curr_out;
 
 	curr_out = &begin;
 	curr_in = lst;

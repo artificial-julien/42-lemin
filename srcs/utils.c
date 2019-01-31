@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/30 19:11:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:54:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int		gnl_no_comm(const int fd, char **line)
 **	Function testing the links for if the next room is empty
 */
 
-t_bool		ants_cam_move(t_list *links)
+t_bool		ants_cam_move(t_glist *links)
 {
 	t_room *r;
 

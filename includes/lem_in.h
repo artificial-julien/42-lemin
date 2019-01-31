@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:47:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:56:47 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,7 @@ struct	s_move
 struct	s_route
 {
 	int		len;
-	t_list	*rooms;
+	t_glist	*rooms;
 };
 
 struct	s_group

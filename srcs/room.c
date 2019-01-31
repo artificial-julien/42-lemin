@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:45:25 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:54:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	room_set_ants(t_room *room, int ants)
 
 /*
 **	Free the specified room object and its elements.
-**	Use with ft_listdel()
+**	Use with ft_glistdel()
 */
 
 void	room_free(void *content, size_t size)
