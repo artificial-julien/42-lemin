@@ -6,14 +6,14 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 14:07:39 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:09:00 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-** Function to add a group to the list of groups
+**	Function to add a group to the list of groups
 */
 
 void	groups_add_group(t_list **groups, t_group **group)
@@ -23,7 +23,7 @@ void	groups_add_group(t_list **groups, t_group **group)
 }
 
 /*
-** function to create all groups  from the list of routes
+**	Function to create all groups  from the list of routes
 */
 
 void	build_groups(t_list **groups, t_list **routes)
@@ -36,4 +36,14 @@ void	build_groups(t_list **groups, t_list **routes)
 		del_route_group_conflict(groups, routes, index_route->content);
 		index_route = index_route->next;
 	}
+}
+
+/*
+**	Function to retest the group and concatene les group 
+**	et limiting the number of group
+*/
+
+void	groups_organise(t_list **group, t_list **routes)
+{
+	
 }

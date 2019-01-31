@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:06:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:08:35 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -175,22 +175,28 @@ void	room_set_ants(t_room *room, int ants);
 void	room_free(void *content, size_t size);
 
 /*
-**	Route.
+** Route.
 */
 
-int		route_cmp_conflit(t_route *route_a, t_route *route_b);
-void	route_free(void *content, size_t size);
+int  route_cmp_conflit(t_route *route_a, t_route *route_b);
+void route_free(void *content, size_t size);
 
 /*
-**	Group.
+** Group.
 */
 
-void	group_creat(t_group **g);
-void	group_add_route(t_group **g, t_route *r);
-void	group_del_route(t_group **g, t_route **r);
-void	group_free(void *content, size_t size);
-void	del_route_group_conflict(t_list **groups, t_list **routes, t_route **p);
-void	groups_add_group(t_list **groups, t_group **group);
+void group_creat(t_group **g);
+void group_add_route(t_group **g, t_route *r);
+void group_del_route(t_group **g, t_route **r);
+void group_free(void *content, size_t size);
+void group_route_conflict(t_list **groups, t_list **routes, t_route **p);
+
+/*
+** Groups .
+*/
+
+void groups_add_group(t_list **groups, t_group **group);
+void build_groups(t_list **groups, t_list **routes);
 
 /*
 **	Solve.

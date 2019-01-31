@@ -6,7 +6,7 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 14:36:03 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:09:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	group_add_route(t_group **group, t_route *route)
 }
 
 /*
-** Function for creting a group
+** Function for creating a group
 ** without conflit between one route and the list of routes
 */
 
-void del_route_group_conflict(t_list **groups, t_list **routes, t_route **p)
+void	group_route_conflict(t_list **groups, t_list **routes, t_route **p)
 {
 	t_list		*lst;
 	t_route		*route_a;
@@ -62,4 +62,19 @@ void del_route_group_conflict(t_list **groups, t_list **routes, t_route **p)
 		route_a = (lst)->content;
 	}
 	groups_add_group(groups, &group);
+}
+
+/*
+**	Function for freeing a group from the list of groups
+*/
+
+void	group_del_lst(t_list **group, t_group *group)
+{
+	t_list *lst;
+
+	lst = groups;
+	if (groups && group)
+	{
+		if (lst->content == groups)
+	}
 }
