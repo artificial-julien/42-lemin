@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/30 19:21:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 16:47:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 **	Types.
 */
 
+typedef struct s_glist		t_glist;
 typedef	struct s_point		t_point;
 typedef	struct s_lem_in		t_lem_in;
 typedef	struct s_room		t_room;
@@ -36,6 +37,26 @@ typedef struct s_round		t_round;
 typedef struct s_solution	t_solution;
 typedef struct s_route		t_route;
 typedef struct s_group		t_group;
+
+/*
+**	Project generic list.
+*/
+
+struct	s_glist
+{
+	union
+	{
+		void		*content;
+		t_room		*room;
+		t_route		*route;
+		t_group		*group;
+		t_round		*round;
+		t_move		*move;
+		t_glist		*glist;
+	};
+	size_t			content_size;
+	struct s_glist	*next;
+};
 
 struct	s_point
 {
@@ -119,6 +140,18 @@ void	lem_in_init(t_lem_in *lem_in);
 void	lem_in_add_room(t_lem_in *lem_in, t_room *room);
 void	lem_in_free(t_lem_in *lem_in);
 void	lem_in_die();
+
+/*
+**	Project generic list functions.
+*/
+
+t_glist	*ft_glstnew(void const *content, size_t content_size);
+void	ft_glstdelone(t_glist **alst, void (*del)(void*, size_t));
+void	ft_glstdel(t_glist **alst, void (*del)(void*, size_t));
+void	ft_glstadd(t_glist **alst, t_glist *new);
+void	ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
+t_glist	*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
+void	ft_glstadd_last(t_glist **alst, t_glist *n);
 
 /*
 **	Parse.
