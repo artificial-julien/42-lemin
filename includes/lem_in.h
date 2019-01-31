@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/30 19:21:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 13:07:44 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,21 +145,25 @@ void	room_free(void *content, size_t size);
 **	Route.
 */
 
+int  route_cmp_conflit(t_route *route_a, t_route *route_b);
 void	route_free(void *content, size_t size);
 
 /*
 **	Group.
 */
 
+void	group_creat(t_groups **g);
+void	group_add_route(t_groups **g, t_route **r);
+void	group_del_route(t_group **g, t_route **r);
 void	group_free(void *content, size_t size);
-
+void	del_route_group_conflict(t_group **g, t_list **routes, t_route *p);
 /*
 **	Solve.
 */
 
 void	solve(t_lem_in *lem_in, t_solution *solution);
 void	scan_routes(t_lem_in *lem_in, t_list **routes);
-void	build_groups(t_list **groups);
+void	build_groups(t_list **groups, t_list **routes);
 t_group	*select_best_group(t_list *groups);
 void	build_solution(t_solution *solution);
 
