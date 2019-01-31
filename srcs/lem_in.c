@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/30 18:29:53 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:47:58 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	lem_in_init(t_lem_in *lem_in)
 
 void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 {
-	t_list	*new;
+	t_glist	*new;
 
-	new = ft_lstnew(room, sizeof(t_room));
-	ft_lstadd(&lem_in->rooms, new);
+	new = ft_glstnew(room, sizeof(t_room));
+	ft_glstadd(&lem_in->rooms, new);
 }
 
 /*
@@ -39,7 +39,7 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 
 void	lem_in_free(t_lem_in *lem_in)
 {
-	ft_lstdel(&lem_in->rooms, room_free);
+	ft_glstdel(&lem_in->rooms, room_free);
 }
 
 /*
