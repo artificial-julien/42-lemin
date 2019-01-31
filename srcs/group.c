@@ -6,7 +6,7 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 17:09:03 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:36:22 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	group_creat(t_group **g)
 
 void	group_add_route(t_group **group, t_route *route)
 {
-	ft_lstadd(&(*group)->routes, ft_lstnew(route, sizeof(route)));
+	ft_glstadd(&(*group)->routes, ft_glstnew(route, sizeof(route)));
 	(*group)->count++;
 	if ((*group)->low_len > route->len || (*group)->low_len == 0)
 		(*group)->low_len = route->len;
@@ -44,9 +44,9 @@ void	group_add_route(t_group **group, t_route *route)
 ** without conflit between one route and the list of routes
 */
 
-void	group_route_conflict(t_list **groups, t_list **routes, t_route **p)
+void	group_route_conflict(t_glist **groups, t_glist **routes, t_route **p)
 {
-	t_list		*lst;
+	t_glist		*lst;
 	t_route		*route_a;
 	t_group		*group;
 
@@ -68,13 +68,13 @@ void	group_route_conflict(t_list **groups, t_list **routes, t_route **p)
 **	Function for freeing a group from the list of groups
 */
 
-void	group_del_lst(t_list **group, t_group *group)
+void	group_del_lst(t_glist **groups, t_group *group)
 {
-	t_list *lst;
+	t_glist *lst;
 
-	lst = groups;
+	lst = *groups;
 	if (groups && group)
 	{
-		if (lst->content == groups)
+		//if (lst->content == groups)
 	}
 }

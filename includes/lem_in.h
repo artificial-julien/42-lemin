@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:08:35 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:35:21 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,7 @@ struct	s_group
 	int		count;
 	int		high_len;
 	int		low_len;
-	t_list	*routes;
+	t_glist	*routes;
 };
 
 /*
@@ -189,23 +189,22 @@ void group_creat(t_group **g);
 void group_add_route(t_group **g, t_route *r);
 void group_del_route(t_group **g, t_route **r);
 void group_free(void *content, size_t size);
-void group_route_conflict(t_list **groups, t_list **routes, t_route **p);
+void group_route_conflict(t_glist **groups, t_glist **routes, t_route **p);
 
 /*
 ** Groups .
 */
 
-void groups_add_group(t_list **groups, t_group **group);
-void build_groups(t_list **groups, t_list **routes);
+void groups_add_group(t_glist **groups, t_group **group);
+void build_groups(t_glist **groups, t_glist **routes);
 
 /*
 **	Solve.
 */
 
 void	solve(t_lem_in *lem_in, t_solution *solution);
-void	scan_routes(t_lem_in *lem_in, t_list **routes);
-void	build_groups(t_list **groups, t_list **routes);
-t_group	*select_best_group(t_list *groups);
+void	scan_routes(t_lem_in *lem_in, t_glist **routes);
+t_group	*select_best_group(t_glist *groups);
 void	build_solution(t_solution *solution);
 
 /*

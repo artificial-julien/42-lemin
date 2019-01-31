@@ -6,7 +6,7 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 17:09:00 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/01/31 17:24:27 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 **	Function to add a group to the list of groups
 */
 
-void	groups_add_group(t_list **groups, t_group **group)
+void	groups_add_group(t_glist **groups, t_group **group)
 {
 	if (groups && group)
-		ft_lstadd(groups, ft_lstnew(group, sizeof(group)));
+		ft_glstadd(groups, ft_glstnew(group, sizeof(group)));
 }
 
 /*
 **	Function to create all groups  from the list of routes
 */
 
-void	build_groups(t_list **groups, t_list **routes)
+void	build_groups(t_glist **groups, t_glist **routes)
 {
-	t_list *index_route;
+	t_glist *index_route;
 
 	index_route = *routes;
 	while (index_route != NULL)
 	{
-		del_route_group_conflict(groups, routes, index_route->content);
+		group_route_conflict(groups, routes, index_route->content);
 		index_route = index_route->next;
 	}
 }
@@ -43,7 +43,8 @@ void	build_groups(t_list **groups, t_list **routes)
 **	et limiting the number of group
 */
 
-void	groups_organise(t_list **group, t_list **routes)
+void	groups_organise(t_glist **groups, t_glist **routes)
 {
-	
+	(void)groups;
+	(void)routes;
 }
