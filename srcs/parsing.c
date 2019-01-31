@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/29 16:34:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/29 16:55:20 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,10 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 			lem_in->total_ants = i;
 		else
 			lem_in_die();
+		ft_strdel(line);
 	}
-	ft_strdel(line);
+	else
+		lem_in_die();
 }
 
 /*
@@ -131,7 +133,6 @@ void	parse_links(t_lem_in *lem_in, char **line)
 	i = 1;
 	s1 = NULL;
 	s2 = NULL;
-	(void)lem_in;
 	while (1)
 	{
 		if ((i = ft_strindex(*line, '-')) == -1)
@@ -142,6 +143,8 @@ void	parse_links(t_lem_in *lem_in, char **line)
 		{
 			s1 = ft_strsub(*line, 0, i);
 			s2 = ft_strsub(*line, i + 1, ft_strlen(*line) - i);
+			room_add_link(lem_in, s1, s2);
+			room_add_link(lem_in, s2, s1);
 			free(s1);
 			free(s2);
 		}
