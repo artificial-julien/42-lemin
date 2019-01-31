@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/29 15:26:29 by juazouz          ###   ########.fr        #
+#    Updated: 2019/01/31 14:37:49 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,10 @@ _SRC =	room.c \
 		solve.c \
 		solution/solution_print.c \
 		solution/solution.c \
-		utils.c
+		utils.c \
+		groups.c \
+		group.c \
+		route.c \
 
 .PHONY: all clean fclean re
 
