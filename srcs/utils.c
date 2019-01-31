@@ -6,11 +6,16 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 17:54:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 18:13:59 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+
+/*
+** Fonction to free a tab of char of 2 dimension
+*/
 
 void	ft_free_tab(char ***tab)
 {
@@ -29,6 +34,12 @@ void	ft_free_tab(char ***tab)
 	*tab = NULL;
 }
 
+/*
+**	Function which return the index of position from the start
+**	of an charactere in the string or return -1
+**	if it can t find the cractere in the string
+*/
+
 int		ft_strindex(const char *hay, char c)
 {
 	int i;
@@ -42,6 +53,13 @@ int		ft_strindex(const char *hay, char c)
 	}
 	return (-1);
 }
+
+/*
+**»·Function which return the index of position from the last
+**»·of an charactere in the string or return -1 
+**»·if it can t find the cractere in the string
+*/
+
 
 int		ft_strrindex(const char *hay, char c)
 {

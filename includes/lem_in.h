@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:56:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/01/31 20:05:24 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_round		t_round;
 typedef struct s_solution	t_solution;
 typedef struct s_route		t_route;
 typedef struct s_group		t_group;
+typedef struct s_bitmap		t_bitmap;
 
 /*
 **	Project generic list.
@@ -120,8 +121,10 @@ struct	s_move
 
 struct	s_route
 {
-	int		len;
-	t_glist	*rooms;
+	int			id_route;
+	int			len;
+	t_glist		*rooms;
+	t_bitmap	*conflicts;
 };
 
 struct	s_group
@@ -130,6 +133,12 @@ struct	s_group
 	int		high_len;
 	int		low_len;
 	t_glist	*routes;
+};
+
+struct	s_bitmap
+{
+	size_t	bits_size;
+	int		*map;
 };
 
 /*
@@ -178,25 +187,25 @@ void	room_free(void *content, size_t size);
 ** Route.
 */
 
-int  route_cmp_conflit(t_route *route_a, t_route *route_b);
-void route_free(void *content, size_t size);
+int			route_cmp_conflit(t_route *route_a, t_route *route_b);
+void		route_free(void *content, size_t size);
 
 /*
 ** Group.
 */
 
-void group_creat(t_group **g);
-void group_add_route(t_group **g, t_route *r);
-void group_del_route(t_group **g, t_route **r);
-void group_free(void *content, size_t size);
-void group_route_conflict(t_glist **groups, t_glist **routes, t_route **p);
+t_group*	group_new();
+void		group_add_route(t_group **g, t_route *r);
+void		group_del_route(t_group **g, t_route **r);
+void		group_free(void *content, size_t size);
+void		group_route_conflict(t_glist **groups, t_glist **routes, t_route **p);
 
 /*
 ** Groups .
 */
 
-void groups_add_group(t_glist **groups, t_group **group);
-void build_groups(t_glist **groups, t_glist **routes);
+void		groups_add_group(t_glist **groups, t_group **group);
+void		build_groups(t_glist **groups, t_glist **routes);
 
 /*
 **	Solve.
@@ -216,6 +225,14 @@ void	solution_print(t_solution *solution);
 void	solution_add_round(t_solution *solution);
 void	solution_discard_round(t_solution *solution);
 void	solution_add_move(t_solution *solution, t_move *move);
+
+/*
+**	Bitmap.
+*/
+
+t_bitmap	*bitmap_new(size_t bits_size);
+t_bool		bitmap_get(t_bitmap *bitmap, size_t index);
+void		bitmap_set(t_bitmap *bitmap, size_t index);
 
 /*
 **	Utils.
