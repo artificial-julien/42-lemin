@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 20:05:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:52:17 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,86 +145,98 @@ struct	s_bitmap
 **	Core.
 */
 
-void	lem_in_init(t_lem_in *lem_in);
-void	lem_in_add_room(t_lem_in *lem_in, t_room *room);
-void	lem_in_free(t_lem_in *lem_in);
-void	lem_in_die();
+void		lem_in_init(t_lem_in *lem_in);
+void		lem_in_add_room(t_lem_in *lem_in, t_room *room);
+void		lem_in_free(t_lem_in *lem_in);
+void		lem_in_die();
 
 /*
 **	Project generic list functions.
 */
 
-t_glist	*ft_glstnew(void const *content, size_t content_size);
-void	ft_glstdelone(t_glist **alst, void (*del)(void*, size_t));
-void	ft_glstdel(t_glist **alst, void (*del)(void*, size_t));
-void	ft_glstadd(t_glist **alst, t_glist *new);
-void	ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
-t_glist	*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
-void	ft_glstadd_last(t_glist **alst, t_glist *n);
+t_glist		*ft_glstnew(void const *content, size_t content_size);
+void		ft_glstdelone(t_glist **alst, void (*del)(void*, size_t));
+void		ft_glstdel(t_glist **alst, void (*del)(void*, size_t));
+void		ft_glstadd(t_glist **alst, t_glist *new);
+void		ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
+t_glist		*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
+void		ft_glstadd_last(t_glist **alst, t_glist *n);
 
 /*
 **	Parse.
 */
 
-void	parse(t_lem_in *lem_in);
-void	parse_ants_count(t_lem_in *lem_in, char **line);
-t_bool	parse_rooms(t_lem_in *lem_in, char **line);
-int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
-int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
-void	parse_links(t_lem_in *lem_in, char **line);
+void		parse(t_lem_in *lem_in);
+void		parse_ants_count(t_lem_in *lem_in, char **line);
+t_bool		parse_rooms(t_lem_in *lem_in, char **line);
+int			parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
+int			read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
+void		parse_links(t_lem_in *lem_in, char **line);
 
 /*
 **	Room.
 */
 
-t_room	*room_new(char *name, t_roomtype type, int x, int y);
-t_room	*room_find_by_name(t_lem_in *lem_in, char *name);
-void	room_add_link(t_lem_in *lem_in, char *origin, char *target);
-void	room_set_ants(t_room *room, int ants);
-void	room_free(void *content, size_t size);
+t_room		*room_new(char *name, t_roomtype type, int x, int y);
+t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
+void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
+void		room_set_ants(t_room *room, int ants);
+void		room_free(void *content, size_t size);
 
 /*
 ** Route.
 */
 
-int			route_cmp_conflit(t_route *route_a, t_route *route_b);
+t_bool		route_equals(t_route *route_a, t_route *route_b);
+t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b);
 void		route_free(void *content, size_t size);
+t_bool		route_has_conflict(t_route *a, t_route *b);
 
+
+/*
+** Routes
+*/
+
+t_bool		routes_routechr(t_glist *routes, t_route *route);
+int			routes_equals(t_glist *routes_a, t_glist *routes_b);
 /*
 ** Group.
 */
 
 t_group*	group_new();
-void		group_add_route(t_group **g, t_route *r);
-void		group_del_route(t_group **g, t_route **r);
+void		group_add_route(t_group **group, t_route *route);
+void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-void		group_route_conflict(t_glist **groups, t_glist **routes, t_route **p);
+t_bool		group_has_conflict(t_group **group, t_route *route);
+void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
 
 /*
 ** Groups .
 */
 
-void		groups_add_group(t_glist **groups, t_group **group);
-void		build_groups(t_glist **groups, t_glist **routes);
+void		groups_add_group(t_glist **groups, t_group *group);
+void		build_groups(t_glist **groups, t_glist *routes);
+t_bool		groups_doublon_group(t_glist *groups, t_group *group);
+t_bool		groups_equals(t_group *group_a, t_group *group_b);
 
 /*
 **	Solve.
 */
 
-void	solve(t_lem_in *lem_in, t_solution *solution);
-void	scan_routes(t_lem_in *lem_in, t_glist **routes);
-t_group	*select_best_group(t_glist *groups);
-void	build_solution(t_solution *solution);
+void		solve(t_lem_in *lem_in, t_solution *solution);
+void		scan_routes(t_lem_in *lem_in, t_glist **routes);
+t_group		*select_best_group(t_glist *groups);
+void		build_solution(t_solution *solution);
 
 /*
 **	Solution.
 */
 
-void	solution_init(t_solution *solution);
-void	solution_print(t_solution *solution);
-void	solution_add_round(t_solution *solution);
-void	solution_discard_round(t_solution *solution);
-void	solution_add_move(t_solution *solution, t_move *move);
+void		solution_init(t_solution *solution);
+void		solution_print(t_solution *solution);
+void		solution_add_round(t_solution *solution);
+void		solution_discard_round(t_solution *solution);
+void		solution_add_move(t_solution *solution, t_move *move);
 
 /*
 **	Bitmap.
@@ -238,9 +250,9 @@ void		bitmap_set(t_bitmap *bitmap, size_t index);
 **	Utils.
 */
 
-void	ft_free_tab(char ***tab);
-int		ft_strindex(const char *hay, char c);
-int		ft_strrindex(const char *hay, char c);
-int		gnl_no_comm(const int fd, char **line);
+void		ft_free_tab(char ***tab);
+int			ft_strindex(const char *hay, char c);
+int			ft_strrindex(const char *hay, char c);
+int			gnl_no_comm(const int fd, char **line);
 
 #endif
