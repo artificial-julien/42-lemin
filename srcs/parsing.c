@@ -6,27 +6,12 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/29 16:55:20 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:42:20 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 #define MAX_NB_SIZE 10
-
-/*
-**	Function for parsing the input and create the information for the progams
-*/
-
-void	parse(t_lem_in *lem_in)
-{
-	char *line;
-
-	line = NULL;
-	parse_ants_count(lem_in, &line);
-	parse_rooms(lem_in, &line);
-	parse_links(lem_in, &line);
-	ft_strdel(&line);
-}
 
 /*
 **	Function of parsing which read and test the number of ants

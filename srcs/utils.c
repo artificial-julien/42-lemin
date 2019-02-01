@@ -6,12 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/01/31 18:13:59 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:38:02 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 /*
 ** Fonction to free a tab of char of 2 dimension
@@ -56,10 +55,9 @@ int		ft_strindex(const char *hay, char c)
 
 /*
 **»·Function which return the index of position from the last
-**»·of an charactere in the string or return -1 
+**»·of an charactere in the string or return -1
 **»·if it can t find the cractere in the string
 */
-
 
 int		ft_strrindex(const char *hay, char c)
 {
@@ -76,9 +74,9 @@ int		ft_strrindex(const char *hay, char c)
 }
 
 /*
-**	Reads to the next non-comment line.
-**	Comments starts by "#".
-**	"##" are NOT comments.
+**	Reads to the next non-comment line
+**	Comments starts by "#"
+**	"##" are NOT comments
 */
 
 int		gnl_no_comm(const int fd, char **line)
@@ -99,7 +97,7 @@ int		gnl_no_comm(const int fd, char **line)
 **	Function testing the links for if the next room is empty
 */
 
-t_bool		ants_cam_move(t_glist *links)
+t_bool	ants_cam_move(t_glist *links)
 {
 	t_room *r;
 

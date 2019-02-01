@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:54:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:30:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,9 @@ void	room_set_ants(t_room *room, int ants)
 
 void	room_free(void *content, size_t size)
 {
-	(void)size;
 	t_room *room;
 
+	(void)size;
 	room = (t_room*)content;
 	free(room->name);
 	ft_glstdel(&room->links, NULL);

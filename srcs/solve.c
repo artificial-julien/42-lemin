@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:23:32 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:37:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ void	solve(t_lem_in *lem_in, t_solution *solution)
 	routes = NULL;
 	groups = NULL;
 	scan_routes(lem_in, &routes);
-	build_groups(&groups, &routes);
+	build_groups(&groups, routes);
 	best_group = select_best_group(groups);
 	build_solution(solution);
 	ft_glstdel(&routes, route_free);
 	ft_glstdel(&groups, group_free);
-
 }

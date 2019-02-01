@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 16:23:53 by agoulas          ###   ########.fr       */
+/*   Created: 2019/02/01 16:41:07 by agoulas           #+#    #+#             */
+/*   Updated: 2019/02/01 16:43:48 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-int			main(void)
-{
-	t_lem_in	lem_in;
-	t_solution	solution;
+/*
+**	Function for parsing the input and create the information for the progams
+*/
 
-	lem_in_init(&lem_in);
-	parse(&lem_in);
-	solution_init(&solution);
-	solve(&lem_in, &solution);
-	solution_print(&solution);
-	lem_in_free(&lem_in);
-	return (0);
+void	parse(t_lem_in *lem_in)
+{
+	char *line;
+
+	line = NULL;
+	parse_ants_count(lem_in, &line);
+	parse_rooms(lem_in, &line);
+	parse_links(lem_in, &line);
+	ft_strdel(&line);
 }

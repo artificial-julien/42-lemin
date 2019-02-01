@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 17:47:58 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:24:16 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	lem_in_free(t_lem_in *lem_in)
 **	Prints an error and terminates the program.
 */
 
-void	lem_in_die()
+void	lem_in_die(void)
 {
 	ft_putendl("ERROR");
 	exit(EXIT_FAILURE);
