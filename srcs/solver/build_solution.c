@@ -1,35 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_glstnew.c                                       :+:      :+:    :+:   */
+/*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 19:25:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 17:01:50 by juazouz          ###   ########.fr       */
+/*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
+/*   Updated: 2019/02/01 17:52:57 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_glist	*ft_glstnew(void const *content, size_t content_size)
-{
-	t_glist	*result;
+/*
+**	Builds a solution or a set of moves using the specified group.
+*/
 
-	result = malloc(sizeof(t_glist));
-	if (result == NULL)
-	{
-		return (NULL);
-	}
-	result->content = (void*)content;
-	if (content == NULL)
-	{
-		result->content_size = 0;
-	}
-	else
-	{
-		result->content_size = content_size;
-	}
-	result->next = NULL;
-	return (result);
+void	build_solution(t_solution *solution, t_group *group)
+{
+	(void)solution;
+	(void)group;
 }

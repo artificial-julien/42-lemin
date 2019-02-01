@@ -6,34 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 16:29:07 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 18:20:12 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-** Function to test is group_a is equal to group_b
-*/
-
-t_bool	groups_equals(t_group *group_a, t_group *group_b)
-{
-	t_glist *routes_a;
-	t_glist *routes_b;
-
-	if (group_a->count == group_b->count
-		&& group_a->high_len == group_b->high_len
-		&& group_a->low_len == group_b->low_len)
-	{
-		routes_a = group_a->routes;
-		routes_b = group_b->routes;
-		if (routes_equals(routes_a, routes_b) == group_a->count)
-			return (1);
-		return (0);
-	}
-	else
-		return (false);
-}
 
 /*
 ** Function testing if "group" has a doublon in the list
@@ -46,7 +23,7 @@ t_bool	groups_doublon_group(t_glist *groups, t_group *group)
 	groups_b = groups;
 	if (groups_b)
 	{
-		if (groups_equals(group, groups_b->content) == 1)
+		if (group_equals(group, groups_b->content) == 1)
 			return (true);
 		groups_b = groups_b->next;
 	}

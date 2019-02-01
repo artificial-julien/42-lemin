@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 16:23:22 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 18:00:03 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,14 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 	byte_offset = index / 8;
 	bit_offset = index % 8;
 	bitmap->map[byte_offset] |= (0x01 << bit_offset);
+}
+
+/*
+**	Free bitmap's elements.
+*/
+
+void	bitmap_free(t_bitmap *bitmap)
+{
+	free(bitmap->map);
+	free(bitmap);
 }

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 16:31:24 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 18:27:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,46 @@ void	group_del_lst(t_glist **groups, t_group *group)
 	{
 		//if (lst->content == groups)
 	}
+}
+
+/*
+**	Returns true if both groups are identical.
+*/
+
+t_bool	group_equals(t_group *group_a, t_group *group_b)
+{
+	t_glist *route_a;
+	t_glist *route_b;
+
+	if (group_a->count == group_b->count
+		&& group_a->high_len == group_b->high_len
+		&& group_a->low_len == group_b->low_len)
+	{
+		route_a = group_a->routes;
+		route_b = group_b->routes;
+		// Julien: A mon avis, on a juste besoin de comparer les pointeurs,
+		// pas le contenu.
+		// Et que vient faire "== group_a->count" ici ?
+		// if (route_equals(route_a->route, route_b->route) == group_a->count)
+		// 	return (1);
+		if (route_a->route == route_b->route)
+			return (1);
+		return (0);
+	}
+	else
+		return (false);
+}
+
+/*
+**	Free group's elements.
+*/
+
+void	group_free(void *content, size_t size)
+{
+	t_group	*group;
+	(void)size;
+
+	group = (t_group*)content;
+	ft_glstdel(&group->routes, NULL);
+	free(group);
 }

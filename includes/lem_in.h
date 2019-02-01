@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 16:52:17 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/01 18:59:59 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,17 @@ struct	s_lem_in
 	t_glist	*rooms;
 };
 
+/*
+**	struct	s_room
+**	description:	Ant room or node.
+**
+**	name:	Room name. Display purposes.
+**	type:	Start / end / standard (intermediate node)
+**	ants:	Ants count in the current room. Up to 1 for standard type.
+**	links:	Connected rooms list.
+**	weigth:	Distance to end node. Useful when building routes list. -1 is undefined.
+*/
+
 struct	s_room
 {
 	char		*name;
@@ -87,6 +98,7 @@ struct	s_room
 	t_point		pos;
 	int			ants;
 	t_glist		*links;
+	int			weigth;
 };
 
 /*
@@ -127,6 +139,13 @@ struct	s_route
 	t_bitmap	*conflicts;
 };
 
+// struct	s_potentialroute
+// {
+// 	int		len;
+// 	t_room	*room;
+// 	t_potentialroute	*next;
+// };
+
 struct	s_group
 {
 	int		count;
@@ -139,6 +158,8 @@ struct	s_bitmap
 {
 	size_t	bits_size;
 	int		*map;
+	t_list	*routes;
+	int		id;
 };
 
 /*
@@ -187,7 +208,7 @@ void		room_free(void *content, size_t size);
 ** Route.
 */
 
-t_bool		route_equals(t_route *route_a, t_route *route_b);
+t_bool		route_equals(t_route *a, t_route *b);
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b);
 void		route_free(void *content, size_t size);
 t_bool		route_has_conflict(t_route *a, t_route *b);
@@ -199,6 +220,13 @@ t_bool		route_has_conflict(t_route *a, t_route *b);
 
 t_bool		routes_routechr(t_glist *routes, t_route *route);
 int			routes_equals(t_glist *routes_a, t_glist *routes_b);
+
+/*
+**	Routes building.
+*/
+
+void		create_nodes_weights(t_lem_in *lem_in);
+
 /*
 ** Group.
 */
@@ -209,6 +237,7 @@ void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
 t_bool		group_has_conflict(t_group **group, t_route *route);
 void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
+t_bool		group_equals(t_group *group_a, t_group *group_b);
 
 /*
 ** Groups .
@@ -217,16 +246,15 @@ void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
 void		groups_add_group(t_glist **groups, t_group *group);
 void		build_groups(t_glist **groups, t_glist *routes);
 t_bool		groups_doublon_group(t_glist *groups, t_group *group);
-t_bool		groups_equals(t_group *group_a, t_group *group_b);
 
 /*
-**	Solve.
+**	Solver.
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
 void		scan_routes(t_lem_in *lem_in, t_glist **routes);
 t_group		*select_best_group(t_glist *groups);
-void		build_solution(t_solution *solution);
+void		build_solution(t_solution *solution, t_group *group);
 
 /*
 **	Solution.
@@ -245,6 +273,7 @@ void		solution_add_move(t_solution *solution, t_move *move);
 t_bitmap	*bitmap_new(size_t bits_size);
 t_bool		bitmap_get(t_bitmap *bitmap, size_t index);
 void		bitmap_set(t_bitmap *bitmap, size_t index);
+void		bitmap_free(t_bitmap *bitmap);
 
 /*
 **	Utils.
