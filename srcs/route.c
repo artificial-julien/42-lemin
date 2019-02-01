@@ -6,18 +6,17 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/31 20:08:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/01 16:36:27 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-
 /*
-**	TODO: Optimize (avoid duplicate tests)
+**	to DO: Optimize (avoid duplicate tests)
 */
 
-void	route_create_conflicts_map(t_route *route, t_glist *routes)
+void		route_create_conflicts_map(t_route *route, t_glist *routes)
 {
 	t_glist	*curr;
 	t_bool	conflict;
@@ -31,6 +30,21 @@ void	route_create_conflicts_map(t_route *route, t_glist *routes)
 		curr = curr->next;
 	}
 }
+
+/*
+** Function for test if the route a is egale to  route b
+*/
+
+t_bool		route_equals(t_route *route_a, t_route *route_b)
+{
+	if (route_a == route_b)
+		return (true);
+	return (false);
+}
+
+/*
+** Function test if there are conflict on the two route
+*/
 
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
 {
@@ -48,8 +62,8 @@ t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
 		{
 			room_b = lst_b->content;
 			if (room_a->name == room_b->name
-				&& room_a->type == standard
-				&& room_b->type == standard)
+					&& room_a->type == standard
+					&& room_b->type == standard)
 				return (true);
 			lst_b = lst_b->next;
 		}
@@ -58,7 +72,7 @@ t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
 	return (false);
 }
 
-t_bool	route_has_conflict(t_route *a, t_route *b)
+t_bool		route_has_conflict(t_route *a, t_route *b)
 {
 	t_bool	res;
 
