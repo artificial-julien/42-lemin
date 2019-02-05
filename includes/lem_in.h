@@ -239,7 +239,7 @@ t_glist		*create_routes(t_lem_in *lem_in);
 */
 
 t_group*	group_new();
-void		group_add_route(t_group **group, t_route *route);
+void		group_add_route(t_group *group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
 t_bool		group_has_conflict_with(t_group **group, t_route *route);

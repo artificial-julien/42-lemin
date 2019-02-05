@@ -16,12 +16,12 @@
 ** Function testing if "group" has a doublon in the list
 */
 
-t_bool	groups_doublon_group(t_glist *groups, t_group *group)
+t_bool	groups_duplicate_group(t_glist *groups, t_group *group)
 {
 	t_glist *groups_b;
 
 	groups_b = groups;
-	if (groups_b)
+	while (groups_b)
 	{
 		if (group_equals(group, groups_b->content) == 1)
 			return (true);

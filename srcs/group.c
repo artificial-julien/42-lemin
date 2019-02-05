@@ -22,6 +22,8 @@ t_group	*group_new(void)
 
 	res = ft_memalloc(sizeof(t_group));
 	res->count = 0;
+	res->high_len = 0;
+	res->low_len = 0;
 	return (res);
 }
 
@@ -30,14 +32,17 @@ t_group	*group_new(void)
 ** and actualize the information of the group
 */
 
-void	group_add_route(t_group **group, t_route *route)
+void	group_add_route(t_group *group, t_route *route)
 {
-	ft_glstadd(&(*group)->routes, ft_glstnew(route, sizeof(route)));
-	(*group)->count++;
-	if ((*group)->low_len > route->len || (*group)->low_len == 0)
-		(*group)->low_len = route->len;
-	if ((*group)->high_len < route->len || (*group)->high_len == 0)
-		(*group)->high_len = route->len;
+	if (route != NULL)
+	{
+			ft_glstadd(&group->routes, ft_glstnew(route, sizeof(route)));
+			group->count++;
+			if (group->low_len == 0 || group->low_len > route->len)
+				group->low_len = route->len;
+			if (group->high_len == 0 || group->high_len < route->len)
+				group->high_len = route->len;
+	}
 }
 
 /*
@@ -73,13 +78,13 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
 	t_group *group;
 
 	group = group_new();
-	group_add_route(&group, a);
+	group_add_route(group, a);
 	curr_routes = routes;
 	while (curr_routes != NULL)
 	{
 		curr = routes->route;
 		if (group_has_conflict_with(&group, curr) == false)
-			group_add_route(&group, curr);
+			group_add_route(group, curr);
 		curr_routes = curr_routes->next;
 	}
 	groups_add_group(groups, group);

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:21:05 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 18:35:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 19:03:36 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 static void		swap(t_glist *a, t_glist *b)
 {
 	void	*content;
-	size_t	*content_size;
+	size_t	content_size;
 
 	content = a->content;
 	content_size = a->content_size;
