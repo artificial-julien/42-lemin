@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 16:19:34 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 18:36:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ t_glist		*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
 void		ft_glstadd_last(t_glist **alst, t_glist *n);
 t_glist		*ft_glstcpy(t_glist *src);
 t_bool		ft_glsthascontent(t_glist *lst, void *content);
+void		ft_glstsort(t_glist *list, int (*cmp)(void*, void*));
 
 /*
 **	Parse.
