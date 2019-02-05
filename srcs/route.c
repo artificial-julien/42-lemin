@@ -6,11 +6,24 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 18:07:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:08:02 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_bool		route_equals(t_route *route_a, t_route *route_b)
+{
+	if (!route_a || !route_b)
+		return (false);
+	if (route_a->id_route == route_b->id_route
+		&& route_a->len == route_b->len)
+	{
+		return (true);
+	}
+	else
+		return (false);
+}
 
 /*
 **	TODO: Optimize (avoid duplicate tests)
@@ -30,7 +43,9 @@ void	route_create_conflicts_map(t_route *route, t_glist *routes)
 		curr = curr->next;
 	}
 }
-
+/*
+** Function that test if there is conflict between two routes.
+*/
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
 {
 	t_glist	*lst_a;
@@ -56,6 +71,10 @@ t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
 	}
 	return (false);
 }
+
+/*
+**	Function 
+*/
 
 t_bool	route_has_conflict(t_route *a, t_route *b)
 {

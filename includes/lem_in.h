@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 18:59:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:18:45 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -208,11 +208,11 @@ void		room_free(void *content, size_t size);
 ** Route.
 */
 
-t_bool		route_equals(t_route *a, t_route *b);
+t_bool		route_equals(t_route *route_a, t_route *route_b);
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b);
+void		route_create_conflicts_map(t_route *route, t_glist *routes);
 void		route_free(void *content, size_t size);
 t_bool		route_has_conflict(t_route *a, t_route *b);
-
 
 /*
 ** Routes
