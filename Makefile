@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/05 16:44:33 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/05 17:36:02 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,17 +35,18 @@ OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
 SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
 # Source files
-_SRC =	room.c \
+_SRC =	room/room.c \
 		lem_in.c \
-		parse.c \
-		parsing.c \
+		parser/parse.c \
+		parser/parse_core.c \
 		route_creator/create_routes.c \
 		solver/solve.c \
 		solver/build_solution.c \
 		solver/select_best_group.c \
 		solution/solution_print.c \
 		solution/solution.c \
-		utils.c \
+		utils/utils.c \
+		utils/utils_route.c \
 		glist/ft_glstadd.c \
 		glist/ft_glstadd_last.c \
 		glist/ft_glstdel.c \
@@ -57,8 +58,8 @@ _SRC =	room.c \
 		glist/ft_glsthascontent.c \
 		groups.c \
 		group.c \
-		route.c \
-		bitmap.c \
+		route/route.c \
+		bitmap/bitmap.c \
 		test/dummy_maps.c
 
 .PHONY: all clean fclean re
