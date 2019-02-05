@@ -6,33 +6,16 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:55:39 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 13:19:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 15:53:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static void	reverse_list(t_glist **begin_list)
-{
-	t_glist	*current;
-	t_glist	*previous;
-	t_glist	*next;
-
-	current = *begin_list;
-	previous = 0;
-	while (current)
-	{
-		next = current->next;
-		current->next = previous;
-		previous = current;
-		current = next;
-	}
-	*begin_list = previous;
-}
-
 /*
 **	Returns a copy of all list elements.
 **	Copies the content pointers.
+**	Output is in reverse order (as required by route_creator).
 */
 
 t_glist		*ft_glstcpy(t_glist *src)
@@ -49,7 +32,6 @@ t_glist		*ft_glstcpy(t_glist *src)
 		ft_glstadd(&res, new);
 		curr = curr->next;
 	}
-	reverse_list(&res);
 
 	return (res);
 }
