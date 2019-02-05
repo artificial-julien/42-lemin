@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/05 12:56:35 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/05 14:42:22 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ _SRC =	room.c \
 		lem_in.c \
 		parse.c \
 		parsing.c \
-		route_creator/create_nodes_weights.c \
+		route_creator/create_routes.c \
 		solver/solve.c \
 		solver/build_solution.c \
 		solver/select_best_group.c \
@@ -59,8 +59,7 @@ _SRC =	room.c \
 		groups.c \
 		group.c \
 		route.c \
-		bitmap.c \
-		route_creator/create_nodes_weights.c
+		bitmap.c
 
 .PHONY: all clean fclean re
 

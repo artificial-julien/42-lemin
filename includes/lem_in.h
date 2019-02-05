@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 18:59:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:40:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,8 @@ void		ft_glstadd(t_glist **alst, t_glist *new);
 void		ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
 t_glist		*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
 void		ft_glstadd_last(t_glist **alst, t_glist *n);
+t_glist		*ft_glstcpy(t_glist *src);
+t_bool		ft_glsthascontent(t_glist *lst, void *content);
 
 /*
 **	Parse.
@@ -208,11 +210,13 @@ void		room_free(void *content, size_t size);
 ** Route.
 */
 
+t_route		*route_new();
 t_bool		route_equals(t_route *a, t_route *b);
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b);
 void		route_free(void *content, size_t size);
 t_bool		route_has_conflict(t_route *a, t_route *b);
-
+t_route		*route_copy(t_route *src);
+void		route_print(t_route *route);
 
 /*
 ** Routes
@@ -222,10 +226,11 @@ t_bool		routes_routechr(t_glist *routes, t_route *route);
 int			routes_equals(t_glist *routes_a, t_glist *routes_b);
 
 /*
-**	Routes building.
+**	Routes creation.
 */
 
 void		create_nodes_weights(t_lem_in *lem_in);
+t_glist		*create_routes(t_lem_in *lem_in);
 
 /*
 ** Group.
@@ -283,5 +288,6 @@ void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			ft_strrindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
+void		print_nodes(t_glist *nodes);
 
 #endif

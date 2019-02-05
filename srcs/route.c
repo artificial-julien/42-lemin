@@ -6,11 +6,19 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 18:07:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:40:20 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+t_route	*route_new(void)
+{
+	t_route	*res;
+
+	res = ft_memalloc(sizeof(t_route));
+	return (res);
+}
 
 /*
 **	TODO: Optimize (avoid duplicate tests)
@@ -31,7 +39,7 @@ void	route_create_conflicts_map(t_route *route, t_glist *routes)
 	}
 }
 
-t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b)
+t_bool	route_cmp_conflit(t_route *route_a, t_route *route_b)
 {
 	t_glist	*lst_a;
 	t_glist	*lst_b;
@@ -72,10 +80,20 @@ t_bool	route_has_conflict(t_route *a, t_route *b)
 void	route_free(void *content, size_t size)
 {
 	t_route	*route;
-	(void)size;
 
+	(void)size;
 	route = (t_route*)content;
 	bitmap_free(route->conflicts);
 	ft_glstdel(&route->rooms, NULL);
 	free(route);
+}
+
+/*
+**	Prints the specified route.
+**	Debug purposes.
+*/
+
+void	route_print(t_route *route)
+{
+	print_nodes(route->rooms);
 }
