@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:55:39 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 11:47:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 13:19:42 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_glist		*ft_glstcpy(t_glist *src)
 	t_glist	*curr;
 	t_glist	*new;
 
+	res = NULL;
 	curr = src;
 	while (curr != NULL)
 	{

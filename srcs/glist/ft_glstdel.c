@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 19:47:48 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 16:47:28 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/05 13:53:16 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void			ft_glstdel(t_glist **alst, void (*del)(void *, size_t))
 	{
 		next = (curr)->next;
 		ft_glstdelone(&curr, del);
-		curr = next;
 	}
 	*alst = NULL;
 }

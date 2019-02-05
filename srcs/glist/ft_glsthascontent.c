@@ -1,24 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_glstdelone.c                                    :+:      :+:    :+:   */
+/*   ft_glsthascontent.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 19:44:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 13:52:50 by juazouz          ###   ########.fr       */
+/*   Created: 2019/02/05 12:49:05 by juazouz           #+#    #+#             */
+/*   Updated: 2019/02/05 12:51:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void			ft_glstdelone(t_glist **alst, void (*del)(void *, size_t))
-{
-	t_glist	*next;
+/*
+**	Returns true if the specified pointer is present in
+**	one of the node's content.
+*/
 
-	if (del != NULL)
-		del((*alst)->content, (*alst)->content_size);
-	next = (*alst)->next;
-	free(*alst);
-	*alst = next;
+t_bool	ft_glsthascontent(t_glist *lst, void *content)
+{
+	t_glist	*curr;
+
+	curr = lst;
+	while (curr != NULL)
+	{
+		if (curr->content == content)
+			return (true);
+		curr = curr->next;
+	}
+	return (false);
 }
