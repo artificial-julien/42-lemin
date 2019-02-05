@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   groups.c                                           :+:      :+:    :+:   */
+/*   create_groups.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 18:20:12 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 19:39:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 ** Function testing if "group" has a doublon in the list
 */
 
-t_bool	groups_duplicate_group(t_glist *groups, t_group *group)
+t_bool	groups_has_duplicate(t_glist *groups, t_group *group)
 {
 	t_glist *groups_b;
 
@@ -34,17 +34,16 @@ t_bool	groups_duplicate_group(t_glist *groups, t_group *group)
 **	Function to add a group to the list of groups
 */
 
-void	groups_add_group(t_glist **groups, t_group *group)
+void	groups_add(t_glist **groups, t_group *group)
 {
-	if (groups && group)
-		ft_glstadd(groups, ft_glstnew(group, sizeof(group)));
+	ft_glstadd(groups, ft_glstnew(group, sizeof(group)));
 }
 
 /*
 **	Function to create all groups  from the list of routes
 */
 
-void	build_groups(t_glist **groups, t_glist *routes)
+void	create_groups(t_glist **groups, t_glist *routes)
 {
 	t_glist *curr_route;
 

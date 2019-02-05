@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/05 16:14:24 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/05 18:57:22 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,10 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
 			group_add_route(group, curr);
 		curr_routes = curr_routes->next;
 	}
-	groups_add_group(groups, group);
-}
-
-/*
-**	Function for freeing a group from the list of groups
-*/
-
-void	group_del_lst(t_glist **groups, t_group *group)
-{
-	t_glist *lst;
-
-	lst = *groups;
-	if (groups && group)
-	{
-		//if (lst->content == groups)
-	}
+	if (!groups_duplicate_group(*groups, group))
+		groups_add(groups, group);
+	else
+		group_free(group, sizeof(t_group));
 }
 
 /*
@@ -111,16 +99,16 @@ void	group_del_lst(t_glist **groups, t_group *group)
 
 t_bool	group_has_route(t_group *group, t_route *route)
 {
-	t_glist *list_routes;
-	t_route *route_list;
+	t_glist	*group_routes;
+	t_route	*curr;
 
-	list_routes = group->routes;
-	while (list_routes != NULL)
+	group_routes = group->routes;
+	while (group_routes != NULL)
 	{
-		route_list = list_routes->route;
-		if (route_equals(route_list, route) == 1)
+		curr = group_routes->route;
+		if (curr == route)
 			return (true);
-		list_routes = list_routes->next;
+		group_routes = group_routes->next;
 	}
 	return (false);
 }
@@ -131,7 +119,7 @@ t_bool	group_has_route(t_group *group, t_route *route)
 
 t_bool	group_equals(t_group *group_a, t_group *group_b)
 {
-	t_glist *list_routes_a;
+	t_glist *group_routes_a;
 	t_route *route_a;
 	int cpt;
 
@@ -140,13 +128,13 @@ t_bool	group_equals(t_group *group_a, t_group *group_b)
 		&& group_a->high_len == group_b->high_len
 		&& group_a->low_len == group_b->low_len)
 	{
-		list_routes_a = group_a->routes;
-		while (list_routes_a != NULL)
+		group_routes_a = group_a->routes;
+		while (group_routes_a != NULL)
 		{
-			route_a = list_routes_a->route;
+			route_a = group_routes_a->route;
 			if (group_has_route(group_b, route_a) == true)
 				cpt++;
-			list_routes_a = list_routes_a->next;
+			group_routes_a = group_routes_a->next;
 		}
 		if (cpt == group_a->count)
 			return (true);
