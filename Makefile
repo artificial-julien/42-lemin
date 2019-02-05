@@ -6,13 +6,13 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/05 14:42:22 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/05 16:26:18 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -fsanitize=address
 
 IDIR = includes
 SDIR = srcs
@@ -23,15 +23,14 @@ LIBFT = libft.a
 
 # Output file name
 NAME = lem_in
-
-# Test binaries
 TEST_PRINT_SOL = lem_in_test_solution_print
-TEST_ROUTES_CREATION = lem_in_test_routes_creation
+TEST_ROUTE = lem_in_test_route_creation
+TEST_GROUP = lem_in_test_group_creation
 
 DEPS = $(IDIR)/lem_in.h
 
 OBJ = $(patsubst %.c,$(ODIR)/%.o,$(_SRC)) \
-		$(LIBFTDIR)/$(LIBFT)
+	  $(LIBFTDIR)/$(LIBFT)
 
 SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
@@ -63,12 +62,15 @@ _SRC =	room.c \
 
 .PHONY: all clean fclean re
 
-all: $(NAME) $(TEST_PRINT_SOL) $(TEST_ROUTES_CREATION)
+all: $(TEST_PRINT_SOL)  $(TEST_ROUTE)  $(TEST_GROUP) $(NAME)
 
 $(TEST_PRINT_SOL): $(OBJ) $(SDIR)/test/test_print.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(TEST_ROUTES_CREATION): $(OBJ) $(SDIR)/test/test_routes_creation.c
+$(TEST_ROUTE): $(OBJ) $(SDIR)/test/test_routes.c
+	$(CC) $(CFLAGS) $^ -o $@
+
+$(TEST_GROUP): $(OBJ) $(SDIR)/test/test_group.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(NAME): $(OBJ) $(SDIR)/main.c

@@ -6,7 +6,7 @@
 /*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 15:40:34 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 16:40:31 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/05 14:17:01 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_bool	routes_routechr(t_glist *routes, t_route *route)
 ** Function to compare if the route of the two list are the same.
 */
 
-int		routes_cmp_routes(t_glist *routes_a, t_glist *routes_b)
+int		routes_equals(t_glist *routes_a, t_glist *routes_b)
 {
 	int			compteur;
 	t_route		*route;

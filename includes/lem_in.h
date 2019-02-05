@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 14:40:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 16:19:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -213,6 +213,7 @@ void		room_free(void *content, size_t size);
 t_route		*route_new();
 t_bool		route_equals(t_route *a, t_route *b);
 t_bool		route_cmp_conflit(t_route *route_a, t_route *route_b);
+void		route_create_conflicts_map(t_route *route, t_glist *routes);
 void		route_free(void *content, size_t size);
 t_bool		route_has_conflict(t_route *a, t_route *b);
 t_route		*route_copy(t_route *src);
@@ -240,10 +241,10 @@ t_group*	group_new();
 void		group_add_route(t_group **group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_has_conflict(t_group **group, t_route *route);
+t_bool		group_has_conflict_with(t_group **group, t_route *route);
 void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
-
+t_bool		group_has_route(t_group *group, t_route *route);
 /*
 ** Groups .
 */

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 14:40:20 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/05 16:21:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,19 @@ t_route	*route_new(void)
 
 	res = ft_memalloc(sizeof(t_route));
 	return (res);
+}
+
+t_bool		route_equals(t_route *route_a, t_route *route_b)
+{
+	if (!route_a || !route_b)
+		return (false);
+	if (route_a->id_route == route_b->id_route
+		&& route_a->len == route_b->len)
+	{
+		return (true);
+	}
+	else
+		return (false);
 }
 
 /*
@@ -64,6 +77,10 @@ t_bool	route_cmp_conflit(t_route *route_a, t_route *route_b)
 	}
 	return (false);
 }
+
+/*
+**	Function
+*/
 
 t_bool	route_has_conflict(t_route *a, t_route *b)
 {
