@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 14:18:45 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/05 16:14:05 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -235,10 +235,10 @@ t_group*	group_new();
 void		group_add_route(t_group **group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_has_conflict(t_group **group, t_route *route);
+t_bool		group_has_conflict_with(t_group **group, t_route *route);
 void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
-
+t_bool		group_has_route(t_group *group, t_route *route);
 /*
 ** Groups .
 */
