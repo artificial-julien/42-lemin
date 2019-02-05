@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/05 16:26:18 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/05 16:44:33 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -58,7 +58,8 @@ _SRC =	room.c \
 		groups.c \
 		group.c \
 		route.c \
-		bitmap.c
+		bitmap.c \
+		test/dummy_maps.c
 
 .PHONY: all clean fclean re
 
