@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 16:14:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 16:24:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 18:52:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,20 @@ static void	add_rooms(t_lem_in *lem_in, t_room **rooms, int count)
 }
 
 #define ROOMS_COUNT 8
+
+/*
+**	Basic example graph with conflictual routes.
+**
+**	   _[S]
+**	  /  |
+**	[4] [1]_
+**	 |   |  \
+**	[5]	 |  [2]
+**	   \ |	 |
+**		[6] [3]
+**		 | _/
+**		[E]
+*/
 
 void	dummy_map_01(t_lem_in *lem_in)
 {

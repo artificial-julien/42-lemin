@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/06 17:58:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 19:11:57 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,33 +39,26 @@ void		groups_add(t_glist **groups, t_group *group)
 	ft_glstadd(groups, ft_glstnew(group, sizeof(group)));
 }
 
-static void	allocate_conflicts_bitmap(t_glist *routes)
-{
-	int		len;
-	t_glist	*curr;
-
-	len = ft_glstlen(routes);
-	curr = routes;
-	while (curr != NULL)
-	{
-		curr->route->conflicts = bitmap_new(len);
-		curr = curr->next;
-	}
-}
-
 /*
 **	Function to create all groups  from the list of routes
 */
 
 void		create_groups(t_glist **groups, t_glist *routes)
 {
-	t_glist *curr_route;
+	t_glist	*curr;
+	int		routes_count;
 
-	allocate_conflicts_bitmap(routes);
-	curr_route = routes;
-	while (curr_route != NULL)
+	routes_count = ft_glstlen(routes);
+	curr = routes;
+	while (curr != NULL)
 	{
-		group_route_conflict(groups, (curr_route)->route, routes);
-		curr_route = curr_route->next;
+		route_create_conflicts_map(curr->route, routes, routes_count);
+		curr = curr->next;
+	}
+	curr = routes;
+	while (curr != NULL)
+	{
+		group_route_conflict(groups, (curr)->route, routes);
+		curr = curr->next;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 16:21:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 19:12:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_route	*route_new(void)
 	return (res);
 }
 
-t_bool		route_equals(t_route *route_a, t_route *route_b)
+t_bool	route_equals(t_route *route_a, t_route *route_b)
 {
 	if (!route_a || !route_b)
 		return (false);
@@ -37,11 +37,12 @@ t_bool		route_equals(t_route *route_a, t_route *route_b)
 **	TODO: Optimize (avoid duplicate tests)
 */
 
-void	route_create_conflicts_map(t_route *route, t_glist *routes)
+void	route_create_conflicts_map(t_route *route, t_glist *routes, int count)
 {
 	t_glist	*curr;
 	t_bool	conflict;
 
+	route->conflicts = bitmap_new(count);
 	curr = routes;
 	while (curr != NULL)
 	{
