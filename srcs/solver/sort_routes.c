@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   sort_routes.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 14:59:32 by juazouz          ###   ########.fr       */
+/*   Created: 2019/02/06 14:47:20 by juazouz           #+#    #+#             */
+/*   Updated: 2019/02/06 15:02:56 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+static int	cmp(void *ptr_a, void *ptr_b)
+{
+	t_route	*a;
+	t_route	*b;
+
+	a = (t_route*)ptr_a;
+	b = (t_route*)ptr_b;
+	return (a->len - b->len);
+}
+
 /*
-**	Core problem solving function.
+**	Sorts the routes of the specified group by size.
 */
 
-void	solve(t_lem_in *lem_in, t_solution *solution)
+void		sort_routes(t_group *group)
 {
-	t_glist		*routes;
-	t_glist		*groups;
-	t_group		*best_group;
-
-	groups = NULL;
-	routes = create_routes(lem_in);
-	create_groups(&groups, routes);
-	best_group = select_best_group(groups);
-	sort_routes(best_group);
-	build_solution(solution, best_group, lem_in->total_ants);
-	ft_glstdel(&routes, route_free);
-	ft_glstdel(&groups, group_free);
+	ft_glstsort(group->routes, cmp);
 }
