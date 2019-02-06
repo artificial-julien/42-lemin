@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:23:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 14:04:54 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 20:22:55 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@ static void	record_route(t_glist *nodes, t_glist **routes)
 {
 	t_glist			*new_lst;
 	t_route			*new_route;
+	static int		id_route;
 
 	new_route = route_new();
 	new_route->rooms = ft_glstcpy(nodes);
+	new_route->id_route = id_route;
+	id_route++;
 	new_lst = ft_glstnew(new_route, sizeof(t_route));
 	ft_glstadd(routes, new_lst);
 }

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 19:12:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 20:23:58 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,52 +31,6 @@ t_bool	route_equals(t_route *route_a, t_route *route_b)
 	}
 	else
 		return (false);
-}
-
-/*
-**	TODO: Optimize (avoid duplicate tests)
-*/
-
-void	route_create_conflicts_map(t_route *route, t_glist *routes, int count)
-{
-	t_glist	*curr;
-	t_bool	conflict;
-
-	route->conflicts = bitmap_new(count);
-	curr = routes;
-	while (curr != NULL)
-	{
-		conflict = route_cmp_conflit(curr->route, route);
-		if (conflict)
-			bitmap_set(route->conflicts, curr->route->id_route);
-		curr = curr->next;
-	}
-}
-
-t_bool	route_cmp_conflit(t_route *route_a, t_route *route_b)
-{
-	t_glist	*lst_a;
-	t_glist	*lst_b;
-	t_room	*room_a;
-	t_room	*room_b;
-
-	lst_a = route_a->rooms;
-	lst_b = route_b->rooms;
-	while (lst_a && lst_a->content)
-	{
-		room_a = lst_a->content;
-		while (room_a && lst_b && lst_b->content)
-		{
-			room_b = lst_b->content;
-			if (room_a->name == room_b->name
-				&& room_a->type == standard
-				&& room_b->type == standard)
-				return (true);
-			lst_b = lst_b->next;
-		}
-		lst_a = lst_a->next;
-	}
-	return (false);
 }
 
 /*
@@ -113,5 +67,6 @@ void	route_free(void *content, size_t size)
 
 void	route_print(t_route *route)
 {
+	ft_printf("Route #%d\t", route->id_route);
 	print_nodes(route->rooms);
 }
