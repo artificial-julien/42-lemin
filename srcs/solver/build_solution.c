@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 18:28:26 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 14:55:55 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,12 @@
 
 void	build_solution(t_solution *solution, t_group *group, int total_ants)
 {
-	int	ants_left;
-	int	*maps;
+	(void)solution;
+	(void)group;
+	(void)total_ants;
+	// int	ants_left;
+	// int	*maps;
 
-	maps = ft_memalloc(group->count * sizeof(int*));
+	// maps = ft_memalloc(group->count * sizeof(int*));
 
 }
