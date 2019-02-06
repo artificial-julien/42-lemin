@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   test_routes.c                                      :+:      :+:    :+:   */
+/*   test_group.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/05 15:59:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/06 17:28:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#include "lem_in_tests.h"
 
 #define ROOMS_COUNT 3
 #define ROUTES_COUNT 3
@@ -62,17 +63,17 @@ void dummy_solution(t_lem_in *lem_in)
 	g3 = group_new();
 
 
-	group_add_route(&g1, route1);
-	group_add_route(&g1, route2);
-	group_add_route(&g1, route3);
+	group_add_route(g1, route1);
+	group_add_route(g1, route2);
+	group_add_route(g1, route3);
 
-	group_add_route(&g2, route2);
-	group_add_route(&g2, route1);
-	group_add_route(&g2, route3);
+	group_add_route(g2, route2);
+	group_add_route(g2, route1);
+	group_add_route(g2, route3);
 
-	group_add_route(&g3, route3);
-	group_add_route(&g3, route1);
-	group_add_route(&g3, route1);
+	group_add_route(g3, route3);
+	group_add_route(g3, route1);
+	group_add_route(g3, route1);
 
 	if (group_equals(g1, g2) == 1)
 		ft_printf("gr 1 et 2 sont equals\n");
@@ -91,10 +92,17 @@ void dummy_solution(t_lem_in *lem_in)
 
 int main(void)
 {
-	t_lem_in lem_in;
-	t_solution solution;
+	t_lem_in	lem_in;
+	t_solution	solution;
+	t_glist		*routes;
+	t_glist		*groups;
 
+	routes = NULL;
+	groups = NULL;
 	lem_in_init(&lem_in);
+	dummy_map_01(&lem_in);
+	routes = create_routes(&lem_in);
+	create_groups(&groups, routes);
 	solution.rounds = NULL;
 	dummy_solution(&lem_in);
 	return (1);
