@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 14:57:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 16:36:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -256,6 +256,8 @@ void		groups_add_group(t_glist **groups, t_group *group);
 void		create_groups(t_glist **groups, t_glist *routes);
 t_bool		groups_doublon_group(t_glist *groups, t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
+void		groups_add(t_glist **groups, t_group *group);
+t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 
 /*
 **	Solver.

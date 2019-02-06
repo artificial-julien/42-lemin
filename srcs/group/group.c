@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/05 18:57:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 16:35:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
 			group_add_route(group, curr);
 		curr_routes = curr_routes->next;
 	}
-	if (!groups_duplicate_group(*groups, group))
+	if (!groups_has_duplicate(*groups, group))
 		groups_add(groups, group);
 	else
 		group_free(group, sizeof(t_group));
