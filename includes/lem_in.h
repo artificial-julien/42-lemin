@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 19:30:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 14:10:12 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ struct	s_room
 	t_point		pos;
 	int			ants;
 	t_glist		*links;
+	int			links_count;
 	int			weigth;
 };
 
