@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 19:30:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 14:56:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 **	using the specified group.
 */
 
-int	group_rounds_needed(t_group *group, int total_ants)
+int	group_total_rounds(t_group *group, int total_ants)
 {
 	(void)group;
 	(void)total_ants;
+
+	return (0);
 }
