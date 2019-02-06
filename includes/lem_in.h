@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 17:51:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 18:11:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,9 +158,7 @@ struct	s_group
 struct	s_bitmap
 {
 	size_t	bits_size;
-	int		*map;
-	t_list	*routes;
-	int		id;
+	char	*map;
 };
 
 /*

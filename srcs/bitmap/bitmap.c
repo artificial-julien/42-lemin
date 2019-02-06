@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 18:00:03 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 18:34:59 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_bitmap	*bitmap_new(size_t bits_size)
 	t_bitmap	*res;
 
 	res = malloc(sizeof(t_bitmap));
-	res->map = malloc(bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
+	res->map = ft_memalloc(bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
 	res->bits_size = bits_size;
 	return (res);
 }
