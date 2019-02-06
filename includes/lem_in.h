@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 14:10:12 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/06 14:31:36 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -249,11 +249,11 @@ t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
 
 /*
-** Groups .
+**	Group creator.
 */
 
 void		groups_add_group(t_glist **groups, t_group *group);
-void		build_groups(t_glist **groups, t_glist *routes);
+void		create_groups(t_glist **groups, t_glist *routes);
 t_bool		groups_doublon_group(t_glist *groups, t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
 
@@ -262,7 +262,6 @@ int			group_total_rounds(t_group *group, int total_ants);
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
-void		scan_routes(t_lem_in *lem_in, t_glist **routes);
 t_group		*select_best_group(t_glist *groups);
 void		build_solution(t_solution *solution, t_group *group, int total_ants);
 
