@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/06 17:55:20 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/06 19:48:35 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ _SRC =	room/room.c \
 		group_creator/create_groups.c \
 		group/group.c \
 		route/route.c \
+		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
 		test/dummy_maps.c
 
