@@ -78,6 +78,7 @@ struct	s_lem_in
 	t_room	*start;
 	t_room	*end;
 	t_glist	*rooms;
+	int		nb_lem_algo;
 };
 
 /*
@@ -181,6 +182,7 @@ void		ft_glstdelone(t_glist **alst, void (*del)(void*, size_t));
 void		ft_glstdel(t_glist **alst, void (*del)(void*, size_t));
 void		ft_glstadd(t_glist **alst, t_glist *new);
 void		ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
+void		ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*));
 t_glist		*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
 void		ft_glstadd_last(t_glist **alst, t_glist *n);
 t_glist		*ft_glstcpy(t_glist *src);
@@ -203,6 +205,7 @@ void		parse_links(t_lem_in *lem_in, char **line);
 */
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
+int			route_cmp(void *a, void *b);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
 void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
 void		room_set_ants(t_room *room, int ants);
@@ -252,9 +255,9 @@ t_bool		group_has_route(t_group *group, t_route *route);
 ** Groups .
 */
 
-void		groups_add_group(t_glist **groups, t_group *group);
+void		groups_add(t_glist **groups, t_group *group);
 void		build_groups(t_glist **groups, t_glist *routes);
-t_bool		groups_doublon_group(t_glist *groups, t_group *group);
+t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
 
 /*
@@ -288,10 +291,10 @@ void		bitmap_free(t_bitmap *bitmap);
 /*
 **	Utils.
 */
-
+int			min_lem_in(t_lem_in *lem);
+t_bool		ants_cam_move(t_glist *links);
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
-int			ft_strrindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
 
