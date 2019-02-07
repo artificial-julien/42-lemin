@@ -12,6 +12,10 @@
 
 #include "lem_in.h"
 
+/*
+** Creat a new t_route.
+*/
+
 t_route	*route_new(void)
 {
 	t_route	*res;
@@ -19,6 +23,28 @@ t_route	*route_new(void)
 	res = ft_memalloc(sizeof(t_route));
 	return (res);
 }
+/*
+**
+*/
+
+int		route_cmp(void *a, void *b)
+{
+	t_route *route_a;
+	t_route *route_b;
+
+	route_a = a;
+	route_b = b;
+	if (route_a->len == route_b->len)
+		return (0);
+	else
+	{
+		return ((route_a->len < route_b->len) ? -1 : 1);
+	}
+
+}
+/*
+** test if the two  routes are equals.
+*/
 
 t_bool	route_equals(t_route *route_a, t_route *route_b)
 {
@@ -34,7 +60,7 @@ t_bool	route_equals(t_route *route_a, t_route *route_b)
 }
 
 /*
-**	Function
+**	Function to test if the two route has conflict.
 */
 
 t_bool	route_has_conflict(t_route *a, t_route *b)

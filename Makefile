@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/06 19:48:35 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/07 16:38:00 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ _SRC =	room/room.c \
 		glist/ft_glsthascontent.c \
 		glist/ft_glstsort.c \
 		glist/ft_glstlen.c \
+		glist/ft_glstinsert.c \
 		group_creator/create_groups.c \
 		group/group.c \
 		route/route.c \

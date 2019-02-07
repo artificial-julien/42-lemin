@@ -11,42 +11,6 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
-/*
-void	ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
-{
-	t_glist *curr;
-	int		cmp_curr;
-
-	curr = *dest;
-	if (*dest == NULL)
-	{
-		*dest = new;
-		new->next = NULL;
-	}
-	else if (curr && (cmp_curr = cmp((void*)curr->content, (void*)new->content)) > 0)
-	{
-		new->next = curr;
-		*dest = new;
-		return ;
-	}
-	else
-	{
-		while (curr && curr->next != NULL && (cmp_curr = cmp(curr->next->content, new->content)) <= 0)
-			curr = curr->next;
-		if (curr == NULL)
-			curr = new;
-		else if (curr && curr->next == NULL)
-			curr->next = new;
-		else
-		{
-			new = curr->next;
-			curr->next = new;
-
-		}
-	}
-
-
-}*/
 
 /*
 ** Return pointer to insert new
@@ -74,20 +38,15 @@ void		ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
 	curr_prec = (*dest);
 	if (new == NULL)
 		return ;
-	if (*dest == NULL)
-	{
-		*dest = new;
-		return ;
-	}
 	find_lst_index(&curr, &curr_prec, &new, (*cmp));
+	new->next = curr;
 	if (curr_prec != NULL)
 	{
-		curr_prec = new;
-		new->next = curr;
+		curr_prec->next = new;
 	}
 	else
 	{
-		curr_prec = new;
+		*dest = new;
 	}
 }
 

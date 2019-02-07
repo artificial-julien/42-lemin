@@ -36,12 +36,12 @@ void	group_add_route(t_group *group, t_route *route)
 {
 	if (route != NULL)
 	{
-			ft_glstadd(&group->routes, ft_glstnew(route, sizeof(route)));
-			group->count++;
-			if (group->low_len == 0 || group->low_len > route->len)
-				group->low_len = route->len;
-			if (group->high_len == 0 || group->high_len < route->len)
-				group->high_len = route->len;
+		ft_glstinsert(&group->routes, ft_glstnew(route, sizeof(route)), (route_cmp));
+		group->count++;
+		if (group->low_len == 0 || group->low_len > route->len)
+			group->low_len = route->len;
+		if (group->high_len == 0 || group->high_len < route->len)
+			group->high_len = route->len;
 	}
 }
 
