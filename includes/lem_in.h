@@ -244,7 +244,7 @@ t_group*	group_new();
 void		group_add_route(t_group *group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_has_conflict_with(t_group **group, t_route *route);
+t_bool		group_has_conflict_with(t_group *group, t_route *route);
 void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
