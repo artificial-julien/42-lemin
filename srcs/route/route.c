@@ -20,6 +20,20 @@ t_route	*route_new(void)
 	return (res);
 }
 
+int		route_cmp(void *a, void *b)
+{
+	t_route *route_a;
+	t_route *route_b;
+
+	route_a = (t_route*)a;
+	route_b = (t_route*)b;
+	if (route_a->len == route_b->len)
+		return (0);
+	else
+	return (((route_a->len < route_b->len) ? -1 : 1));
+}
+
+
 t_bool		route_equals(t_route *route_a, t_route *route_b)
 {
 	if (!route_a || !route_b)
