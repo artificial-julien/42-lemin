@@ -11,6 +11,25 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+/*
+**	return the minum between the number of links of startroom ,
+**	the numbers links of endroom and the numbers finals  of ants .
+*/
+
+int		min_lem_in(t_lem_in *lem)
+{
+	int res;
+	int start;
+	int end;
+
+	res = 0;
+	start = lem->start->links_count;
+	end = lem->end->links_count;
+	res = (start < end) ? start :  end;
+	if (res < lem->total_ants)
+	res = lem->total_ants;
+	return (res);
+}
 
 /*
 ** Fonction to free a tab of char of 2 dimension
@@ -34,7 +53,7 @@ void	ft_free_tab(char ***tab)
 }
 
 /*
-**	Function which return the index of position from the start
+**	Return the index of position from the start
 **	of an charactere in the string or return -1
 **	if it can t find the cractere in the string
 */
@@ -49,26 +68,6 @@ int		ft_strindex(const char *hay, char c)
 		if (hay[i] == c)
 			return (i);
 		i++;
-	}
-	return (-1);
-}
-
-/*
-**»·Function which return the index of position from the last
-**»·of an charactere in the string or return -1
-**»·if it can t find the cractere in the string
-*/
-
-int		ft_strrindex(const char *hay, char c)
-{
-	int i;
-
-	i = ft_strlen(hay);
-	while (i >= 0)
-	{
-		if (hay[i] == c)
-			return (i);
-		i--;
 	}
 	return (-1);
 }
