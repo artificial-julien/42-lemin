@@ -81,11 +81,11 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
 	t_group *group;
 
 	group = group_new();
-	group_add_route(group, a);
 	curr_routes = routes;
+	group_add_route(group, a);
 	while ((curr_routes) && (curr = curr_routes->route))
 	{
-		if (!group_has_conflict_with(group, a))
+		if (!group_has_conflict_with(group, curr))
 			group_add_route(group, curr);
 		curr_routes = curr_routes->next;
 	}
