@@ -29,15 +29,13 @@ static void	find_lst_index(t_glist **curr, t_glist **curr_prec, t_glist **new, i
 **	insert in the glist in orderof the function cmp.
 */
 
-void		ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
+void				ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
 {
-	t_glist *curr;
-	t_glist *curr_prec;
+	t_glist	*curr;
+	t_glist  *curr_prec;
 
 	curr = (*dest);
 	curr_prec = (*dest);
-	if (new == NULL)
-		return ;
 	find_lst_index(&curr, &curr_prec, &new, (*cmp));
 	new->next = curr;
 	if (curr_prec != NULL)
