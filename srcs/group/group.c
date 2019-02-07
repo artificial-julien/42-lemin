@@ -36,7 +36,8 @@ void	group_add_route(t_group *group, t_route *route)
 {
 	if (route != NULL)
 	{
-		ft_glstinsert(&group->routes, ft_glstnew(route, sizeof(route)), (route_cmp));
+		//ft_glstinsert(&group->routes, ft_glstnew(route, sizeof(route)), route_cmp);
+		ft_glstadd(&group->routes, ft_glstnew(route, sizeof(route)));
 		group->count++;
 		if (group->low_len == 0 || group->low_len > route->len)
 			group->low_len = route->len;
@@ -50,16 +51,18 @@ void	group_add_route(t_group *group, t_route *route)
 ** and one unique route
 */
 
-t_bool	group_has_conflict_with(t_group **group, t_route *route)
+t_bool	group_has_conflict_with(t_group *group, t_route *route)
 {
 	t_glist *lst;
 	t_route *route_a;
 
-	lst = (*group)->routes;
+	lst = group->routes;
+	if (group_has_route(group, route))
+		return (true);
 	while (lst != NULL)
 	{
-		route_a = lst->content;
-		if (route_has_conflict(route_a, route) == true)
+		route_a = lst->route;
+		if (route_has_conflict(route_a, route))
 			return (true);
 		lst = lst->next;
 	}
@@ -80,10 +83,9 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
 	group = group_new();
 	group_add_route(group, a);
 	curr_routes = routes;
-	while (curr_routes != NULL)
+	while ((curr_routes) && (curr = curr_routes->route))
 	{
-		curr = routes->route;
-		if (group_has_conflict_with(&group, curr) == false)
+		if (!group_has_conflict_with(group, a))
 			group_add_route(group, curr);
 		curr_routes = curr_routes->next;
 	}
@@ -103,14 +105,16 @@ t_bool	group_has_route(t_group *group, t_route *route)
 	t_route	*curr;
 
 	group_routes = group->routes;
-	while (group_routes != NULL)
+	curr = NULL;
+	while (group_routes != NULL && (curr = group_routes->route)!= NULL)
 	{
-		curr = group_routes->route;
-		if (curr == route)
+
+		if (route_equals (curr ,route) == true)
 			return (true);
 		group_routes = group_routes->next;
 	}
 	return (false);
+
 }
 
 /*
