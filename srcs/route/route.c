@@ -32,8 +32,8 @@ int		route_cmp(void *a, void *b)
 	t_route *route_a;
 	t_route *route_b;
 
-	route_a = a;
-	route_b = b;
+	route_a = (t_route*)a;
+	route_b = (t_route*)b;
 	if (route_a->len == route_b->len)
 		return (0);
 	else
@@ -50,8 +50,7 @@ t_bool	route_equals(t_route *route_a, t_route *route_b)
 {
 	if (!route_a || !route_b)
 		return (false);
-	if (route_a->id_route == route_b->id_route
-		&& route_a->len == route_b->len)
+	if ((route_a->id_route == route_b->id_route) && (route_a->len == route_b->len))
 	{
 		return (true);
 	}
@@ -66,7 +65,8 @@ t_bool	route_equals(t_route *route_a, t_route *route_b)
 t_bool	route_has_conflict(t_route *a, t_route *b)
 {
 	t_bool	res;
-
+	if (route_equals(a, b) == true)
+		return (true);
 	res = bitmap_get(a->conflicts, b->id_route);
 	return (res);
 }
