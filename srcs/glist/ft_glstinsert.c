@@ -13,34 +13,28 @@
 #include "lem_in.h"
 
 /*
-** Return pointer to insert new
-*/
-
-static void	find_lst_index(t_glist **curr, t_glist **curr_prec, t_glist **new, int (*cmp)(void*, void*))
-{
-	while ((*curr) && cmp((*curr)->content, (*new)->content) > 0)
-	{
-		(*curr_prec) = (*curr);
-		(*curr) = (*curr)->next;
-	}
-}
-
-/*
-**	insert in the glist in orderof the function cmp.
+**	Inserts in the glist in order of the function cmp.
 */
 
 void				ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
 {
 	t_glist	*curr;
-	t_glist  *curr_prec;
+	t_glist  *curr_prev;
+	int tmp;
 
+	curr_prev = NULL;
 	curr = (*dest);
-	curr_prec = (*dest);
-	find_lst_index(&curr, &curr_prec, &new, (*cmp));
-	new->next = curr;
-	if (curr_prec != NULL)
+	while ((curr))
 	{
-		curr_prec->next = new;
+		if ((tmp = cmp((curr)->content, (new)->content)) <= 0)
+			break ;
+		(curr_prev) = (curr);
+		(curr) = (curr)->next;
+	}
+	new->next = curr;
+	if (curr_prev != NULL)
+	{
+		curr_prev->next = new;
 	}
 	else
 	{
