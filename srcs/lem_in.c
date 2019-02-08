@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 16:24:16 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/08 17:33:26 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 
 	new = ft_glstnew(room, sizeof(t_room));
 	ft_glstadd(&lem_in->rooms, new);
+	if (room->type == start)
+		lem_in->start = room;
+	else if (room->type == end)
+		lem_in->end = room;
 }
 
 /*

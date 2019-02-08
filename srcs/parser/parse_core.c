@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.c                                          :+:      :+:    :+:   */
+/*   parse_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 16:42:20 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/08 17:32:12 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 	if ((new = room_new(tab[0], type, x, y)) != NULL)
 	{
 		lem_in_add_room(lem_in, new);
-		ft_memdel((void**)&new);
 	}
 	ft_free_tab(&tab);
 	return (new == NULL ? 0 : 1);
