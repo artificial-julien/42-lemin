@@ -23,8 +23,9 @@ t_route	*route_new(void)
 	res = ft_memalloc(sizeof(t_route));
 	return (res);
 }
+
 /*
-**
+** return comparaison between route a and b
 */
 
 int		route_cmp(void *a, void *b)
@@ -42,8 +43,9 @@ int		route_cmp(void *a, void *b)
 	}
 
 }
+
 /*
-** test if the two  routes are equals.
+** Return if the two  routes are equals or not.
 */
 
 t_bool	route_equals(t_route *route_a, t_route *route_b)
