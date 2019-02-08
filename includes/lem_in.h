@@ -204,7 +204,6 @@ void		parse_links(t_lem_in *lem_in, char **line);
 */
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
-int			route_cmp(void *a, void *b);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
 void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
 void		room_set_ants(t_room *room, int ants);
@@ -221,6 +220,7 @@ void		route_free(void *content, size_t size);
 t_bool		route_has_conflict(t_route *a, t_route *b);
 t_route		*route_copy(t_route *src);
 void		route_print(t_route *route);
+int			route_cmp(void *a, void *b);
 
 /*
 ** Routes
