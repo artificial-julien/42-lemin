@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/06 18:25:12 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/08 17:00:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int			main(void)
 	routes = NULL;
 	groups = NULL;
 	lem_in_init(&lem_in);
-	dummy_map_01(&lem_in);
+	parse(&lem_in);
 	routes = create_routes(&lem_in);
 	create_groups(&groups, routes);
 	print_groups(groups);
