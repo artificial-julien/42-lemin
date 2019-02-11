@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/07 16:38:00 by agoulas          ###   ########.fr        #
+#    Updated: 2019/02/11 14:26:58 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,7 @@ all: $(TEST_PRINT_SOL)  $(TEST_ROUTE)  $(TEST_GROUP) $(NAME)
 $(TEST_PRINT_SOL): $(OBJ) $(SDIR)/test/test_print.c
 	$(CC) $(CFLAGS) $^ -o $@
 
-$(TEST_ROUTE): $(OBJ) $(SDIR)/test/test_routes.c
+$(TEST_ROUTE): $(OBJ) $(SDIR)/test/test_routes_creation.c
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(TEST_GROUP): $(OBJ) $(SDIR)/test/test_group.c
