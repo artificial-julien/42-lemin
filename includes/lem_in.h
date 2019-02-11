@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/07 16:24:20 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 15:01:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -266,6 +266,8 @@ t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 void		solve(t_lem_in *lem_in, t_solution *solution);
 t_group		*select_best_group(t_glist *groups);
 void		build_solution(t_solution *solution, t_group *group, int total_ants);
+int			ants_distribution(t_group *group, int total_ants, int **res);
+int			group_total_rounds(t_group *group, int total_ants);
 void		sort_routes(t_group *group);
 
 /*

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rounds_for_group.c                                 :+:      :+:    :+:   */
+/*   group_total_rounds.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 14:56:08 by juazouz          ###   ########.fr       */
+/*   Created: 2019/02/11 13:11:36 by juazouz           #+#    #+#             */
+/*   Updated: 2019/02/11 15:01:12 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 /*
 **	Returns the number of rounds taken for the ants to reach the end
 **	using the specified group.
+**	Requires group with size ascendant ordered routes.
 */
 
-int	group_total_rounds(t_group *group, int total_ants)
+int			group_total_rounds(t_group *group, int total_ants)
 {
-	(void)group;
-	(void)total_ants;
+	int	size;
+	int	*array;
+	int	res;
 
-	return (0);
+	size = ants_distribution(group, total_ants, &array);
+	res = array[0] + group->routes->route->len;
+	free(array);
+	return (res);
 }

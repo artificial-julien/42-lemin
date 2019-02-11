@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/11 14:26:58 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/11 15:50:11 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,8 +43,9 @@ _SRC =	room/room.c \
 		solver/solve.c \
 		solver/build_solution.c \
 		solver/select_best_group.c \
-		solver/rounds_for_group.c \
 		solver/sort_routes.c \
+		solver/ants_distribution.c \
+		solver/group_total_rounds.c \
 		solution/solution_print.c \
 		solution/solution.c \
 		utils/utils.c \
