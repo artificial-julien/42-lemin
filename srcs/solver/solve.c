@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:02:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:04:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,12 @@ void	solve(t_lem_in *lem_in, t_solution *solution)
 	routes = create_routes(lem_in);
 	create_groups(&groups, routes);
 	best_group = select_best_group(groups, lem_in->total_ants);
-	// do not commit
-	ft_printf("Rounds for group:\nRounds:\t%d\nAnts:\t%d\n", group_total_rounds(best_group, lem_in->total_ants), lem_in->total_ants);
+#if DEBUG
+	ft_printf("Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
+				group_total_rounds(best_group, lem_in->total_ants),
+				lem_in->total_ants);
 	group_print(best_group);
+#endif
 	// sort_routes(best_group);
 	build_solution(solution, best_group, lem_in->total_ants);
 	ft_glstdel(&routes, route_free);
