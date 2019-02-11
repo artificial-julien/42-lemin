@@ -37,7 +37,6 @@ void	group_add_route(t_group *group, t_route *route)
 	if (route != NULL)
 	{
 		ft_glstinsert(&group->routes, ft_glstnew(route, sizeof(route)), &route_cmp);
-		//ft_glstadd(&group->routes, ft_glstnew(route, sizeof(route)));
 		group->count++;
 		if (group->low_len == 0 || group->low_len > route->len)
 			group->low_len = route->len;
@@ -74,16 +73,18 @@ t_bool	group_has_conflict_with(t_group *group, t_route *route)
 ** without conflit between one route and the list of routes
 */
 
-void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes)
+void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes, t_lem_in *lem_in)
 {
 	t_glist *curr_routes;
 	t_route *curr;
 	t_group *group;
+	int nb;
 
+	nb = 0;
 	group = group_new();
 	curr_routes = routes;
 	group_add_route(group, a);
-	while ((curr_routes) && (curr = curr_routes->route))
+	while ((curr_routes) && (curr = curr_routes->route) && nb <= lem_in->nb_lem_algo)
 	{
 		if (!group_has_conflict_with(group, curr))
 			group_add_route(group, curr);
