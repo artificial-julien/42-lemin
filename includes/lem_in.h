@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 16:11:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:12:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ struct	s_room
 
 struct	s_solution
 {
+	int round;
 	t_dlist	*rounds;
 };
 
@@ -245,7 +246,7 @@ void		group_add_route(t_group *group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
 t_bool		group_has_conflict_with(t_group *group, t_route *route);
-void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes);
+void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes, t_lem_in *lem_in);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
 void		group_print(t_group *group);
@@ -254,7 +255,7 @@ void		group_print(t_group *group);
 **	Group creator.
 */
 
-void		create_groups(t_glist **groups, t_glist *routes);
+void		create_groups(t_glist **groups, t_glist *routes, t_lem_in *lem_in);
 t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
 void		groups_add(t_glist **groups, t_group *group);
@@ -266,10 +267,16 @@ t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
 t_group		*select_best_group(t_glist *groups, int total_ants);
-void		build_solution(t_solution *solution, t_group *group, int total_ants);
-int			ants_distribution(t_group *group, int total_ants, int **res);
-int			group_total_rounds(t_group *group, int total_ants);
+void		build_solution(t_solution *solution, t_group *group, t_lem_in *lem_in);
 void		sort_routes(t_group *group);
+int			ants_distribution(t_group *group, int total_ants, int **res);
+
+/*
+** Ants
+*/
+
+void		ant_move(t_room **src, t_room **dest, t_solution *solution);
+t_bool		ant_can_move(t_room *room);
 
 /*
 **	Solution.
@@ -294,7 +301,6 @@ void		bitmap_free(t_bitmap *bitmap);
 **	Utils.
 */
 int			min_lem_in(t_lem_in *lem);
-t_bool		ants_cam_move(t_glist *links);
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);

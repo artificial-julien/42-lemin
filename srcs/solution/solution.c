@@ -14,6 +14,7 @@
 
 void		solution_init(t_solution *solution)
 {
+	solution->round = 0;
 	solution->rounds = NULL;
 }
 
@@ -29,6 +30,11 @@ void		solution_add_round(t_solution *solution)
 	round = ft_memalloc(sizeof(t_round));
 	new = ft_dlstnew(round, sizeof(t_round));
 	ft_dlstadd(&solution->rounds, new);
+	/*
+	**
+	*/
+	solution->round++;
+	ft_printf("\n");
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/11 16:10:58 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:14:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int			main(void)
 	lem_in_init(&lem_in);
 	parse(&lem_in);
 	routes = create_routes(&lem_in);
-	create_groups(&groups, routes);
+	create_groups(&groups, routes, &lem_in);
 	print_groups(groups);
 	return (1);
 }

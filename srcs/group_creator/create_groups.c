@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 19:27:06 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/06 19:11:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:11:36 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		groups_add(t_glist **groups, t_group *group)
 **	Function to create all groups  from the list of routes
 */
 
-void		create_groups(t_glist **groups, t_glist *routes)
+void		create_groups(t_glist **groups, t_glist *routes, t_lem_in *lem_in)
 {
 	t_glist	*curr;
 	int		routes_count;
@@ -58,7 +58,7 @@ void		create_groups(t_glist **groups, t_glist *routes)
 	curr = routes;
 	while (curr != NULL)
 	{
-		group_route_conflict(groups, (curr)->route, routes);
+		group_route_conflict(groups, (curr)->route, routes, lem_in);
 		curr = curr->next;
 	}
 }

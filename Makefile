@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/11 17:04:25 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/11 17:13:11 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,8 @@ _SRC =	room/room.c \
 		route/route.c \
 		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
-		test/dummy_maps.c
+		test/dummy_maps.c \
+		ant/ant.c
 
 .PHONY: all clean fclean re
 
