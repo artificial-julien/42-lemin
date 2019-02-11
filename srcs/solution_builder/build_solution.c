@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:15:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 18:22:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 **	Move all ants of one route of the group.
 */
 
-static void	ants_of_node_route(t_solution *solution, t_lem_in *lem_in, t_route *route)
+static void	run_route(t_lem_in *lem_in, t_route *route, t_solution *solution)
 {
 	t_glist	*curr;
 	t_room	*room_a;
@@ -28,10 +28,7 @@ static void	ants_of_node_route(t_solution *solution, t_lem_in *lem_in, t_route *
 	{
 		room_a = curr->room;
 		room_b = curr->next->room;
-		ant_move(&room_b, &room_a, solution);
-		if (room_b->type == start)
-			break ;
-		ft_printf(" ");
+		ant_try_move(room_b, room_a, solution);
 		curr = curr->next;
 	}
 }
@@ -40,14 +37,15 @@ static void	ants_of_node_route(t_solution *solution, t_lem_in *lem_in, t_route *
 ** test if all the group's route ofr moving ants.
 */
 
-static void	ants_of_node(t_solution *solution, t_group *group, t_lem_in *lem_in)
+static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 {
 	t_glist *curr;
 
+	solution_add_round(solution);
 	curr = group->routes;
 	while (curr != NULL)
 	{
-		ants_of_node_route(solution, lem_in, curr->route);
+		run_route(lem_in, curr->route, solution);
 		curr = curr->next;
 	}
 }
@@ -56,15 +54,14 @@ static void	ants_of_node(t_solution *solution, t_group *group, t_lem_in *lem_in)
 **	Builds a solution or a set of moves using the specified group.
 */
 
-void		build_solution(t_solution *solution, t_group *group, t_lem_in *lem_in)
+void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution)
 {
 	int ants_left;
 
 	while ((lem_in->start->ants) >= 0
-		&& lem_in->start->ants != lem_in->total_ants)
+		&& lem_in->end->ants != lem_in->total_ants)
 	{
 		ants_left = lem_in->total_ants - lem_in->end->ants;
-		ants_of_node(solution, group, lem_in);
-		solution_add_round(solution);
+		run_round(group, lem_in, solution);
 	}
 }

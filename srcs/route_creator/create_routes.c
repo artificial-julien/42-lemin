@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:23:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/07 18:32:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:43:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes)
 
 	new_node = ft_glstnew(node, sizeof(t_room));
 	ft_glstadd(nodes, new_node);
-	if (node->type == end)
+	if (node->type == start)
 	{
 		record_route(*nodes, routes);
 	}
@@ -48,7 +48,7 @@ static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes)
 		curr = node->links;
 		while (curr != NULL)
 		{
-			if (curr->room->type != start
+			if (curr->room->type != end
 				&& !ft_glsthascontent(*nodes, curr->room))
 			{
 				create_routes_core(curr->room, nodes, routes);
@@ -66,6 +66,6 @@ t_glist		*create_routes(t_lem_in *lem_in)
 
 	routes = NULL;
 	nodes = NULL;
-	create_routes_core(lem_in->start, &nodes, &routes);
+	create_routes_core(lem_in->end, &nodes, &routes);
 	return (routes);
 }

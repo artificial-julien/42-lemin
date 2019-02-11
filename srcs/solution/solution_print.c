@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 12:33:38 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/29 14:50:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 18:18:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	print_round(t_round *round)
 	while (curr != NULL)
 	{
 		move = (t_move*)curr->content;
-		ft_printf("L%s-%s", move->origin->name, move->target->name);
+		ft_printf("L%s-%s", move->src->name, move->dst->name);
 		curr = curr->prev;
 		if (curr != NULL)
 			ft_putchar(' ');

@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/11 17:13:11 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/11 18:15:17 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,13 +41,14 @@ _SRC =	room/room.c \
 		parser/parse_core.c \
 		route_creator/create_routes.c \
 		solver/solve.c \
-		solver/build_solution.c \
 		solver/select_best_group.c \
 		solver/sort_routes.c \
 		solver/ants_distribution.c \
 		solver/group_total_rounds.c \
 		solution/solution_print.c \
 		solution/solution.c \
+		solution_builder/build_solution.c \
+		solution_builder/ant.c \
 		utils/utils.c \
 		utils/utils_route.c \
 		glist/ft_glstadd.c \
@@ -67,15 +68,11 @@ _SRC =	room/room.c \
 		route/route.c \
 		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
-		test/dummy_maps.c \
-		ant/ant.c
+		test/dummy_maps.c
 
 .PHONY: all clean fclean re
 
-all: $(TEST_PRINT_SOL)  $(TEST_ROUTE)  $(TEST_GROUP) $(NAME)
-
-$(TEST_PRINT_SOL): $(OBJ) $(SDIR)/test/test_print.c
-	$(CC) $(CFLAGS) $^ -o $@
+all: $(TEST_ROUTE)  $(TEST_GROUP) $(NAME)
 
 $(TEST_ROUTE): $(OBJ) $(SDIR)/test/test_routes_creation.c
 	$(CC) $(CFLAGS) $^ -o $@

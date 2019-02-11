@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:12:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 18:15:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,8 +130,8 @@ struct	s_round
 
 struct	s_move
 {
-	t_room	*origin;
-	t_room	*target;
+	t_room	*src;
+	t_room	*dst;
 };
 
 struct	s_route
@@ -141,13 +141,6 @@ struct	s_route
 	t_glist		*rooms;
 	t_bitmap	*conflicts;
 };
-
-// struct	s_potentialroute
-// {
-// 	int		len;
-// 	t_room	*room;
-// 	t_potentialroute	*next;
-// };
 
 struct	s_group
 {
@@ -267,15 +260,16 @@ t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
 t_group		*select_best_group(t_glist *groups, int total_ants);
-void		build_solution(t_solution *solution, t_group *group, t_lem_in *lem_in);
+void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 void		sort_routes(t_group *group);
 int			ants_distribution(t_group *group, int total_ants, int **res);
 
 /*
-** Ants
+**	Solution printer.
 */
 
-void		ant_move(t_room **src, t_room **dest, t_solution *solution);
+void		print_solution(t_group *group, t_lem_in *lem_in);
+t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution);
 t_bool		ant_can_move(t_room *room);
 
 /*
@@ -286,7 +280,7 @@ void		solution_init(t_solution *solution);
 void		solution_print(t_solution *solution);
 void		solution_add_round(t_solution *solution);
 void		solution_discard_round(t_solution *solution);
-void		solution_add_move(t_solution *solution, t_move *move);
+void		solution_add_move(t_solution *solution, t_room *src, t_room *dst);
 
 /*
 **	Bitmap.

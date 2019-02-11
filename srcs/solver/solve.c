@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:07:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 18:20:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 **	Core problem solving function.
+**	Selects the best group and prints the solution.
 */
 
 void	solve(t_lem_in *lem_in, t_solution *solution)
@@ -27,13 +28,14 @@ void	solve(t_lem_in *lem_in, t_solution *solution)
 	create_groups(&groups, routes, lem_in);
 	best_group = select_best_group(groups, lem_in->total_ants);
 #if DEBUG
+
 	ft_printf("Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
 				group_total_rounds(best_group, lem_in->total_ants),
 				lem_in->total_ants);
 	group_print(best_group);
 #endif
-	// sort_routes(best_group);
-	build_solution(solution, best_group, lem_in);
+
+	build_solution(lem_in, best_group, solution);
 	ft_glstdel(&routes, route_free);
 	ft_glstdel(&groups, group_free);
 }
