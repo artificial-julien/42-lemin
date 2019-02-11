@@ -23,6 +23,8 @@ int		min_lem_in(t_lem_in *lem)
 	int end;
 
 	res = 0;
+	if (lem->start == NULL || lem->end == NULL)
+		lem_in_die();
 	start = lem->start->links_count;
 	end = lem->end->links_count;
 	res = (start < end) ? start :  end;
@@ -92,19 +94,6 @@ int		gnl_no_comm(const int fd, char **line)
 	return (res);
 }
 
-/*
-**	Function testing the links for if the next room is empty
-*/
-
-t_bool	ants_cam_move(t_glist *links)
-{
-	t_room *r;
-
-	r = *((t_room**)links->content);
-	if ((r->ants == 0 && r->type == standard) || (r->type == end))
-		return (1);
-	return (0);
-}
 
 /*
 **	Prints the specified route.
