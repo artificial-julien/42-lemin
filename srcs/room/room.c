@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 14:15:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 14:54:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,6 @@ void	room_add_link(t_lem_in *lem_in, char *origin, char *target)
 	target_room = room_find_by_name(lem_in, target);
 	new = ft_glstnew(target_room, sizeof(t_room));
 	ft_glstadd(&origin_room->links, new);
-	new = ft_glstnew(origin_room, sizeof(t_room));
-	ft_glstadd(&target_room->links, new);
 	origin_room->links_count++;
 	target_room->links_count++;
 }
