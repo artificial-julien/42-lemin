@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 15:49:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 17:01:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	routes_use_count(t_group *group, int total_ants)
 	while (curr != NULL)
 	{
 		i++;
-		p += curr->route->len;
+		p += curr->route->len - 2;
 		if (p >= total_ants)
 			return (i);
 		curr = curr->next;
@@ -78,7 +78,7 @@ static void	distribute(t_group *group, int grand_total, int *array, int size)
 	i = 0;
 	while (i < size)
 	{
-		array[i] = average - curr->route->len;
+		array[i] = average - curr->route->len - 2;
 		i++;
 		curr = curr->next;
 	}

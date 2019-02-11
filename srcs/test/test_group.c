@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/08 17:00:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 16:10:58 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,6 @@
 
 #define ROOMS_COUNT 3
 #define ROUTES_COUNT 3
-
-static void	group_print(t_group *group)
-{
-	t_glist	*curr;
-
-	ft_printf("Group:\n");
-	curr = group->routes;
-	while (curr != NULL)
-	{
-		route_print(curr->route);
-		curr = curr->next;
-	}
-}
 
 static void	print_groups(t_glist *groups)
 {

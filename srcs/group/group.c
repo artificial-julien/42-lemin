@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/06 16:35:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/11 16:11:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,4 +160,17 @@ void	group_free(void *content, size_t size)
 	group = (t_group*)content;
 	ft_glstdel(&group->routes, NULL);
 	free(group);
+}
+
+void	group_print(t_group *group)
+{
+	t_glist	*curr;
+
+	ft_printf("Group:\n");
+	curr = group->routes;
+	while (curr != NULL)
+	{
+		route_print(curr->route);
+		curr = curr->next;
+	}
 }
