@@ -75,6 +75,26 @@ int		ft_strindex(const char *hay, char c)
 }
 
 /*
+**	Return the index of position from the start
+**	of an charactere in the string or return -1
+**	if it can t find the cractere in the string
+*/
+
+int		ft_strrindex(const char *hay, char c)
+{
+	int i;
+
+	i = ft_strlen(hay);
+	while (hay && i >= 0 && hay[i] != '\0')
+	{
+		if (hay[i] == c)
+			return (i);
+		i--;
+	}
+	return (-1);
+}
+
+/*
 **	Reads to the next non-comment line
 **	Comments starts by "#"
 **	"##" are NOT comments
@@ -87,7 +107,8 @@ int		gnl_no_comm(const int fd, char **line)
 	ft_strdel(line);
 	while ((res = get_next_line(fd, line)) >= 0
 			&& ft_strnequ("#", *line, 1)
-			&& !ft_strnequ("##", *line, 2))
+			&& !(ft_strequ("##start", *line))
+			&& !(ft_strequ("##end", *line)))
 	{
 		ft_strdel(line);
 	}

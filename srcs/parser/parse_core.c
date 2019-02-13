@@ -63,6 +63,7 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 	}
 	x = ft_atoi(tab[1]);
 	y = ft_atoi(tab[2]);
+	new = NULL;
 	if ((new = room_new(tab[0], type, x, y)) != NULL)
 	{
 		lem_in_add_room(lem_in, new);
@@ -91,9 +92,9 @@ t_bool	parse_rooms(t_lem_in *lem_in, char **line)
 		}
 		else if (ft_strnequ("##", *line, 2))
 		{
-			if (ft_strnequ("##start", *line, 7))
+			if (ft_strequ("##start", *line))
 				state = read_room_line(lem_in, line, start);
-			else if (ft_strnequ("##end", *line, 5))
+			else if (ft_strequ("##end", *line))
 				state = read_room_line(lem_in, line, end);
 		}
 		else
