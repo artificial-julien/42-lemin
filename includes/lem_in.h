@@ -38,6 +38,7 @@ typedef struct s_solution	t_solution;
 typedef struct s_route		t_route;
 typedef struct s_group		t_group;
 typedef struct s_bitmap		t_bitmap;
+typedef struct s_opt		t_opt;
 
 /*
 **	Project generic list.
@@ -72,12 +73,21 @@ enum	e_roomtype
 	end,
 };
 
+struct	s_opt
+{
+	t_bool	print_routes;
+	t_bool	print_groups;
+	t_bool	print_help;
+	t_bool
+}
+
 struct	s_lem_in
 {
 	int		total_ants;
 	t_room	*start;
 	t_room	*end;
 	t_glist	*rooms;
+	t_opt	opt;
 	int		nb_lem_algo;
 };
 
