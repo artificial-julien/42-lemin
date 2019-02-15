@@ -32,6 +32,5 @@ t_glist		*ft_glstcpy(t_glist *src)
 		ft_glstadd(&res, new);
 		curr = curr->next;
 	}
-
 	return (res);
 }

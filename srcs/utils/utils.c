@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
 /*
 **	return the minum between the number of links of startroom ,
 **	the numbers links of endroom and the numbers finals  of ants .
@@ -27,9 +28,9 @@ int		min_lem_in(t_lem_in *lem)
 		lem_in_die();
 	start = lem->start->links_count;
 	end = lem->end->links_count;
-	res = (start < end) ? start :  end;
+	res = (start < end) ? start : end;
 	if (res < lem->total_ants)
-	res = lem->total_ants;
+		res = lem->total_ants;
 	return (res);
 }
 
@@ -75,26 +76,6 @@ int		ft_strindex(const char *hay, char c)
 }
 
 /*
-**	Return the index of position from the start
-**	of an charactere in the string or return -1
-**	if it can t find the cractere in the string
-*/
-
-int		ft_strrindex(const char *hay, char c)
-{
-	int i;
-
-	i = ft_strlen(hay);
-	while (hay && i >= 0 && hay[i] != '\0')
-	{
-		if (hay[i] == c)
-			return (i);
-		i--;
-	}
-	return (-1);
-}
-
-/*
 **	Reads to the next non-comment line
 **	Comments starts by "#"
 **	"##" are NOT comments
@@ -114,7 +95,6 @@ int		gnl_no_comm(const int fd, char **line)
 	}
 	return (res);
 }
-
 
 /*
 **	Prints the specified route.
