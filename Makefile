@@ -6,13 +6,13 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/11 18:15:17 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/18 19:10:56 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -fsanitize=address -D DEBUG
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -O3 -Ofast
 
 IDIR = includes
 SDIR = srcs
@@ -68,7 +68,9 @@ _SRC =	room/room.c \
 		route/route.c \
 		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
-		test/dummy_maps.c
+		test/dummy_maps.c \
+		parser/parser_opt.c \
+		parser/parse_optimiser.c\
 
 .PHONY: all clean fclean re
 

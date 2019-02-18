@@ -78,14 +78,15 @@ struct	s_opt
 	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
-	t_bool
-}
+
+};
 
 struct	s_lem_in
 {
 	int		total_ants;
 	t_room	*start;
 	t_room	*end;
+	int		room_len;
 	t_glist	*rooms;
 	t_opt	opt;
 	int		nb_lem_algo;
@@ -309,5 +310,15 @@ void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
+
+/*
+**
+*/
+
+void		init_opt(t_lem_in *lem_in);
+void		printf_help(void);
+void		print_unknow();
+void		parse_opt(t_lem_in *lem_in, int ac, char **av);
+void		parse_arg(char *s, t_lem_in *lem_in);
 
 #endif
