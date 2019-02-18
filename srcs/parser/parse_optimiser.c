@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/08 17:32:12 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 19:54:55 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	delete_dead_end(t_lem_in *lem_in, char *dead_end)
 	while(rooms->room != NULL)
 	{
 		curr = rooms->room;
-		if ()
+		// if ()
 		rooms = rooms->next;
 	}
 

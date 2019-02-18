@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 18:34:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 17:34:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,21 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 	byte_offset = index / 8;
 	bit_offset = index % 8;
 	bitmap->map[byte_offset] |= (0x01 << bit_offset);
+}
+
+/*
+**	Duplicates the bitmap and its sub elements.
+*/
+
+t_bitmap	*bitmap_copy(t_bitmap *bitmap)
+{
+	t_bitmap	*res;
+	int			bits_size;
+
+	bits_size = bitmap->bits_size;
+	res = bitmap_new(bits_size);
+	ft_memcpy(res->map, bitmap->map, bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
+	return (res);
 }
 
 /*

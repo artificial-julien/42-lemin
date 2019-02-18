@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/07 16:22:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 18:33:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,14 @@ void	route_free(void *content, size_t size)
 	bitmap_free(route->conflicts);
 	ft_glstdel(&route->rooms, NULL);
 	free(route);
+}
+
+void	route_add_node(t_route *route, t_room *room)
+{
+	t_glist	*new;
+
+	new = ft_glstnew(room, sizeof(t_room));
+	ft_glstadd(&route->rooms, new);
 }
 
 /*

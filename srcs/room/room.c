@@ -25,7 +25,6 @@ t_room	*room_new(char *name, t_roomtype type, int x, int y)
 	res->type = type;
 	res->pos.x = x;
 	res->pos.y = y;
-	res->weigth = -1;
 	return (res);
 }
 

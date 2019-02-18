@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/18 18:48:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 20:42:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_route		t_route;
 typedef struct s_group		t_group;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_opt		t_opt;
+typedef struct s_bft		t_bft;
 
 /*
 **	Project generic list.
@@ -55,6 +56,7 @@ struct	s_glist
 		t_round		*round;
 		t_move		*move;
 		t_glist		*glist;
+		t_bft		*bft;
 	};
 	size_t			content_size;
 	struct s_glist	*next;
@@ -78,7 +80,6 @@ struct	s_opt
 	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
-
 };
 
 struct	s_lem_in
@@ -97,21 +98,23 @@ struct	s_lem_in
 **	description:	Ant room or node.
 **
 **	name:	Room name. Display purposes.
+**	id:		Room id.
 **	type:	Start / end / standard (intermediate node)
 **	ants:	Ants count in the current room. Up to 1 for standard type.
 **	links:	Connected rooms list.
-**	weigth:	Distance to end node. Useful when building routes list. -1 is undefined.
 */
 
 struct	s_room
 {
 	char		*name;
+	int			id;
 	t_roomtype	type;
 	t_point		pos;
 	int			ants;
 	t_glist		*links;
+	t_room		*prev;
+	t_room		*next;
 	int			links_count;
-	int			weigth;
 };
 
 /*
@@ -136,6 +139,21 @@ struct	s_round
 };
 
 /*
+**	Breadth-first traverse informations.
+**
+**	route:			Every traversed nodes.
+**	augment_count:	How many times the path augmented the total flow.
+**	forbidden:		Forbidden nodes map.
+*/
+
+struct	s_bft
+{
+	t_route		*route;
+	int			augment_count;
+	t_bitmap	*forbidden;
+};
+
+/*
 **	Ant move going from origin to target.
 */
 
@@ -150,7 +168,6 @@ struct	s_route
 	int			id_route;
 	int			len;
 	t_glist		*rooms;
-	t_bitmap	*conflicts;
 };
 
 struct	s_group
@@ -216,17 +233,26 @@ void		room_set_ants(t_room *room, int ants);
 void		room_free(void *content, size_t size);
 
 /*
-** Route.
+**	Breadth-first traverse.
+*/
+
+t_bft		*bft_run(t_room *start);
+t_bft		*bft_new(int rooms_count);
+void		bft_free(t_bft *bft);
+void		bft_forbid(t_bft *bft, int room_id);
+t_bft		*bft_copy(t_bft *bft);
+void		bft_add_node(t_bft *bft, t_room *room);
+
+/*
+**	Route.
 */
 
 t_route		*route_new();
 t_bool		route_equals(t_route *a, t_route *b);
-void		route_create_conflicts_map(t_route *route, t_glist *routes, int count);
 void		route_free(void *content, size_t size);
-t_bool		route_has_conflict(t_route *a, t_route *b);
 t_route		*route_copy(t_route *src);
 void		route_print(t_route *route);
-int			route_cmp(void *a, void *b);
+void		route_add_node(t_route *route, t_room *room);
 
 /*
 ** Routes
@@ -236,13 +262,6 @@ t_bool		routes_routechr(t_glist *routes, t_route *route);
 int			routes_equals(t_glist *routes_a, t_glist *routes_b);
 
 /*
-**	Routes creation.
-*/
-
-void		create_nodes_weights(t_lem_in *lem_in);
-t_glist		*create_routes(t_lem_in *lem_in);
-
-/*
 ** Group.
 */
 
@@ -250,21 +269,10 @@ t_group*	group_new();
 void		group_add_route(t_group *group, t_route *route);
 void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_has_conflict_with(t_group *group, t_route *route);
-void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes, t_lem_in *lem_in);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
 void		group_print(t_group *group);
-
-/*
-**	Group creator.
-*/
-
-void		create_groups(t_glist **groups, t_glist *routes, t_lem_in *lem_in);
-t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
-void		groups_add(t_glist **groups, t_group *group);
-t_bool		groups_has_duplicate(t_glist *groups, t_group *group);
 
 /*
 **	Solver.
@@ -302,10 +310,12 @@ t_bitmap	*bitmap_new(size_t bits_size);
 t_bool		bitmap_get(t_bitmap *bitmap, size_t index);
 void		bitmap_set(t_bitmap *bitmap, size_t index);
 void		bitmap_free(t_bitmap *bitmap);
+t_bitmap	*bitmap_copy(t_bitmap *bitmap);
 
 /*
 **	Utils.
 */
+
 int			min_lem_in(t_lem_in *lem);
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);

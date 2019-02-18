@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/18 19:10:56 by agoulas          ###   ########.fr        #
+#    Updated: 2019/02/18 20:07:38 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,7 @@ LIBFTDIR = libft
 LIBFTIDIR = $(LIBFTDIR)/includes
 LIBFT = libft.a
 
-# Output file name
 NAME = lem_in
-TEST_PRINT_SOL = lem_in_test_solution_print
-TEST_ROUTE = lem_in_test_route_creation
-TEST_GROUP = lem_in_test_group_creation
 
 DEPS = $(IDIR)/lem_in.h
 
@@ -37,12 +33,12 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 # Source files
 _SRC =	room/room.c \
 		lem_in.c \
+		bft/bft_run.c \
+		bft/bft.c \
 		parser/parse.c \
 		parser/parse_core.c \
-		route_creator/create_routes.c \
 		solver/solve.c \
 		solver/select_best_group.c \
-		solver/sort_routes.c \
 		solver/ants_distribution.c \
 		solver/group_total_rounds.c \
 		solution/solution_print.c \
@@ -63,26 +59,19 @@ _SRC =	room/room.c \
 		glist/ft_glstsort.c \
 		glist/ft_glstlen.c \
 		glist/ft_glstinsert.c \
-		group_creator/create_groups.c \
 		group/group.c \
 		route/route.c \
-		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
 		test/dummy_maps.c \
 		parser/parser_opt.c \
-		parser/parse_optimiser.c\
+		parser/parse_optimiser.c \
+		main.c
 
 .PHONY: all clean fclean re
 
-all: $(TEST_ROUTE)  $(TEST_GROUP) $(NAME)
+all: $(NAME)
 
-$(TEST_ROUTE): $(OBJ) $(SDIR)/test/test_routes_creation.c
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(TEST_GROUP): $(OBJ) $(SDIR)/test/test_group.c
-	$(CC) $(CFLAGS) $^ -o $@
-
-$(NAME): $(OBJ) $(SDIR)/main.c
+$(NAME): $(OBJ)
 	$(CC) $(CFLAGS) $^ -o $@
 
 $(LIBFTDIR)/$(LIBFT):
