@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 14:54:31 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 19:35:47 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,32 @@ void	room_add_link(t_lem_in *lem_in, char *origin, char *target)
 void	room_set_ants(t_room *room, int ants)
 {
 	room->ants = ants;
+}
+
+/*
+**	Removes the specified link from the room.
+*/
+
+void	room_remove_link(t_room *room, t_room *link)
+{
+	t_glist	*curr;
+
+	curr = room->links;
+	while (curr != NULL)
+	{
+		if (curr->room == link)
+		{
+			ft_glstdelone(curr, NULL);
+			return ;
+		}
+		curr = curr->next;
+	}
+#if DEBUG
+
+	ft_putendl_fd("Link not found", 2);
+	lem_in_die();
+#endif
+
 }
 
 /*
