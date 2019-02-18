@@ -1,3 +1,9 @@
+- Implementer Edmonds-Karp
+- Optimization possibles:
+	- Suppression des cul de sac
+	- Suppression des boucles ?
+
+Avant rendu :
 - Leaks
 - Norme
 - Flag debug
