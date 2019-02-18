@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_glstinsert.c          ß                           :+:      :+:    :+:   */
+/*   ft_glstinsert.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -16,11 +16,12 @@
 **	Inserts in the glist in order of the function cmp.
 */
 
-void				ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
+void				ft_glstinsert(t_glist **dest, t_glist *new,
+	int (*cmp)(void*, void*))
 {
 	t_glist	*curr;
-	t_glist  *curr_prev;
-	int tmp;
+	t_glist	*curr_prev;
+	int		tmp;
 
 	curr_prev = NULL;
 	curr = (*dest);
@@ -41,4 +42,3 @@ void				ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*))
 		*dest = new;
 	}
 }
-

@@ -61,7 +61,7 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 **	Free bitmap's elements.
 */
 
-void	bitmap_free(t_bitmap *bitmap)
+void		bitmap_free(t_bitmap *bitmap)
 {
 	free(bitmap->map);
 	free(bitmap);

@@ -44,7 +44,7 @@ static void	add_rooms(t_lem_in *lem_in, t_room **rooms, int count)
 **		[E]
 */
 
-void	dummy_map_01(t_lem_in *lem_in)
+void		dummy_map_01(t_lem_in *lem_in)
 {
 	t_room	*rooms[ROOMS_COUNT];
 

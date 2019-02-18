@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/18 19:35:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/18 19:43:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,17 +81,17 @@ void	room_set_ants(t_room *room, int ants)
 
 void	room_remove_link(t_room *room, t_room *link)
 {
-	t_glist	*curr;
+	t_glist	**curr;
 
-	curr = room->links;
-	while (curr != NULL)
+	curr = &room->links;
+	while (*curr != NULL)
 	{
-		if (curr->room == link)
+		if ((*curr)->room == link)
 		{
 			ft_glstdelone(curr, NULL);
 			return ;
 		}
-		curr = curr->next;
+		curr = &(*curr)->next;
 	}
 #if DEBUG
 

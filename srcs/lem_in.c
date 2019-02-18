@@ -31,6 +31,7 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 
 	new = ft_glstnew(room, sizeof(t_room));
 	ft_glstadd(&lem_in->rooms, new);
+	lem_in->room_len++;
 	if (room->type == start)
 		lem_in->start = room;
 	else if (room->type == end)

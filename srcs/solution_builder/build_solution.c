@@ -12,7 +12,6 @@
 
 #include "lem_in.h"
 
-
 /*
 **	Move all ants of one route of the group.
 */
@@ -54,7 +53,8 @@ static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 **	Builds a solution or a set of moves using the specified group.
 */
 
-void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution)
+void		build_solution(t_lem_in *lem_in, t_group *group,
+	t_solution *solution)
 {
 	int ants_left;
 

@@ -46,7 +46,8 @@ static t_bool	have_conflicts(t_route *route_a, t_route *route_b)
 	return (false);
 }
 
-void			route_create_conflicts_map(t_route *route, t_glist *routes, int count)
+void			route_create_conflicts_map(t_route *route, t_glist *routes,
+	int count)
 {
 	t_glist	*curr;
 	t_bool	conflict;

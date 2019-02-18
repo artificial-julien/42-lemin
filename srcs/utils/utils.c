@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
 /*
 **	return the minum between the number of links of startroom ,
 **	the numbers links of endroom and the numbers finals  of ants .
@@ -27,9 +28,9 @@ int		min_lem_in(t_lem_in *lem)
 		lem_in_die();
 	start = lem->start->links_count;
 	end = lem->end->links_count;
-	res = (start < end) ? start :  end;
+	res = (start < end) ? start : end;
 	if (res < lem->total_ants)
-	res = lem->total_ants;
+		res = lem->total_ants;
 	return (res);
 }
 
@@ -87,13 +88,13 @@ int		gnl_no_comm(const int fd, char **line)
 	ft_strdel(line);
 	while ((res = get_next_line(fd, line)) >= 0
 			&& ft_strnequ("#", *line, 1)
-			&& !ft_strnequ("##", *line, 2))
+			&& !(ft_strequ("##start", *line))
+			&& !(ft_strequ("##end", *line)))
 	{
 		ft_strdel(line);
 	}
 	return (res);
 }
-
 
 /*
 **	Prints the specified route.

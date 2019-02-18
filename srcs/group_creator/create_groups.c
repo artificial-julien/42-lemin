@@ -43,7 +43,8 @@ void		groups_add(t_glist **groups, t_group *group)
 **	Function to create all groups  from the list of routes
 */
 
-void		create_groups(t_glist **groups, t_glist *routes, t_lem_in *lem_in)
+void		create_groups(t_glist **groups, t_glist *routes,
+	t_lem_in *lem_in)
 {
 	t_glist	*curr;
 	int		routes_count;
