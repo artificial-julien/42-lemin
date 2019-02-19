@@ -175,6 +175,7 @@ void		lem_in_init(t_lem_in *lem_in);
 void		lem_in_add_room(t_lem_in *lem_in, t_room *room);
 void		lem_in_free(t_lem_in *lem_in);
 void		lem_in_die();
+void		lem_in_remove_room(t_lem_in *lem_in ,t_room *room);
 
 /*
 **	Project generic list functions.
@@ -321,5 +322,18 @@ void		printf_help(void);
 void		print_unknow();
 void		parse_opt(t_lem_in *lem_in, int ac, char **av);
 void		parse_arg(char *s, t_lem_in *lem_in);
+
+
+/*
+**
+*/
+
+void		delete_dead_end(t_lem_in *lem_in, t_room *dead_end);
+void		parse_optimizer(t_lem_in *lem_in);
+void		print_room(t_lem_in *lem_in);
+
+/*
+**
+*/
 
 #endif

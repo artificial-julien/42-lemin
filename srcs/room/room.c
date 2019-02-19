@@ -63,7 +63,6 @@ void	room_add_link(t_lem_in *lem_in, char *origin, char *target)
 	new = ft_glstnew(target_room, sizeof(t_room));
 	ft_glstadd(&origin_room->links, new);
 	origin_room->links_count++;
-	target_room->links_count++;
 }
 
 /*
@@ -89,6 +88,7 @@ void	room_remove_link(t_room *room, t_room *link)
 		if ((*curr)->room == link)
 		{
 			ft_glstdelone(curr, NULL);
+			room->links_count--;
 			return ;
 		}
 		curr = &(*curr)->next;
@@ -98,8 +98,38 @@ void	room_remove_link(t_room *room, t_room *link)
 	ft_putendl_fd("Link not found", 2);
 	lem_in_die();
 #endif
-
 }
+
+/*
+**	print the list of room of lem_in.
+*/
+
+void	print_room(t_lem_in *lem_in)
+{
+	t_glist *curr;
+
+	curr = lem_in->rooms;
+	ft_printf("_____________________________________________________________\n");
+	ft_printf("/*****print_room******/\n");
+	ft_printf("length = %d\n",lem_in->room_len);
+	while (curr != NULL)
+	{
+		ft_printf(" %s :\n",curr->room->name);
+		ft_printf("	position = { %d, %d}.\n", curr->room->pos.x, curr->room->pos.y);
+		ft_printf("	nb_links = %d.\n",curr->room->links_count);
+
+		ft_printf("	nb_type = ");
+		if (curr->room->type == standard)
+			ft_printf("standard\n");
+		else
+			(curr->room->type == start ) ? ft_printf("start\n") : ft_printf("end\n");;
+		ft_printf("	ants = %d.\n",curr->room->ants);
+		ft_printf("	weigth = %d.\n",curr->room->weigth);
+		curr = curr->next;
+	}
+	ft_printf("_____________________________________________________________\n");
+}
+
 
 /*
 **	Free the specified room object and its elements.

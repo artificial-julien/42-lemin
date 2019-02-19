@@ -70,7 +70,7 @@ _SRC =	room/room.c \
 		bitmap/bitmap.c \
 		test/dummy_maps.c \
 		parser/parser_opt.c \
-		parser/parse_optimiser.c\
+		parser/parse_optimizer.c\
 
 .PHONY: all clean fclean re
 
