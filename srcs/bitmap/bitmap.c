@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 18:34:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/19 16:21:16 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,21 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 }
 
 /*
+**	Duplicates the bitmap and its sub elements.
+*/
+
+t_bitmap	*bitmap_copy(t_bitmap *bitmap)
+{
+	t_bitmap	*res;
+	int			bits_size;
+
+	bits_size = bitmap->bits_size;
+	res = bitmap_new(bits_size);
+	ft_memcpy(res->map, bitmap->map, bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
+	return (res);
+}
+
+/*
 **	Free bitmap's elements.
 */
 
@@ -65,4 +80,22 @@ void		bitmap_free(t_bitmap *bitmap)
 {
 	free(bitmap->map);
 	free(bitmap);
+}
+
+void	bitmap_print(t_bitmap *bitmap)
+{
+	int		val;
+	size_t	i;
+
+	i = 0;
+	while (i < bitmap->bits_size)
+	{
+		val = bitmap_get(bitmap, i);
+		if (val)
+			ft_putchar('1');
+		else
+			ft_putchar('0');
+		i++;
+	}
+	ft_putendl("");
 }
