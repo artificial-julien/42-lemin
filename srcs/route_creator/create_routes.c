@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-static void	record_route(t_glist *nodes, t_glist **routes)
+static void	record_route(t_glist *nodes, t_glist **routes, t_bool print)
 {
 	t_glist			*new_lst;
 	t_route			*new_route;
@@ -25,14 +25,16 @@ static void	record_route(t_glist *nodes, t_glist **routes)
 	id_route++;
 	new_lst = ft_glstnew(new_route, sizeof(t_route));
 	ft_glstadd(routes, new_lst);
-	route_print(new_route);
+	if (print == true)
+		route_print(new_route);
 }
 
 /*
 **	Returns the list of all the possible routes of the graph.
 */
 
-static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes)
+static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes,
+	t_bool print)
 {
 	t_glist			*curr;
 	t_glist			*new_node;
@@ -41,7 +43,7 @@ static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes)
 	ft_glstadd(nodes, new_node);
 	if (node->type == start)
 	{
-		record_route(*nodes, routes);
+		record_route(*nodes, routes, print);
 	}
 	else
 	{
@@ -51,13 +53,17 @@ static void	create_routes_core(t_room *node, t_glist **nodes, t_glist **routes)
 			if (curr->room->type != end
 				&& !ft_glsthascontent(*nodes, curr->room))
 			{
-				create_routes_core(curr->room, nodes, routes);
+				create_routes_core(curr->room, nodes, routes, print);
 			}
 			curr = curr->next;
 		}
 	}
 	ft_glstdelone(nodes, NULL);
 }
+
+/*
+** create routes.
+*/
 
 t_glist		*create_routes(t_lem_in *lem_in)
 {
@@ -66,6 +72,6 @@ t_glist		*create_routes(t_lem_in *lem_in)
 
 	routes = NULL;
 	nodes = NULL;
-	create_routes_core(lem_in->end, &nodes, &routes);
+	create_routes_core(lem_in->end, &nodes, &routes, lem_in->opt.print_routes);
 	return (routes);
 }

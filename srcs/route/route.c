@@ -97,6 +97,6 @@ void	route_free(void *content, size_t size)
 
 void	route_print(t_route *route)
 {
-	ft_printf("Route #%d\t", route->id_route);
+	ft_fprintf(2, "Route #%d | length: %d |\t", route->id_route, route->len);
 	print_nodes(route->rooms);
 }

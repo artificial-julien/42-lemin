@@ -21,7 +21,7 @@ static void	print_debug(t_lem_in *lem_in, t_group *best_group, t_bool debug)
 {
 	if (debug == true)
 	{
-		ft_printf("Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
+		ft_fprintf(2, "Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
 			group_total_rounds(best_group, lem_in->total_ants),
 			lem_in->total_ants);
 		group_print(best_group);
@@ -43,7 +43,9 @@ void		solve(t_lem_in *lem_in, t_solution *solution)
 	routes = create_routes(lem_in);
 	create_groups(&groups, routes, lem_in);
 	best_group = select_best_group(groups, lem_in->total_ants);
-	print_debug(lem_in, best_group, false);
+	if (lem_in->opt.print_groups == true || lem_in->opt.debug == true)
+		group_print(best_group);
+	print_debug(lem_in, best_group, lem_in->opt.debug);
 	build_solution(lem_in, best_group, solution);
 	ft_glstdel(&routes, route_free);
 	ft_glstdel(&groups, group_free);

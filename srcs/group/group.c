@@ -34,10 +34,11 @@ t_group	*group_new(void)
 
 void	group_add_route(t_group *group, t_route *route)
 {
+	t_glist *tmp;
 	if (route != NULL)
 	{
-		ft_glstinsert(&group->routes,
-			ft_glstnew(route, sizeof(route)), &route_cmp);
+		tmp = ft_glstnew(route, sizeof(route));
+		ft_glstinsert(&group->routes, tmp, &route_cmp);
 		group->count++;
 		if (group->low_len == 0 || group->low_len > route->len)
 			group->low_len = route->len;
@@ -94,7 +95,8 @@ void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes,
 	if (!groups_has_duplicate(*groups, group))
 	{
 		groups_add(groups, group);
-		group_print(group);
+		if (lem_in->opt.print_groups == true || lem_in->opt.debug == true)
+			group_print(group);
 	}
 	else
 		group_free(group, sizeof(t_group));
@@ -166,15 +168,25 @@ void	group_free(void *content, size_t size)
 	free(group);
 }
 
+/*
+**  Print a group and his routes
+*/
+
 void	group_print(t_group *group)
 {
 	t_glist	*curr;
 
-	ft_printf("Group:\n");
+	ft_fprintf(2, "Group:\n");
+	ft_fprintf(2, "____________________________________________________________________\n");
 	curr = group->routes;
+	ft_fprintf(2, "nb of routes : %d\n", group->count);
+	ft_fprintf(2, "minimun size of routes : %d\n", group->low_len);
+	ft_fprintf(2, "maximun size of routes : %d\n", group->high_len);
 	while (curr != NULL)
 	{
+		ft_fprintf(2, "	");
 		route_print(curr->route);
 		curr = curr->next;
 	}
+	ft_fprintf(2, "____________________________________________________________________\n\n");
 }

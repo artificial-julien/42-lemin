@@ -33,20 +33,24 @@ void	parse_arg(char *s, t_lem_in *lem_in)
 	{
 		if (s[0] == '-')
 		{
-			if (ft_strequ("-help", s) || ft_strequ("-h", s))
-				lem_in->opt.print_help = false;
-			else if (ft_strequ("-r", s))
-				lem_in->opt.print_routes = false;
-			else if (ft_strequ("-g", s))
-				lem_in->opt.print_groups = false;
+			if (ft_strequ("-debug", s) || ft_strequ("-d", s))
+				lem_in->opt.debug = true;
+			else if (ft_strequ("-help", s) || ft_strequ("-h", s))
+				lem_in->opt.print_help = true;
+			else if (ft_strequ("-rooms", s) || ft_strequ("-rs", s))
+				lem_in->opt.print_room = true;
+			else if (ft_strequ("-routes", s) || ft_strequ("-rts", s))
+				lem_in->opt.print_routes = true;
+			else if (ft_strequ("-groups", s) || ft_strequ("-grs", s))
+				lem_in->opt.print_groups = true;
 			else
 			{
-				print_unknow();
+				print_unknow(s);
 			}
 		}
 		else
 		{
-			print_unknow();
+			print_unknow(s);
 		}
 	}
 }
@@ -57,8 +61,11 @@ void	parse_arg(char *s, t_lem_in *lem_in)
 
 void	print_unknow(char *s)
 {
-	ft_printf("/************************************/\n");
-	ft_printf("		n %s is not a unknow commande .\n", s);
+	ft_printf(" ______________________________________________________\n");
+	ft_printf("|                                                     |\n");
+	ft_printf("	Error arg : '%s' is not a commande of lem_in. \n", s);
+	ft_printf("                                                     \n");
+	ft_printf("|_____________________________________________________|\n");
 	printf_help();
 	lem_in_die();
 }
@@ -69,12 +76,16 @@ void	print_unknow(char *s)
 
 void	printf_help(void)
 {
-	ft_printf("/********** HELP **********/\n");
-	ft_printf("	Usage: lem_in [-hrg] \n");
-	ft_printf("	-help,-h:  Show help.\n");
-	ft_printf("	-r: print all the routes used and saved in the resolution.\n");
-	ft_printf("	-g: print all group of route find in the algorythme\n");
-	ft_printf("/*************************/\n");
+	ft_printf(" ______________________________________________\n");
+	ft_printf("| HELP                                        |\n");
+	ft_printf("|  Usage: lem_in [-h,rs,rts,grs}              |\n");
+	ft_printf("|    -help,-h:  Show help.                    |\n");
+	ft_printf("|    -rms,-rooms: print rooms of the graph.   |\n");
+	ft_printf("|    -rts,-routes: print the routes.          |\n");
+	ft_printf("|    -grs,-groups: print all group of routes. |\n");
+	ft_printf("|    -d,-debug: print all for debug.          |\n");
+	ft_printf("|   only on stderr (2)                        |\n");
+	ft_printf("|_____________________________________________|\n");
 }
 
 /*
@@ -89,7 +100,7 @@ void	parse_opt(t_lem_in *lem_in, int ac, char **av)
 	init_opt(lem_in);
 	if (ac > 1)
 	{
-		while (av[i] != NULL && i < ac + 1)
+		while (av[i] != NULL && i <= ac + 1)
 		{
 			parse_arg(av[i], lem_in);
 			i++;

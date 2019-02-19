@@ -122,8 +122,8 @@ void	print_nodes(t_glist *nodes)
 			padding = " - ";
 		else
 			padding = "";
-		ft_printf("(%s)%s%s", room->name, label, padding);
+		ft_fprintf(2, "(%s)%s%s", room->name, label, padding);
 		curr = curr->next;
 	}
-	ft_putendl("");
+	ft_fprintf(2, "\n");
 }

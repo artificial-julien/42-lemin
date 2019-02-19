@@ -47,12 +47,11 @@ void	lem_in_free(t_lem_in *lem_in)
 	ft_glstdel(&lem_in->rooms, room_free);
 }
 
-
 /*
 **	Remove a room from lem_in.
 */
 
-void	lem_in_remove_room(t_lem_in *lem_in ,t_room *room)
+void	lem_in_remove_room(t_lem_in *lem_in, t_room *room)
 {
 	t_glist	**curr;
 

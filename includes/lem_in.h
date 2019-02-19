@@ -75,6 +75,8 @@ enum	e_roomtype
 
 struct	s_opt
 {
+	t_bool	debug;
+	t_bool	print_room;
 	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
@@ -312,6 +314,7 @@ void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
+void		print_error(char *s);
 
 /*
 **
