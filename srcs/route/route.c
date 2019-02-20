@@ -61,21 +61,6 @@ t_bool	route_equals(t_route *route_a, t_route *route_b)
 }
 
 /*
-**	Function to test if the two route has conflict.
-*/
-
-t_bool	route_has_conflict(t_route *a, t_route *b)
-{
-	t_bool	res;
-
-	res = false;
-	if (route_equals(a, b) == true)
-		return (true);
-	res = bitmap_get(a->conflicts, b->id_route);
-	return (res);
-}
-
-/*
 **	Free route's elements.
 */
 
@@ -88,15 +73,4 @@ void	route_free(void *content, size_t size)
 	bitmap_free(route->conflicts);
 	ft_glstdel(&route->rooms, NULL);
 	free(route);
-}
-
-/*
-**	Prints the specified route.
-**	Debug purposes.
-*/
-
-void	route_print(t_route *route)
-{
-	ft_fprintf(2, "Route #%d | length: %d |\t", route->id_route, route->len);
-	print_nodes(route->rooms);
 }

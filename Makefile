@@ -36,6 +36,7 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
 # Source files
 _SRC =	room/room.c \
+		room/room_create_links.c \
 		lem_in.c \
 		parser/parse.c \
 		parser/parse_core.c \
@@ -65,12 +66,15 @@ _SRC =	room/room.c \
 		glist/ft_glstinsert.c \
 		group_creator/create_groups.c \
 		group/group.c \
+		group/group_create_conflict.c \
 		route/route.c \
 		route/route_create_conflicts_map.c \
 		bitmap/bitmap.c \
 		test/dummy_maps.c \
 		parser/parser_opt.c \
 		parser/parse_optimizer.c\
+		parser/parse_opt_print.c\
+
 
 .PHONY: all clean fclean re
 

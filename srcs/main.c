@@ -19,10 +19,14 @@ int			main(int ac, char **av)
 
 	lem_in_init(&lem_in);
 	parse_opt(&lem_in, ac, av);
+	if (lem_in.opt.print_help == true)
+	{
+		printf_help();
+		return (0);
+	}
 	parse(&lem_in);
 	lem_in.nb_lem_algo = 3;
 	solution_init(&solution);
-	ft_printf("/**********/\n lnb_route by group = %d\n**********************/\n",lem_in.nb_lem_algo);
 	solve(&lem_in, &solution);
 	solution_print(&solution);
 	lem_in_free(&lem_in);

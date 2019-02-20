@@ -61,12 +61,15 @@ void	parse_arg(char *s, t_lem_in *lem_in)
 
 void	print_unknow(char *s)
 {
-	ft_printf(" ______________________________________________________\n");
-	ft_printf("|                                                     |\n");
-	ft_printf("	Error arg : '%s' is not a commande of lem_in. \n", s);
-	ft_printf("                                                     \n");
-	ft_printf("|_____________________________________________________|\n");
+	ft_fprintf(2, " ____________________________________");
+	ft_fprintf(2, "____________________________________\n");
+	ft_fprintf(2, "|                                    ");
+	ft_fprintf(2, "                                    |\n");
+	ft_fprintf(2, "\n	Error arg : '%s' is not a commandgit  of lem_in. \n\n", s);
 	printf_help();
+	ft_fprintf(2, "\n");
+	ft_fprintf(2, "|___________________________________");
+	ft_fprintf(2, "____________________________________|\n\n");
 	lem_in_die();
 }
 
@@ -76,16 +79,16 @@ void	print_unknow(char *s)
 
 void	printf_help(void)
 {
-	ft_printf(" ______________________________________________\n");
-	ft_printf("| HELP                                        |\n");
-	ft_printf("|  Usage: lem_in [-h,rs,rts,grs}              |\n");
-	ft_printf("|    -help,-h:  Show help.                    |\n");
-	ft_printf("|    -rms,-rooms: print rooms of the graph.   |\n");
-	ft_printf("|    -rts,-routes: print the routes.          |\n");
-	ft_printf("|    -grs,-groups: print all group of routes. |\n");
-	ft_printf("|    -d,-debug: print all for debug.          |\n");
-	ft_printf("|   only on stderr (2)                        |\n");
-	ft_printf("|_____________________________________________|\n");
+	ft_fprintf(2, "	 ______________________________________________\n");
+	ft_fprintf(2, "	| HELP                                        |\n");
+	ft_fprintf(2, "	|  Usage: lem_in [-h,rs,rts,grs}              |\n");
+	ft_fprintf(2, "	|    -help,-h:  Show help.                    |\n");
+	ft_fprintf(2, "	|    -rms,-rooms: print rooms of the graph.   |\n");
+	ft_fprintf(2, "	|    -rts,-routes: print the routes.          |\n");
+	ft_fprintf(2, "	|    -grs,-groups: print all group of routes. |\n");
+	ft_fprintf(2, "	|    -d,-debug: print all for debug.          |\n");
+	ft_fprintf(2, "	|   only on stderr (2)                        |\n");
+	ft_fprintf(2, "	|_____________________________________________|\n");
 }
 
 /*

@@ -201,6 +201,11 @@ int			ft_glstlen(t_glist *list);
 */
 
 void		parse(t_lem_in *lem_in);
+
+/*
+** Parse_core.
+*/
+
 void		parse_ants_count(t_lem_in *lem_in, char **line);
 t_bool		parse_rooms(t_lem_in *lem_in, char **line);
 int			parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
@@ -213,10 +218,15 @@ void		parse_links(t_lem_in *lem_in, char **line);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
-void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
-void		room_remove_link(t_room *room, t_room *link);
 void		room_set_ants(t_room *room, int ants);
 void		room_free(void *content, size_t size);
+
+/*
+** Links creation and destruction in room.
+*/
+
+void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
+void		room_remove_link(t_room *room, t_room *link);
 
 /*
 ** Route.
@@ -224,12 +234,16 @@ void		room_free(void *content, size_t size);
 
 t_route		*route_new();
 t_bool		route_equals(t_route *a, t_route *b);
-void		route_create_conflicts_map(t_route *route, t_glist *routes, int count);
 void		route_free(void *content, size_t size);
-t_bool		route_has_conflict(t_route *a, t_route *b);
 t_route		*route_copy(t_route *src);
-void		route_print(t_route *route);
 int			route_cmp(void *a, void *b);
+
+/*
+**	Routes create conflict map
+*/
+
+void		route_create_conflicts_map(t_route *route, t_glist *routes, int count);
+t_bool		route_has_conflict(t_route *a, t_route *b);
 
 /*
 ** Routes
@@ -251,13 +265,16 @@ t_glist		*create_routes(t_lem_in *lem_in);
 
 t_group*	group_new();
 void		group_add_route(t_group *group, t_route *route);
-void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_has_conflict_with(t_group *group, t_route *route);
-void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes, t_lem_in *lem_in);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
-void		group_print(t_group *group);
+
+/*
+**	group_create_conflict
+*/
+
+t_bool		group_has_conflict_with(t_group *group, t_route *route);
+void		group_route_conflict(t_glist **groups, t_route *a, t_glist *routes,	t_lem_in *lem_in);
 
 /*
 **	Group creator.
@@ -333,10 +350,15 @@ void		parse_arg(char *s, t_lem_in *lem_in);
 
 void		delete_dead_end(t_lem_in *lem_in, t_room *dead_end);
 void		parse_optimizer(t_lem_in *lem_in);
-void		print_room(t_lem_in *lem_in);
 
 /*
-**
+**	Print for for debug.
 */
+
+void		group_print(t_group *group);
+void		route_print(t_route *route);
+void		print_info_room(t_room *room);
+void		print_room(t_lem_in *lem_in);
+
 
 #endif

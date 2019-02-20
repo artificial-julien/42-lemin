@@ -35,6 +35,8 @@ t_group	*group_new(void)
 void	group_add_route(t_group *group, t_route *route)
 {
 	t_glist *tmp;
+
+	tmp = NULL;
 	if (route != NULL)
 	{
 		tmp = ft_glstnew(route, sizeof(route));
@@ -45,61 +47,6 @@ void	group_add_route(t_group *group, t_route *route)
 		if (group->high_len == 0 || group->high_len < route->len)
 			group->high_len = route->len;
 	}
-}
-
-/*
-** Function for testing the conflict between the routes of the group
-** and one unique route
-*/
-
-t_bool	group_has_conflict_with(t_group *group, t_route *route)
-{
-	t_glist *lst;
-	t_route *route_a;
-
-	lst = group->routes;
-	if (group_has_route(group, route))
-		return (true);
-	while (lst != NULL)
-	{
-		route_a = lst->route;
-		if (route_has_conflict(route_a, route))
-			return (true);
-		lst = lst->next;
-	}
-	return (false);
-}
-
-/*
-** Function for creating a group
-** without conflit between one route and the list of routes
-*/
-
-void	group_route_conflict(t_glist **groups, t_route *a, t_glist *routes,
-	t_lem_in *lem_in)
-{
-	t_glist *curr_routes;
-	t_route *curr;
-	t_group *group;
-
-	group = group_new();
-	curr_routes = routes;
-	group_add_route(group, a);
-	while ((curr_routes) && (curr = curr_routes->route)
-		&& group->count < lem_in->nb_lem_algo)
-	{
-		if (!group_has_conflict_with(group, curr))
-			group_add_route(group, curr);
-		curr_routes = curr_routes->next;
-	}
-	if (!groups_has_duplicate(*groups, group))
-	{
-		groups_add(groups, group);
-		if (lem_in->opt.print_groups == true || lem_in->opt.debug == true)
-			group_print(group);
-	}
-	else
-		group_free(group, sizeof(t_group));
 }
 
 /*
@@ -166,27 +113,4 @@ void	group_free(void *content, size_t size)
 	group = (t_group*)content;
 	ft_glstdel(&group->routes, NULL);
 	free(group);
-}
-
-/*
-**  Print a group and his routes
-*/
-
-void	group_print(t_group *group)
-{
-	t_glist	*curr;
-
-	ft_fprintf(2, "Group:\n");
-	ft_fprintf(2, "____________________________________________________________________\n");
-	curr = group->routes;
-	ft_fprintf(2, "nb of routes : %d\n", group->count);
-	ft_fprintf(2, "minimun size of routes : %d\n", group->low_len);
-	ft_fprintf(2, "maximun size of routes : %d\n", group->high_len);
-	while (curr != NULL)
-	{
-		ft_fprintf(2, "	");
-		route_print(curr->route);
-		curr = curr->next;
-	}
-	ft_fprintf(2, "____________________________________________________________________\n\n");
 }

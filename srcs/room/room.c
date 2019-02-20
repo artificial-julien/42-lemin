@@ -49,23 +49,6 @@ t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 }
 
 /*
-**	Adds a room connection to another room using room names.
-*/
-
-void	room_add_link(t_lem_in *lem_in, char *origin, char *target)
-{
-	t_room	*origin_room;
-	t_room	*target_room;
-	t_glist	*new;
-
-	origin_room = room_find_by_name(lem_in, origin);
-	target_room = room_find_by_name(lem_in, target);
-	new = ft_glstnew(target_room, sizeof(t_room));
-	ft_glstadd(&origin_room->links, new);
-	origin_room->links_count++;
-}
-
-/*
 **	Sets the number of ants.
 */
 
@@ -73,58 +56,6 @@ void	room_set_ants(t_room *room, int ants)
 {
 	room->ants = ants;
 }
-
-/*
-**	Removes the specified link from the room.
-*/
-
-void	room_remove_link(t_room *room, t_room *link)
-{
-	t_glist	**curr;
-
-	curr = &room->links;
-	while (*curr != NULL)
-	{
-		if ((*curr)->room == link)
-		{
-			ft_glstdelone(curr, NULL);
-			room->links_count--;
-			return ;
-		}
-		curr = &(*curr)->next;
-	}
-}
-
-/*
-**	print the list of room of lem_in.
-*/
-
-void	print_room(t_lem_in *lem_in)
-{
-	t_glist *curr;
-
-	curr = lem_in->rooms;
-	ft_fprintf(2, "_____________________________________________________________\n");
-	ft_fprintf(2, "		Print_rooms\n");
-	ft_fprintf(2, "length = %d\n\n",lem_in->room_len);
-	while (curr != NULL)
-	{
-		ft_fprintf(2, " %s :\n",curr->room->name);
-		ft_fprintf(2, "	position = {%d, %d}.\n", curr->room->pos.x, curr->room->pos.y);
-		ft_fprintf(2, "	nb_links = %d.\n",curr->room->links_count);
-
-		ft_fprintf(2, "	nb_type = ");
-		if (curr->room->type == standard)
-			ft_fprintf(2, "standard\n");
-		else
-			(curr->room->type == start ) ? ft_fprintf(2, "start\n") : ft_fprintf(2, "end\n");;
-		ft_fprintf(2, "	ants = %d.\n",curr->room->ants);
-		ft_fprintf(2, "	weigth = %d.\n",curr->room->weigth);
-		curr = curr->next;
-	}
-	ft_fprintf(2, "_____________________________________________________________\n");
-}
-
 
 /*
 **	Free the specified room object and its elements.

@@ -12,6 +12,10 @@
 
 #include "lem_in.h"
 
+/*
+**	Create node for the route.
+*/
+
 static t_bool	contains_node(t_room *node, t_route *route)
 {
 	t_glist	*curr;
@@ -24,6 +28,21 @@ static t_bool	contains_node(t_room *node, t_route *route)
 		curr = curr->next;
 	}
 	return (false);
+}
+
+/*
+**	Function to test if the two route has conflict.
+*/
+
+t_bool			route_has_conflict(t_route *a, t_route *b)
+{
+	t_bool	res;
+
+	res = false;
+	if (route_equals(a, b) == true)
+		return (true);
+	res = bitmap_get(a->conflicts, b->id_route);
+	return (res);
 }
 
 /*
@@ -45,6 +64,10 @@ static t_bool	have_conflicts(t_route *route_a, t_route *route_b)
 	}
 	return (false);
 }
+
+/*
+**	Init the bitmao of conflict.
+*/
 
 void			route_create_conflicts_map(t_route *route, t_glist *routes,
 	int count)

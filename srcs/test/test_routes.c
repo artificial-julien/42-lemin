@@ -58,17 +58,17 @@ void dummy_solution(t_lem_in *lem_in)
 		i++;
 	}
 	if (route_equals(route1, route2) == 1)
-		ft_printf(" 1 et 2 sont equals\n");
+		ft_fprintf(2, " 1 et 2 sont equals\n");
 	else
-		ft_printf("1 et 2 error\n");
+		ft_fprintf(2, "1 et 2 error\n");
 	if (route_equals(route1, route3) == 1)
-		ft_printf(" 1 et 3 sont equals\n");
+		ft_fprintf(2, " 1 et 3 sont equals\n");
 	else
-		ft_printf("1 et 3 error\n");
+		ft_fprintf(2, "1 et 3 error\n");
 	if (route_equals(route2, route3) == 1)
-		ft_printf(" 2 et 3 sont equals\n");
+		ft_fprintf(2, " 2 et 3 sont equals\n");
 	else
-		ft_printf("2 et 3 error\n");
+		ft_fprintf(2, "2 et 3 error\n");
 }
 
 int main(void)
