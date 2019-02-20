@@ -16,7 +16,7 @@
 ** Print the bitmap.
 */
 
-void	bitmap_print(t_bitmap *bitmap)
+void		bitmap_print(t_bitmap *bitmap)
 {
 	int		val;
 	size_t	i;
@@ -55,7 +55,7 @@ t_bitmap	*bitmap_copy(t_bitmap *bitmap)
 **	Resets all bitmap values to 0.
 */
 
-void	bitmap_reset(t_bitmap *bitmap)
+void		bitmap_reset(t_bitmap *bitmap)
 {
 	size_t	bits_size;
 	size_t	size;
