@@ -91,8 +91,8 @@ struct	s_lem_in
 	t_room	*end;
 	int		room_len;
 	t_glist	*rooms;
+	t_list	*data;
 	t_opt	opt;
-	int		nb_lem_algo;
 };
 
 /*
@@ -236,8 +236,14 @@ void		parse_links(t_lem_in *lem_in, char **line);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
+t_bool		room_find_name(t_lem_in *lem_in, char *name);
 void		room_set_ants(t_room *room, int ants);
 void		room_free(void *content, size_t size);
+
+/*
+** Room_links.
+*/
+
 void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
 void		room_remove_link(t_room *room, t_room *link);
 
@@ -245,7 +251,7 @@ void		room_remove_link(t_room *room, t_room *link);
 **	Breadth-first traverse.
 */
 
-t_bft		*bft_run(t_bft *initial);
+t_bft		*bft_run(t_lem_in *lem_in, t_bft *initial);
 t_bft		*bft_new(int rooms_count);
 void		bft_free(void *content, size_t size);
 t_bft		*bft_copy(t_bft *bft);
@@ -353,7 +359,7 @@ void		print_nodes(t_glist *nodes);
 void		print_error(char *s);
 
 /*
-**
+** Parsing opt of lem_in.
 */
 
 void		init_opt(t_lem_in *lem_in);
@@ -364,7 +370,7 @@ void		parse_arg(char *s, t_lem_in *lem_in);
 
 
 /*
-**
+**	Parser optimiser
 */
 
 void		delete_dead_end(t_lem_in *lem_in, t_room *dead_end);
@@ -378,5 +384,12 @@ void		group_print_extra(t_group *group);
 void		route_print_extra(t_route *route);
 void		room_print_extra(t_room *room);
 void		lem_in_print_all_rooms(t_lem_in *lem_in);
+
+/*
+**
+*/
+
+void		get_data(t_lem_in *lem_in, char *line);
+void		print_data(t_lem_in *lem_in);
 
 #endif

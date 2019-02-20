@@ -30,7 +30,6 @@ void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
 	}
 }
 
-
 /*
 **	Remove all room of type dead_end : with no links to advance.
 */

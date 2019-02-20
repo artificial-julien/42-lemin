@@ -24,7 +24,6 @@ void	parse(t_lem_in *lem_in)
 	parse_ants_count(lem_in, &line);
 	parse_rooms(lem_in, &line);
 	parse_links(lem_in, &line);
-	lem_in->nb_lem_algo = min_lem_in(lem_in);
 	lem_in->start->ants = lem_in->total_ants;
 	if (lem_in->opt.print_room == true || lem_in->opt.debug == true)
 		lem_in_print_all_rooms(lem_in);

@@ -25,10 +25,9 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	parse(&lem_in);
-	lem_in.nb_lem_algo = 3;
 	solution_init(&solution);
-	ft_fprintf(2, "/**********/\n lnb_route by group = %d\n**********************/\n",lem_in.nb_lem_algo);
 	solve(&lem_in, &solution);
+	print_data(&lem_in);
 	solution_print(&solution);
 	lem_in_free(&lem_in);
 	return (0);

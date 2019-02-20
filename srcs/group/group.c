@@ -37,7 +37,6 @@ t_group	*group_build(t_room *start)
 	return (res);
 }
 
-
 /*
 **	Adds a route to the specified group.
 */
@@ -50,7 +49,7 @@ void	group_add_route(t_group *group, t_route *route)
 	if (route != NULL)
 	{
 		tmp = ft_glstnew(route, sizeof(route));
-		// ft_glstinsert(&group->routes, tmp, &route_cmp);
+		//ft_glstinsert(&group->routes, tmp, &route_cmp);
 		ft_glstadd(&group->routes, tmp);
 		group->count++;
 		if (group->low_len == 0 || group->low_len > route->len)
