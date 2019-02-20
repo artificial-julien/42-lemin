@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/20 13:51:30 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/20 15:36:01 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 
 # Source files
 _SRC =	room/room.c \
+		room/room_create_links.c \
 		lem_in.c \
 		bft/bft_run.c \
 		bft/bft.c \
@@ -67,8 +68,10 @@ _SRC =	room/room.c \
 		bitmap/bitmap.c \
 		bitmap/bitmap_utils.c \
 		parser/parser_opt.c \
-		parser/parse_optimiser.c \
+		parser/parse_optimizer.c \
+		parser/parse_opt_print.c \
 		main.c
+
 
 .PHONY: all clean fclean re
 

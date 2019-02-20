@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/20 11:35:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:31:29 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,5 +125,5 @@ void	print_nodes(t_glist *nodes)
 		ft_fprintf(2, "(%s)%s%s", room->name, label, padding);
 		curr = curr->next;
 	}
-	ft_putendl_fd("", 2);
+	ft_fprintf(2, "\n");
 }

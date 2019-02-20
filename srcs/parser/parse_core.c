@@ -53,10 +53,11 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 	char	**tab;
 	t_room	*new;
 
-	if ((tab = ft_strsplit(line, ' ')) == NULL
-			|| tab[1] == NULL || tab[2] == NULL
-			|| ft_strlen(tab[1]) > MAX_NB_SIZE
-			|| ft_strlen(tab[2]) > MAX_NB_SIZE)
+	if (((tab = ft_strsplit(line, ' ')) == NULL)
+			|| (tab[1] == NULL || tab[2] == NULL)
+			|| (ft_strncmp(tab[0], "L", 1) == true)
+			|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
+			|| (ft_strlen(tab[2]) > MAX_NB_SIZE))
 	{
 		ft_free_tab(&tab);
 		return (0);

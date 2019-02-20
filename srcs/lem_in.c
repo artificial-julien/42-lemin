@@ -48,6 +48,27 @@ void	lem_in_free(t_lem_in *lem_in)
 }
 
 /*
+**	Remove a room from lem_in.
+*/
+
+void	lem_in_remove_room(t_lem_in *lem_in, t_room *room)
+{
+	t_glist	**curr;
+
+	curr = &lem_in->rooms;
+	while (*curr != NULL)
+	{
+		if ((*curr)->room == room)
+		{
+			ft_glstdelone(curr, NULL);
+			lem_in->room_len--;
+			return ;
+		}
+		curr = &(*curr)->next;
+	}
+}
+
+/*
 **	Prints an error and terminates the program.
 */
 

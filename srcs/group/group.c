@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/20 11:38:25 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:37:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,29 @@ t_group	*group_build(t_room *start)
 	return (res);
 }
 
+
+/*
+**	Adds a route to the specified group.
+*/
+
+void	group_add_route(t_group *group, t_route *route)
+{
+	t_glist *tmp;
+
+	tmp = NULL;
+	if (route != NULL)
+	{
+		tmp = ft_glstnew(route, sizeof(route));
+		// ft_glstinsert(&group->routes, tmp, &route_cmp);
+		ft_glstadd(&group->routes, tmp);
+		group->count++;
+		if (group->low_len == 0 || group->low_len > route->len)
+			group->low_len = route->len;
+		if (group->high_len == 0 || group->high_len < route->len)
+			group->high_len = route->len;
+	}
+}
+
 /*
 **	Creates a new empty group.
 */
@@ -47,18 +70,6 @@ t_group	*group_new(void)
 
 	res = ft_memalloc(sizeof(t_group));
 	return (res);
-}
-
-/*
-**	Adds a route to the specified group.
-*/
-
-void	group_add_route(t_group *group, t_route *route)
-{
-	t_glist	*new;
-
-	new = ft_glstnew(route, sizeof(t_route));
-	ft_glstadd(&group->routes, new);
 }
 
 /*

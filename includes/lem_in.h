@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 11:16:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:41:50 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ enum	e_roomtype
 
 struct	s_opt
 {
+	t_bool	debug;
+	t_bool	print_room;
 	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
@@ -192,6 +194,7 @@ void		lem_in_init(t_lem_in *lem_in);
 void		lem_in_add_room(t_lem_in *lem_in, t_room *room);
 void		lem_in_free(t_lem_in *lem_in);
 void		lem_in_die();
+void		lem_in_remove_room(t_lem_in *lem_in ,t_room *room);
 
 /*
 **	Project generic list functions.
@@ -216,6 +219,11 @@ void		ft_glstrev(t_glist **list);
 */
 
 void		parse(t_lem_in *lem_in);
+
+/*
+** Parse_core.
+*/
+
 void		parse_ants_count(t_lem_in *lem_in, char **line);
 t_bool		parse_rooms(t_lem_in *lem_in, char **line);
 int			parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
@@ -228,10 +236,10 @@ void		parse_links(t_lem_in *lem_in, char **line);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
-void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
-void		room_remove_link(t_room *room, t_room *link);
 void		room_set_ants(t_room *room, int ants);
 void		room_free(void *content, size_t size);
+void		room_add_link(t_lem_in *lem_in, char *origin, char *target);
+void		room_remove_link(t_room *room, t_room *link);
 
 /*
 **	Breadth-first traverse.
@@ -256,6 +264,23 @@ void		route_print(t_route *route);
 void		route_add_node(t_route *route, t_room *room);
 
 /*
+** Route.
+*/
+
+t_route		*route_new();
+t_bool		route_equals(t_route *a, t_route *b);
+void		route_free(void *content, size_t size);
+t_route		*route_copy(t_route *src);
+int			route_cmp(void *a, void *b);
+
+/*
+**	Routes create conflict map
+*/
+
+void		route_create_conflicts_map(t_route *route, t_glist *routes, int count);
+t_bool		route_has_conflict(t_route *a, t_route *b);
+
+/*
 ** Routes
 */
 
@@ -268,7 +293,6 @@ t_bool		routes_routechr(t_glist *routes, t_route *route);
 t_group		*group_new();
 t_group		*group_build(t_room *start);
 void		group_add_route(t_group *group, t_route *route);
-void		group_del_route(t_group *g, t_route *route);
 void		group_free(void *content, size_t size);
 t_bool		group_equals(t_group *group_a, t_group *group_b);
 t_bool		group_has_route(t_group *group, t_route *route);
@@ -325,6 +349,7 @@ void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
+void		print_error(char *s);
 
 /*
 **
@@ -335,5 +360,22 @@ void		printf_help(void);
 void		print_unknow();
 void		parse_opt(t_lem_in *lem_in, int ac, char **av);
 void		parse_arg(char *s, t_lem_in *lem_in);
+
+
+/*
+**
+*/
+
+void		delete_dead_end(t_lem_in *lem_in, t_room *dead_end);
+void		parse_optimizer(t_lem_in *lem_in);
+
+/*
+**	Print for for debug.
+*/
+
+void		group_print_extra(t_group *group);
+void		route_print_extra(t_route *route);
+void		room_print_extra(t_room *room);
+void		lem_in_print_all_rooms(t_lem_in *lem_in);
 
 #endif

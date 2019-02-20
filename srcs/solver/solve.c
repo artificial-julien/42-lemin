@@ -103,7 +103,9 @@ void		solve(t_lem_in *lem_in, t_solution *solution)
 	groups = NULL;
 	create_groups(lem_in->start, &groups, ft_glstlen(lem_in->rooms));
 	best_group = select_best_group(groups, lem_in->total_ants);
-	print_debug(lem_in, best_group, false);
+	if (lem_in->opt.print_groups == true || lem_in->opt.debug == true)
+		group_print(best_group);
+	print_debug(lem_in, best_group, lem_in->opt.debug);
 	build_solution(lem_in, best_group, solution);
 	ft_glstdel(&routes, route_free);
 	ft_glstdel(&groups, group_free);
