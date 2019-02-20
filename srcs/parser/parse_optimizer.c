@@ -30,13 +30,13 @@ void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
 	}
 }
 
+
 /*
 **	Remove all room that are a dead_end : whith no links to advance.
 */
 
 void	parse_optimizer(t_lem_in *lem_in)
 {
-	t_glist		*tmp;
 	t_glist		*curr;
 	t_room		*room;
 
@@ -48,9 +48,8 @@ void	parse_optimizer(t_lem_in *lem_in)
 		if (room->links_count <= 1 && room->type == standard)
 		{
 			delete_dead_end(lem_in, room);
-			tmp = curr->next;
 			lem_in_remove_room(lem_in, room);
-			curr = tmp;
+			curr = lem_in->rooms;
 		}
 		else
 			curr = curr->next;
