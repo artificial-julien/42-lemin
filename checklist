@@ -4,6 +4,7 @@
 	- Suppression des boucles ?
 	- Arret de la creation de groupes en fonction du nb. de fourmis
 - Verifier le cas de 2 nodes (start et end)
+- Erreur si nom de salle commence par "L"
 Avant rendu :
 - Leaks
 - Norme
