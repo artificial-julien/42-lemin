@@ -6,44 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 15:02:53 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 17:27:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-**	Updates the nodes connections (prev, next) representing the routes on
-**	the map using the virtual route created by the Edmonds-Karp traverse.
-*/
-
-static void	rebuild_routes(t_route *route)
-{
-	t_glist	*curr;
-	t_room	*prev;
-
-	curr = route->rooms;
-	prev = NULL;
-	while (curr != NULL)
-	{
-		if (curr->room->type == standard)
-		{
-			if (curr->room->prev == NULL)
-			{
-				curr->room->prev = prev;
-				if (prev != NULL && curr->room->type == standard)
-					prev->next = curr->room;
-			}
-			else
-			{
-				curr->room->next = NULL;
-				curr->room->prev = NULL;
-			}
-		}
-		prev = curr->room;
-		curr = curr->next;
-	}
-}
 
 static void	create_groups(t_room *start, t_glist **groups, int rooms_count)
 {
@@ -96,7 +63,6 @@ static void	print_debug(t_lem_in *lem_in, t_group *best_group, t_bool debug)
 
 void		solve(t_lem_in *lem_in, t_solution *solution)
 {
-	t_glist		*routes;
 	t_glist		*groups;
 	t_group		*best_group;
 
@@ -107,6 +73,5 @@ void		solve(t_lem_in *lem_in, t_solution *solution)
 		group_print(best_group);
 	print_debug(lem_in, best_group, lem_in->opt.debug);
 	build_solution(lem_in, best_group, solution);
-	ft_glstdel(&routes, route_free);
 	ft_glstdel(&groups, group_free);
 }

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 15:41:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 16:14:20 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -304,6 +304,7 @@ int			group_total_rounds(t_group *group, int total_ants);
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
+void		rebuild_routes(t_route *route);
 t_group		*select_best_group(t_glist *groups, int total_ants);
 void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 void		sort_routes(t_group *group);

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 14:18:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 17:21:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,32 +91,32 @@ static t_bft	*extend_node(t_bft *bft, t_glist **next_nodes)
 	last_room = bft->virtual_route->rooms->room;
 	bitmap_set(bft->forbidden, last_room->id);
 	curr = last_room->links;
-#ifdef DEBUG
+// #ifdef DEBUG
 
-	ft_fprintf(2, "\nExtending from:\t");
-	route_print(bft->virtual_route);
-#endif
+// 	ft_fprintf(2, "\nExtending from:\t");
+// 	route_print(bft->virtual_route);
+// #endif
 
 	while (curr != NULL)
 	{
 		traverse_res = try_traverse_node(bft, last_room, curr->room, &new_bft);
 		if (traverse_res == FINAL)
 		{
-#ifdef DEBUG
+// #ifdef DEBUG
 
-			ft_fprintf(2, "Found:\t\t");
-			route_print((new_bft)->virtual_route);
-#endif
+// 			ft_fprintf(2, "Found:\t\t");
+// 			route_print((new_bft)->virtual_route);
+// #endif
 
 			return (new_bft);
 		}
 		else if (traverse_res != NONE)
 		{
-#ifdef DEBUG
+// #ifdef DEBUG
 
-			ft_fprintf(2, "Extending to:\t");
-			route_print((new_bft)->virtual_route);
-#endif
+// 			ft_fprintf(2, "Extending to:\t");
+// 			route_print((new_bft)->virtual_route);
+// #endif
 
 			new_node = ft_glstnew(new_bft, sizeof(t_bft));
 			ft_glstadd(next_nodes, new_node);
@@ -170,7 +170,7 @@ t_bft			*bft_run(t_bft *initial)
 		if (res != NULL)
 			res = bft_copy(res);
 		else if (next_nodes == NULL)
-			lem_in_die();
+			return (NULL);
 		// ft_glstdel(&nodes, bft_free);
 		if (res != NULL)
 		{
