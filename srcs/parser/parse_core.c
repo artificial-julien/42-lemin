@@ -57,7 +57,8 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 			|| (tab[1] == NULL || tab[2] == NULL)
 			|| (ft_strncmp(tab[0], "L", 1) == true)
 			|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
-			|| (ft_strlen(tab[2]) > MAX_NB_SIZE))
+			|| (ft_strlen(tab[2]) > MAX_NB_SIZE)
+			|| room_find_by_name(lem_in, tab[0]) != NULL)
 	{
 		ft_free_tab(&tab);
 		return (0);
