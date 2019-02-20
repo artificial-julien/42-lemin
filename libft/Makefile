@@ -12,7 +12,7 @@
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -g
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -O3
 
 NAME = libft.a
 

@@ -70,7 +70,6 @@ static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_
 	{
 		bft_add_node(*new_bft, dst->prev);
 	}
-
 	return (traverse_mode);
 }
 
@@ -94,7 +93,7 @@ static t_bft	*extend_node(t_lem_in *lem_in, t_bft *bft, t_glist **next_nodes)
 	if (lem_in->opt.debug)
 	{
 		ft_fprintf(2, "\nExtending from:\t");
- 		route_print(bft->virtual_route);
+		route_print(bft->virtual_route);
 	}
 	while (curr != NULL)
 	{
@@ -113,7 +112,7 @@ static t_bft	*extend_node(t_lem_in *lem_in, t_bft *bft, t_glist **next_nodes)
 			if (lem_in->opt.debug)
 			{
 				ft_fprintf(2, "Extending to:\t");
- 				route_print((new_bft)->virtual_route);
+				route_print((new_bft)->virtual_route);
 			}
 			new_node = ft_glstnew(new_bft, sizeof(t_bft));
 			ft_glstadd(next_nodes, new_node);
