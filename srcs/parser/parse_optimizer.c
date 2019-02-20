@@ -13,7 +13,7 @@
 #include "lem_in.h"
 
 /*
-**delete room which can t connect to the endroom.
+**	Remove a room dead_end from all the list links of all the room of lem.
 */
 
 void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
@@ -32,7 +32,7 @@ void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
 
 
 /*
-**	Remove all room that are a dead_end : whith no links to advance.
+**	Remove all room of type dead_end : with no links to advance.
 */
 
 void	parse_optimizer(t_lem_in *lem_in)
