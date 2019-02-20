@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:56:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:36:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int			main(int ac, char **av)
 	parse(&lem_in);
 	lem_in.nb_lem_algo = 3;
 	solution_init(&solution);
+	ft_fprintf(2, "/**********/\n lnb_route by group = %d\n**********************/\n",lem_in.nb_lem_algo);
 	solve(&lem_in, &solution);
 	solution_print(&solution);
 	lem_in_free(&lem_in);

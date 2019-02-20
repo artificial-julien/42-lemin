@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 18:34:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/19 18:54:20 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool		bitmap_get(t_bitmap *bitmap, size_t index)
 }
 
 /*
-** Function for add informtion in  the bitmap
+**	Sets the index value to 1.
 */
 
 void		bitmap_set(t_bitmap *bitmap, size_t index)
@@ -55,6 +55,20 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 	byte_offset = index / 8;
 	bit_offset = index % 8;
 	bitmap->map[byte_offset] |= (0x01 << bit_offset);
+}
+
+/*
+**	Sets the index value to 0.
+*/
+
+void		bitmap_unset(t_bitmap *bitmap, size_t index)
+{
+	size_t	byte_offset;
+	char	bit_offset;
+
+	byte_offset = index / 8;
+	bit_offset = index % 8;
+	bitmap->map[byte_offset] &= 0xff ^ (0x01 << bit_offset);
 }
 
 /*

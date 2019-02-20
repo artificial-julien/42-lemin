@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sort_routes.c                                      :+:      :+:    :+:   */
+/*   ft_glstrev.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/02/06 14:47:20 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/06 15:02:56 by juazouz          ###   ########.fr       */
+/*   Created: 2018/08/16 14:47:28 by juazouz           #+#    #+#             */
+/*   Updated: 2019/02/19 15:49:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-static int	cmp(void *ptr_a, void *ptr_b)
-{
-	t_route	*a;
-	t_route	*b;
-
-	a = (t_route*)ptr_a;
-	b = (t_route*)ptr_b;
-	return (a->len - b->len);
-}
-
 /*
-**	Sorts the routes of the specified group by size.
+**	Reverses the specified list.
 */
 
-void		sort_routes(t_group *group)
+void	ft_glstrev(t_glist **list)
 {
-	ft_glstsort(group->routes, cmp);
+	t_glist	*curr;
+	t_glist	*prev;
+	t_glist	*next;
+
+	curr = *list;
+	prev = 0;
+	while (curr)
+	{
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
+	}
+	*list = prev;
 }

@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rparse_opt_print.c                                 :+:      :+:    :+:   */
+/*   parse_opt_print.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/04 16:25:47 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:42:47 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**  Print a group and his routes
+**	Prints the specified group information.
 */
 
-void	group_print(t_group *group)
+void	group_print_extra(t_group *group)
 {
 	t_glist	*curr;
 
@@ -41,17 +41,17 @@ void	group_print(t_group *group)
 **	Debug purposes.
 */
 
-void	route_print(t_route *route)
+void	route_print_extra(t_route *route)
 {
 	ft_fprintf(2, "Route #%d | length: %d |\t", route->id_route, route->len);
 	print_nodes(route->rooms);
 }
 
 /*
-** Print the info of one room.
+**	Prints the specified room information.
 */
 
-void	print_info_room(t_room *room)
+void	room_print_extra(t_room *room)
 {
 	ft_fprintf(2, " %s :\n", room->name);
 	ft_fprintf(2, "	point = {%d,", room->pos.x);
@@ -68,14 +68,13 @@ void	print_info_room(t_room *room)
 			ft_fprintf(2, "end\n");
 	}
 	ft_fprintf(2, "	ants = %d.\n", room->ants);
-	ft_fprintf(2, "	weigth = %d.\n", room->weigth);
 }
 
 /*
-**	print the list of room of lem_in.
+**	Prints all rooms information.
 */
 
-void	print_room(t_lem_in *lem_in)
+void	lem_in_print_all_rooms(t_lem_in *lem_in)
 {
 	t_glist *curr;
 
@@ -85,7 +84,7 @@ void	print_room(t_lem_in *lem_in)
 	ft_fprintf(2, "length = %d\n\n", lem_in->room_len);
 	while (curr != NULL)
 	{
-		print_info_room(curr->room);
+		room_print_extra(curr->room);
 		curr = curr->next;
 	}
 	ft_fprintf(2, " \n");
