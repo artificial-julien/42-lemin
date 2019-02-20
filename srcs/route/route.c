@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 15:49:25 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 11:35:11 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,6 @@ void		route_add_node(t_route *route, t_room *room)
 
 void		route_print(t_route *route)
 {
-	ft_printf("Route #%d\t", route->id_route);
+	ft_fprintf(2, "Route #%d\t", route->id_route);
 	print_nodes(route->rooms);
 }

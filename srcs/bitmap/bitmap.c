@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 19:34:10 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 16:21:16 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/19 18:54:20 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_bool		bitmap_get(t_bitmap *bitmap, size_t index)
 }
 
 /*
-** Function for add informtion in  the bitmap
+**	Sets the index value to 1.
 */
 
 void		bitmap_set(t_bitmap *bitmap, size_t index)
@@ -58,18 +58,17 @@ void		bitmap_set(t_bitmap *bitmap, size_t index)
 }
 
 /*
-**	Duplicates the bitmap and its sub elements.
+**	Sets the index value to 0.
 */
 
-t_bitmap	*bitmap_copy(t_bitmap *bitmap)
+void		bitmap_unset(t_bitmap *bitmap, size_t index)
 {
-	t_bitmap	*res;
-	int			bits_size;
+	size_t	byte_offset;
+	char	bit_offset;
 
-	bits_size = bitmap->bits_size;
-	res = bitmap_new(bits_size);
-	ft_memcpy(res->map, bitmap->map, bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
-	return (res);
+	byte_offset = index / 8;
+	bit_offset = index % 8;
+	bitmap->map[byte_offset] &= 0xff ^ (0x01 << bit_offset);
 }
 
 /*
@@ -80,22 +79,4 @@ void		bitmap_free(t_bitmap *bitmap)
 {
 	free(bitmap->map);
 	free(bitmap);
-}
-
-void	bitmap_print(t_bitmap *bitmap)
-{
-	int		val;
-	size_t	i;
-
-	i = 0;
-	while (i < bitmap->bits_size)
-	{
-		val = bitmap_get(bitmap, i);
-		if (val)
-			ft_putchar('1');
-		else
-			ft_putchar('0');
-		i++;
-	}
-	ft_putendl("");
 }

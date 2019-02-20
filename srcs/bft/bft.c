@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:05:48 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 17:53:24 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 13:09:46 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,12 @@ t_bft	*bft_new(int rooms_count)
 	return (res);
 }
 
-void	bft_free(t_bft *bft)
+void	bft_free(void *content, size_t size)
 {
+	t_bft	*bft;
+
+	(void)size;
+	bft = (t_bft*)content;
 	bitmap_free(bft->forbidden);
 	route_free(bft->virtual_route, sizeof(t_route));
 	free(bft);

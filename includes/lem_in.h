@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 17:51:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 11:16:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -237,9 +237,9 @@ void		room_free(void *content, size_t size);
 **	Breadth-first traverse.
 */
 
-t_bft		*bft_run(t_room *start, int rooms_count);
+t_bft		*bft_run(t_bft *initial);
 t_bft		*bft_new(int rooms_count);
-void		bft_free(t_bft *bft);
+void		bft_free(void *content, size_t size);
 t_bft		*bft_copy(t_bft *bft);
 void		bft_add_node(t_bft *bft, t_room *room);
 void		bft_run_to_start(t_bft *bft);
@@ -310,9 +310,11 @@ void		solution_add_move(t_solution *solution, t_room *src, t_room *dst);
 t_bitmap	*bitmap_new(size_t bits_size);
 t_bool		bitmap_get(t_bitmap *bitmap, size_t index);
 void		bitmap_set(t_bitmap *bitmap, size_t index);
+void		bitmap_unset(t_bitmap *bitmap, size_t index);
 void		bitmap_free(t_bitmap *bitmap);
 t_bitmap	*bitmap_copy(t_bitmap *bitmap);
 void		bitmap_print(t_bitmap *bitmap);
+void		bitmap_reset(t_bitmap *bitmap);
 
 /*
 **	Utils.

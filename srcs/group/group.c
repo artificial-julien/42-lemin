@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/19 16:40:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 11:38:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	group_print(t_group *group)
 {
 	t_glist	*curr;
 
-	ft_printf("Group:\n");
+	ft_fprintf(2, "Group:\n");
 	curr = group->routes;
 	while (curr != NULL)
 	{

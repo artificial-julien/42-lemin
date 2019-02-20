@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 17:05:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 13:10:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,31 +47,34 @@ static void	rebuild_routes(t_route *route)
 
 static void	create_groups(t_room *start, t_glist **groups, int rooms_count)
 {
+	t_bft	*initial_bft;
 	t_bft	*bft;
 	t_group	*group;
 	t_glist	*new;
 
-	while ((bft = bft_run(start, rooms_count)) != NULL)
+	initial_bft = bft_new(rooms_count);
+	bft_add_node(initial_bft, start);
+	while ((bft = bft_run(initial_bft)) != NULL)
 	{
 		ft_glstrev(&bft->virtual_route->rooms);
 		rebuild_routes(bft->virtual_route);
 #ifdef DEBUG
 
-		ft_putendl("=========================================");
-		ft_printf("Created virtual route :\n");
+		ft_putendl_fd("=========================================", 2);
+		ft_fprintf(2, "Created virtual route :\n");
 		route_print(bft->virtual_route);
 #endif
 
 		group = group_build(start);
 #ifdef DEBUG
 
-		ft_printf("Created group :\n");
+		ft_fprintf(2, "Created group :\n");
 		group_print(group);
 #endif
 
 		new = ft_glstnew(group, sizeof(t_group));
 		ft_glstadd(groups, new);
-		bft_free(bft);
+		bft_free(bft, sizeof(t_bft));
 	}
 }
 
@@ -79,7 +82,7 @@ static void	print_debug(t_lem_in *lem_in, t_group *best_group, t_bool debug)
 {
 	if (debug == true)
 	{
-		ft_printf("Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
+		ft_fprintf(2, "Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
 			group_total_rounds(best_group, lem_in->total_ants),
 			lem_in->total_ants);
 		group_print(best_group);

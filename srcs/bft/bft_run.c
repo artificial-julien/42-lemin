@@ -6,28 +6,48 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 18:08:16 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 13:40:50 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
+#define NONE 0
+#define STANDARD 1
+#define RUN_TO_START 2
+#define FINAL 3
+
 /*
 **	============= breadth-first traversal execution =============
 */
 
-static t_bool	can_traverse_node(t_bft *bft, t_room *src, t_room *dst)
+/*
+**	Returns the traverse possibility for the specified node.
+*/
+
+static int		can_traverse_node(t_bft *bft, t_room *src, t_room *dst)
 {
-	(void)src;
+	if (src->next != NULL && src->next == dst)
+	{
+		return (NONE);
+	}
 	if (bitmap_get(bft->forbidden, dst->id))
-		return (false);
+	{
+		return (NONE);
+	}
+	if (dst->type == end)
+	{
+		return (FINAL);
+	}
+	if (dst->prev != NULL && dst->prev != src)
+	{
+		return (RUN_TO_START);
+	}
 	if (dst->prev != NULL && dst->prev == src)
-		return (false);
-	// if (dst->type == start && src->prev != dst)
-	// 	return (false);
-	// if (src->prev != NULL && src->prev != dst)
-	// 	return (false);
-	return (true);
+	{
+		return (NONE);
+	}
+	return (STANDARD);
 }
 
 /*
@@ -35,37 +55,19 @@ static t_bool	can_traverse_node(t_bft *bft, t_room *src, t_room *dst)
 **	Stores the new bft information.
 */
 
-static t_bool	traverse_node(t_bft *bft, t_room *dst, t_bft **new_bft)
+static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_bft)
 {
-#ifdef DEBUG
+	int		traverse_mode;
 
-	ft_printf("Virtual route (before):\n");
-	route_print(bft->virtual_route);
-#endif
-
+	traverse_mode = can_traverse_node(bft, src, dst);
+	if (traverse_mode == NONE)
+	{
+		return (NONE);
+	}
 	*new_bft = bft_copy(bft);
 	bft_add_node(*new_bft, dst);
-	if (dst->type == end)
-	{
-		return (true);
-	}
-	// if (dst->type == start)
-	// 	(*new_bft)->augment_count++;
-	// if (dst->prev == NULL)
-	{
-	}
-	if (dst->prev != NULL)
-	{
-		bft_run_to_start(*new_bft);
-	}
-#ifdef DEBUG
 
-	ft_printf("Virtual route (after):\n");
-	route_print((*new_bft)->virtual_route);
-	ft_putendl("");
-#endif
-
-	return (false);
+	return (traverse_mode);
 }
 
 /*
@@ -80,25 +82,43 @@ static t_bft	*extend_node(t_bft *bft, t_glist **next_nodes)
 	t_glist	*new_node;
 	t_bft	*new_bft;
 	t_room	*last_room;
+	int		traverse_res;
 
 	last_room = bft->virtual_route->rooms->room;
 	bitmap_set(bft->forbidden, last_room->id);
 	curr = last_room->links;
+#ifdef DEBUG
+
+	ft_fprintf(2, "\nExtending from:\t");
+	route_print(bft->virtual_route);
+#endif
+
 	while (curr != NULL)
 	{
-		if (can_traverse_node(bft, last_room, curr->room))
+		traverse_res = try_traverse_node(bft, last_room, curr->room, &new_bft);
+		if (traverse_res == FINAL)
 		{
-			if (traverse_node(bft, curr->room, &new_bft))
-			{
-				bft_free(bft);
-				return (new_bft);
-			}
+#ifdef DEBUG
+
+			ft_fprintf(2, "Found:\t\t");
+			route_print((new_bft)->virtual_route);
+#endif
+
+			return (new_bft);
+		}
+		else if (traverse_res != NONE)
+		{
+#ifdef DEBUG
+
+			ft_fprintf(2, "Extending to:\t");
+			route_print((new_bft)->virtual_route);
+#endif
+
 			new_node = ft_glstnew(new_bft, sizeof(t_bft));
 			ft_glstadd(next_nodes, new_node);
 		}
 		curr = curr->next;
 	}
-	bft_free(bft);
 	return (NULL);
 }
 
@@ -129,25 +149,31 @@ static t_bft	*extend_nodes_list(t_glist *nodes, t_glist **next_nodes)
 **	Returns null if no relevant traverse path are found.
 */
 
-t_bft			*bft_run(t_room *start, int rooms_count)
+t_bft			*bft_run(t_bft *initial)
 {
+	t_bft	*initial_cpy;
 	t_glist	*nodes;
 	t_glist	*next_nodes;
 	t_bft	*res;
-	t_bft	*initial;
 
-	initial = bft_new(rooms_count);
-	bft_add_node(initial, start);
 	nodes = NULL;
-	ft_glstadd(&nodes, ft_glstnew(initial, sizeof(t_bft)));
+	initial_cpy = bft_copy(initial);
+	ft_glstadd(&nodes, ft_glstnew(initial_cpy, sizeof(t_bft)));
 	next_nodes = NULL;
-	while ((res = extend_nodes_list(nodes, &next_nodes)) == NULL)
+	while (1)
 	{
-		ft_glstdel(&nodes, NULL);
-		if (next_nodes == NULL)
+		res = extend_nodes_list(nodes, &next_nodes);
+		if (res != NULL)
+			res = bft_copy(res);
+		else if (next_nodes == NULL)
 			lem_in_die();
+		// ft_glstdel(&nodes, bft_free);
+		if (res != NULL)
+		{
+			// ft_glstdel(&next_nodes, bft_free);
+			return (res);
+		}
 		nodes = next_nodes;
 		next_nodes = NULL;
 	}
-	return (res);
 }
