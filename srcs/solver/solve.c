@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 13:10:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 15:02:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,19 @@ static void	rebuild_routes(t_route *route)
 	prev = NULL;
 	while (curr != NULL)
 	{
-		if (curr->room->type == start)
+		if (curr->room->type == standard)
 		{
-		}
-		if (curr->room->prev == NULL)
-		{
-			curr->room->prev = prev;
-			if (prev != NULL)
-				prev->next = curr->room;
-		}
-		else
-		{
-			curr->room->next = NULL;
-			curr->room->prev = NULL;
+			if (curr->room->prev == NULL)
+			{
+				curr->room->prev = prev;
+				if (prev != NULL && curr->room->type == standard)
+					prev->next = curr->room;
+			}
+			else
+			{
+				curr->room->next = NULL;
+				curr->room->prev = NULL;
+			}
 		}
 		prev = curr->room;
 		curr = curr->next;

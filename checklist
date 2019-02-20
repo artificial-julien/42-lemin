@@ -2,6 +2,7 @@
 - Optimization possibles:
 	- Suppression des cul de sac
 	- Suppression des boucles ?
+	- Arret de la creation de groupes en fonction du nb. de fourmis
 
 Avant rendu :
 - Leaks

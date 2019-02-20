@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 13:40:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 14:18:32 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@ static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_
 	}
 	*new_bft = bft_copy(bft);
 	bft_add_node(*new_bft, dst);
+	if (src->next == NULL && dst->prev != NULL)
+	{
+		bft_add_node(*new_bft, dst->prev);
+	}
 
 	return (traverse_mode);
 }
