@@ -6,7 +6,6 @@ obj/
 .vscode/
 *.dSYM/
 .*.swp
-test.sh
 tests/
 libft/libft.a
 libftprintf.a
@@ -14,3 +13,4 @@ libftprintf.a
 # User
 lem_in
 lem_in_test_*
+*.tmp
