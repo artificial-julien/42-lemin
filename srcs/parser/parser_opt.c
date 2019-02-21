@@ -109,5 +109,5 @@ void	parse_opt(t_lem_in *lem_in, int ac, char **av)
 			parse_arg(av[i], lem_in);
 			i++;
 		}
-g	}
+	}
 }
