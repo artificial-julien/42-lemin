@@ -129,3 +129,21 @@ void	print_nodes(t_glist *nodes)
 	}
 	ft_fprintf(2, "\n");
 }
+
+/*
+** return if the string S is a number.
+*/
+
+t_bool		is_number(char *s)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}

@@ -234,6 +234,7 @@ t_bool		parse_is_link(char *line);
 void		parse_links(t_lem_in *lem_in, char **line);
 void		parse_link(t_lem_in *lem_in, char *line);
 
+
 /*
 **	Room.
 */
@@ -360,8 +361,7 @@ void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
-void		print_error(char *s);
-
+t_bool		is_number(char *s);
 /*
 ** Parsing opt of lem_in.
 */
