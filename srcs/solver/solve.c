@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 13:27:51 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:22:42 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ void		solve(t_lem_in *lem_in, t_solution *solution)
 
 	groups = NULL;
 	create_groups(lem_in, &groups, ft_glstlen(lem_in->rooms));
+	if (groups == NULL)
+		lem_in_die();
 	best_group = select_best_group(groups, lem_in->total_ants);
 	debug_print_rounds_info(lem_in, best_group);
 	build_solution(lem_in, best_group, solution);
