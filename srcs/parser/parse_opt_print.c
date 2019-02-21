@@ -30,7 +30,7 @@ void	group_print_extra(t_group *group)
 	while (curr != NULL)
 	{
 		ft_fprintf(2, "	");
-		route_print(curr->route);
+		route_print_extra(curr->route);
 		curr = curr->next;
 	}
 	ft_fprintf(2, "|__________________________________________________|\n\n");
