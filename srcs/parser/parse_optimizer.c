@@ -38,7 +38,9 @@ void	parse_optimizer(t_lem_in *lem_in)
 {
 	t_glist		*curr;
 	t_room		*room;
+	int			cpt;
 
+	cpt = 0;
 	if (lem_in->opt.print_room == true || lem_in->opt.debug == true)
 		lem_in_print_all_rooms(lem_in);
 	room = NULL;
@@ -51,10 +53,12 @@ void	parse_optimizer(t_lem_in *lem_in)
 			delete_dead_end(lem_in, room);
 			lem_in_remove_room(lem_in, room);
 			curr = lem_in->rooms;
+			cpt++;
 		}
 		else
 			curr = curr->next;
 	}
-	if (lem_in->opt.print_room == true || lem_in->opt.debug == true)
+	if (cpt != 0
+		&& (lem_in->opt.print_room == true || lem_in->opt.debug == true))
 		lem_in_print_all_rooms(lem_in);
 }

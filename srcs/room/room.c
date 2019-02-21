@@ -51,15 +51,6 @@ t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 }
 
 /*
-**	Sets the number of ants.
-*/
-
-void	room_set_ants(t_room *room, int ants)
-{
-	room->ants = ants;
-}
-
-/*
 **	Free the specified room object and its elements.
 **	Use with ft_glistdel()
 */

@@ -53,6 +53,7 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 void	lem_in_free(t_lem_in *lem_in)
 {
 	ft_glstdel(&lem_in->rooms, room_free);
+	free_saved_line(lem_in);
 }
 
 /*

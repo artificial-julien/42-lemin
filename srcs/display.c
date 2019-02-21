@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   data.c                                             :+:      :+:    :+:   */
+/*   display.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 15:08:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 18:06:28 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,13 @@ void	print_lines(t_lem_in *lem_in)
 		curr = curr->next;
 	}
 	ft_printf("\n");
+}
+
+/*
+**	Free saved lines.
+*/
+
+void	free_saved_line(t_lem_in *lem_in)
+{
+	ft_lst_del(&lem_in->data);
 }

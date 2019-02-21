@@ -23,7 +23,8 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 	i = 0;
 	if ((i = gnl_no_comm(0, line)) != -1)
 	{
-		if (ft_strlen(*line) <= MAX_NB_SIZE && (i = parse_number_safe(*line)) > 0)
+		if (ft_strlen(*line) <= MAX_NB_SIZE
+			&& (i = parse_number_safe(*line)) > 0)
 			lem_in->total_ants = i;
 		else
 			lem_in_die();

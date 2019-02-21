@@ -79,9 +79,10 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 		|| tab[0] == NULL || tab[1] == NULL
 		|| tab[2] == NULL || tab[3] != NULL
 		|| (ft_strncmp(tab[0], "L", 1) == true)
+		|| (room_find_name(lem_in, tab[0])) == 1
+		|| ft_strindex(tab[0], '-') != -1
 		|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
-		|| (ft_strlen(tab[2]) > MAX_NB_SIZE)
-		|| (room_find_name(lem_in, tab[0])) == 1)
+		|| (ft_strlen(tab[2]) > MAX_NB_SIZE))
 	{
 		ft_free_tab(&tab);
 		lem_in_die();
@@ -93,6 +94,10 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	ft_free_tab(&tab);
 	save_line(lem_in, line);
 }
+
+/*
+**
+*/
 
 void	parse_link(t_lem_in *lem_in, char *line)
 {

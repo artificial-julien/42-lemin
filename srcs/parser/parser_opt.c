@@ -18,6 +18,7 @@
 
 void	init_opt(t_lem_in *lem_in)
 {
+	lem_in->opt.debug = false;
 	lem_in->opt.print_groups = false;
 	lem_in->opt.print_routes = false;
 	lem_in->opt.print_help = false;

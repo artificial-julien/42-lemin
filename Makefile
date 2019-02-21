@@ -13,8 +13,8 @@
 CC = clang
 
 # Laisser en mode debug avant la version finale
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
-# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3
+#CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR)
 
 IDIR = includes
 SDIR = srcs
@@ -50,7 +50,6 @@ _SRC =	room/room.c \
 		solution_builder/build_solution.c \
 		solution_builder/ant.c \
 		utils/utils.c \
-		utils/utils_route.c \
 		glist/ft_glstadd.c \
 		glist/ft_glstadd_last.c \
 		glist/ft_glstdel.c \
@@ -72,7 +71,7 @@ _SRC =	room/room.c \
 		parser/parse_optimizer.c \
 		parser/parse_opt_print.c \
 		parser/parse_utils.c \
-		data.c \
+		display.c \
 		main.c
 
 
