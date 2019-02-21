@@ -16,7 +16,7 @@
 **	Creates a new route.
 */
 
-t_route	*route_new(void)
+t_route		*route_new(void)
 {
 	t_route	*res;
 
