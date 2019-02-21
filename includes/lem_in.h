@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:06:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:42:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -221,11 +221,6 @@ void		ft_glstrev(t_glist **list);
 */
 
 void		parse(t_lem_in *lem_in);
-
-/*
-**	Parse core.
-*/
-
 void		parse_ants_count(t_lem_in *lem_in, char **line);
 void		parse_rooms(t_lem_in *lem_in, char **line);
 void		parse_room(t_lem_in *lem_in, char *line, t_roomtype type);
@@ -233,7 +228,7 @@ int			read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
 t_bool		parse_is_link(char *line);
 void		parse_links(t_lem_in *lem_in, char **line);
 void		parse_link(t_lem_in *lem_in, char *line);
-
+int			parse_number_safe(char *s);
 
 /*
 **	Room.

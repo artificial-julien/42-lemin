@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 16:09:28 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:42:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 	i = 0;
 	if ((i = gnl_no_comm(0, line)) != -1)
 	{
-		if (ft_strlen(*line) <= MAX_NB_SIZE && (i = ft_atoi(*line)) > 0)
+		if (ft_strlen(*line) <= MAX_NB_SIZE && (i = parse_number_safe(*line)) > 0)
 			lem_in->total_ants = i;
 		else
 			lem_in_die();
