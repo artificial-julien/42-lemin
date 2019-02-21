@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 15:25:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:06:21 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ t_bool	parse_is_link(char *line)
 **	Returns true if the specified string contains room information.
 */
 
-t_bool	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
+void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 {
 	int		x;
 	int		y;
@@ -52,7 +52,7 @@ t_bool	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 		|| (room_find_name(lem_in, tab[0])) == 1)
 	{
 		ft_free_tab(&tab);
-		return (false);
+		lem_in_die();
 	}
 	x = ft_atoi(tab[1]);
 	y = ft_atoi(tab[2]);
@@ -60,7 +60,6 @@ t_bool	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);
 	save_line(lem_in, line);
-	return (true);
 }
 
 void	parse_link(t_lem_in *lem_in, char *line)

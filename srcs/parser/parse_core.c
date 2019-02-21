@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 15:29:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:09:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,10 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 
 	while ((state = gnl_no_comm(0, line)) != -1)
 	{
+		if (parse_is_link(*line))
+		{
+			break ;
+		}
 		if (ft_strnequ("##", *line, 2))
 		{
 			if (ft_strequ("##start", *line))
@@ -64,14 +68,12 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 			else if (ft_strequ("##end", *line))
 				read_room_line(lem_in, line, end);
 		}
-		else if (!parse_room(lem_in, *line, standard))
+		else
 		{
-			if (!parse_is_link(*line))
-				lem_in_die();
-			break ;
+			parse_room(lem_in, *line, standard);
 		}
 	}
-	if (state == -1)
+	if (state == -1 || lem_in->start == NULL || lem_in->end == NULL)
 		lem_in_die();
 }
 
