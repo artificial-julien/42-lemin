@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:42:45 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 18:46:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ struct	s_lem_in
 **	id:		Room id.
 **	type:	Start / end / standard (intermediate node)
 **	ants:	Ants count in the current room. Up to 1 for standard type.
+**	ant_id:	Present ant id going from 1 to ants_count. 0 when no ants are present.
 **	links:	Connected rooms list.
 */
 
@@ -115,6 +116,7 @@ struct	s_room
 	t_roomtype	type;
 	t_point		pos;
 	int			ants;
+	int			ant_id;
 	t_glist		*links;
 	t_room		*prev;
 	t_room		*next;
@@ -128,7 +130,7 @@ struct	s_room
 
 struct	s_solution
 {
-	int round;
+	int		round;
 	t_dlist	*rounds;
 };
 

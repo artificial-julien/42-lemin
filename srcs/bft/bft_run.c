@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:39:46 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 18:39:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,10 +167,10 @@ t_bft			*bft_run(t_lem_in *lem_in, t_bft *initial)
 			res = bft_copy(res);
 		else if (next_nodes == NULL)
 			return (NULL);
-		// ft_glstdel(&nodes, bft_free);
+		ft_glstdel(&nodes, bft_free);
 		if (res != NULL)
 		{
-			// ft_glstdel(&next_nodes, bft_free);
+			ft_glstdel(&next_nodes, bft_free);
 			return (res);
 		}
 		nodes = next_nodes;
