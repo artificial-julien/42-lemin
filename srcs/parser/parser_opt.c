@@ -64,8 +64,8 @@ void	print_unknow(char *s)
 	ft_fprintf(2, " ____________________________________");
 	ft_fprintf(2, "____________________________________\n");
 	ft_fprintf(2, "|                                    ");
-	ft_fprintf(2, "                                    |\n");
-	ft_fprintf(2, "\n	Error arg : '%s' is not a commandgit  of lem_in. \n\n", s);
+	ft_fprintf(2, "                                    |\n\n");
+	ft_fprintf(2, "	Error arg : '%s' is not a commandgit  of lem_in.\n\n", s);
 	printf_help();
 	ft_fprintf(2, "\n");
 	ft_fprintf(2, "|___________________________________");

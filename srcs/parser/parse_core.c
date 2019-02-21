@@ -28,6 +28,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 			lem_in->total_ants = i;
 		else
 			lem_in_die();
+		get_data(lem_in, *line);
 		ft_strdel(line);
 	}
 	else
@@ -40,11 +41,17 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 
 int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type)
 {
+	get_data(lem_in, *line);
 	if (gnl_no_comm(0, line) == -1)
 		return (0);
 	parse_room_line(lem_in, *line, type);
 	return (1);
 }
+
+/*
+** Parse and cut the line in 3 part: the name, the coordinate x and y.
+**	after that, he create a room for the list of room
+*/
 
 int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 {
@@ -54,10 +61,11 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 	t_room	*new;
 
 	if (((tab = ft_strsplit(line, ' ')) == NULL)
-			|| (tab[1] == NULL || tab[2] == NULL)
+			|| (tab[1] == NULL || tab[2] == NULL || (tab[3] != NULL))
 			|| (ft_strncmp(tab[0], "L", 1) == true)
 			|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
-			|| (ft_strlen(tab[2]) > MAX_NB_SIZE))
+			|| (ft_strlen(tab[2]) > MAX_NB_SIZE)
+			|| (room_find_name(lem_in, tab[0])) == 1)
 	{
 		ft_free_tab(&tab);
 		return (0);
@@ -66,10 +74,9 @@ int		parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type)
 	y = ft_atoi(tab[2]);
 	new = NULL;
 	if ((new = room_new(tab[0], type, x, y)) != NULL)
-	{
 		lem_in_add_room(lem_in, new);
-	}
 	ft_free_tab(&tab);
+	get_data(lem_in, line);
 	return (new == NULL ? 0 : 1);
 }
 
@@ -122,9 +129,7 @@ void	parse_links(t_lem_in *lem_in, char **line)
 	while (1)
 	{
 		if ((i = ft_strindex(*line, '-')) == -1)
-		{
 			return ;
-		}
 		else
 		{
 			s1 = ft_strsub(*line, 0, i);
@@ -133,6 +138,7 @@ void	parse_links(t_lem_in *lem_in, char **line)
 			room_add_link(lem_in, s2, s1);
 			free(s1);
 			free(s2);
+			get_data(lem_in, *line);
 		}
 		if (i == 0 || (i = gnl_no_comm(0, line)) == -1 || line == NULL)
 			break ;

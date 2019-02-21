@@ -12,7 +12,11 @@
 
 #include "lem_in.h"
 
-void	bitmap_print(t_bitmap *bitmap)
+/*
+** Print the bitmap.
+*/
+
+void		bitmap_print(t_bitmap *bitmap)
 {
 	int		val;
 	size_t	i;
@@ -38,10 +42,12 @@ t_bitmap	*bitmap_copy(t_bitmap *bitmap)
 {
 	t_bitmap	*res;
 	int			bits_size;
+	int			bits_test;
 
 	bits_size = bitmap->bits_size;
 	res = bitmap_new(bits_size);
-	ft_memcpy(res->map, bitmap->map, bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
+	bits_test = bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0);
+	ft_memcpy(res->map, bitmap->map, bits_test);
 	return (res);
 }
 
@@ -49,7 +55,7 @@ t_bitmap	*bitmap_copy(t_bitmap *bitmap)
 **	Resets all bitmap values to 0.
 */
 
-void	bitmap_reset(t_bitmap *bitmap)
+void		bitmap_reset(t_bitmap *bitmap)
 {
 	size_t	bits_size;
 	size_t	size;

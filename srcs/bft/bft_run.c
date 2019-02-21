@@ -70,7 +70,6 @@ static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_
 	{
 		bft_add_node(*new_bft, dst->prev);
 	}
-
 	return (traverse_mode);
 }
 
@@ -80,7 +79,7 @@ static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_
 **	Returns the bft information of the found path.
 */
 
-static t_bft	*extend_node(t_bft *bft, t_glist **next_nodes)
+static t_bft	*extend_node(t_lem_in *lem_in, t_bft *bft, t_glist **next_nodes)
 {
 	t_glist	*curr;
 	t_glist	*new_node;
@@ -91,33 +90,30 @@ static t_bft	*extend_node(t_bft *bft, t_glist **next_nodes)
 	last_room = bft->virtual_route->rooms->room;
 	bitmap_set(bft->forbidden, last_room->id);
 	curr = last_room->links;
-// #ifdef DEBUG
-
-// 	ft_fprintf(2, "\nExtending from:\t");
-// 	route_print(bft->virtual_route);
-// #endif
-
+	if (lem_in->opt.debug)
+	{
+		ft_fprintf(2, "\nExtending from:\t");
+		route_print(bft->virtual_route);
+	}
 	while (curr != NULL)
 	{
 		traverse_res = try_traverse_node(bft, last_room, curr->room, &new_bft);
 		if (traverse_res == FINAL)
 		{
-// #ifdef DEBUG
-
-// 			ft_fprintf(2, "Found:\t\t");
-// 			route_print((new_bft)->virtual_route);
-// #endif
-
+			if (lem_in->opt.debug)
+			{
+				ft_fprintf(2, "Found:\t\t");
+				route_print((new_bft)->virtual_route);
+			}
 			return (new_bft);
 		}
 		else if (traverse_res != NONE)
 		{
-// #ifdef DEBUG
-
-// 			ft_fprintf(2, "Extending to:\t");
-// 			route_print((new_bft)->virtual_route);
-// #endif
-
+			if (lem_in->opt.debug)
+			{
+				ft_fprintf(2, "Extending to:\t");
+				route_print((new_bft)->virtual_route);
+			}
 			new_node = ft_glstnew(new_bft, sizeof(t_bft));
 			ft_glstadd(next_nodes, new_node);
 		}
@@ -132,7 +128,7 @@ static t_bft	*extend_node(t_bft *bft, t_glist **next_nodes)
 **	Returns the bft information of the found path.
 */
 
-static t_bft	*extend_nodes_list(t_glist *nodes, t_glist **next_nodes)
+static t_bft	*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes, t_glist **next_nodes)
 {
 	t_glist	*curr;
 	t_bft	*res;
@@ -140,7 +136,7 @@ static t_bft	*extend_nodes_list(t_glist *nodes, t_glist **next_nodes)
 	curr = nodes;
 	while (curr != NULL)
 	{
-		if ((res = extend_node(curr->bft, next_nodes)))
+		if ((res = extend_node(lem_in, curr->bft, next_nodes)))
 			return (res);
 		curr = curr->next;
 	}
@@ -153,7 +149,7 @@ static t_bft	*extend_nodes_list(t_glist *nodes, t_glist **next_nodes)
 **	Returns null if no relevant traverse path are found.
 */
 
-t_bft			*bft_run(t_bft *initial)
+t_bft			*bft_run(t_lem_in *lem_in, t_bft *initial)
 {
 	t_bft	*initial_cpy;
 	t_glist	*nodes;
@@ -166,7 +162,7 @@ t_bft			*bft_run(t_bft *initial)
 	next_nodes = NULL;
 	while (1)
 	{
-		res = extend_nodes_list(nodes, &next_nodes);
+		res = extend_nodes_list(lem_in, nodes, &next_nodes);
 		if (res != NULL)
 			res = bft_copy(res);
 		else if (next_nodes == NULL)

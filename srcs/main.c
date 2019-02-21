@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 13:19:22 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 13:27:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ int			main(int ac, char **av)
 		return (0);
 	}
 	parse(&lem_in);
-	lem_in.nb_lem_algo = 3;
 	solution_init(&solution);
-	ft_fprintf(2, "Max routes count = %d\n", lem_in.nb_lem_algo);
 	solve(&lem_in, &solution);
+	print_data(&lem_in);
 	solution_print(&solution);
 	lem_in_free(&lem_in);
 	return (0);

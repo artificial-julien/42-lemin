@@ -73,3 +73,21 @@ void	room_free(void *content, size_t size)
 	free(room->name);
 	ft_glstdel(&room->links, NULL);
 }
+
+/*
+** return if a name is already used for a room.
+*/
+
+t_bool	room_find_name(t_lem_in *lem_in, char *name)
+{
+	t_glist	*curr;
+
+	curr = lem_in->rooms;
+	while (curr != NULL)
+	{
+		if (ft_strequ(((t_room*)curr->content)->name, name))
+			return (true);
+		curr = curr->next;
+	}
+	return (false);
+}
