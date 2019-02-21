@@ -237,7 +237,6 @@ int			parse_number_safe(char *s);
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
 t_bool		room_find_name(t_lem_in *lem_in, char *name);
-void		room_set_ants(t_room *room, int ants);
 void		room_free(void *content, size_t size);
 
 /*
