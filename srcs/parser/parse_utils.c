@@ -6,11 +6,43 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:17:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:35:54 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+**	Parses the specified string to a number. Exit on error.
+*/
+
+int		parse_number(char *s)
+{
+	int	i;
+	int	res;
+	int	mul;
+
+	i = 0;
+	if (s[i] == '-')
+	{
+		mul = -1;
+		i++;
+	}
+	else
+		mul = 1;
+	res = 0;
+	while (s[i])
+	{
+		if (!ft_isdigit(s[i]))
+			lem_in_die();
+		res *= 10;
+		res += '0' - s[i];
+		if (res < 0)
+			lem_in_die();
+		i++;
+	}
+	return (res * mul);
+}
 
 /*
 **	Returns true if the specified string contains room connection information.
@@ -54,8 +86,8 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 		ft_free_tab(&tab);
 		lem_in_die();
 	}
-	x = ft_atoi(tab[1]);
-	y = ft_atoi(tab[2]);
+	x = parse_number(tab[1]);
+	y = parse_number(tab[2]);
 	new = room_new(tab[0], type, x, y);
 	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);

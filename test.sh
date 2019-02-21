@@ -22,7 +22,7 @@ run_test_display model/test/err_3_coordinates.map
 run_test_display model/test/err_double_start.map
 run_test_display model/test/err_duplicate.map
 run_test_display model/test/err_empty.map
-# run_test_display model/test/err_letter_in_coordinate.map
+run_test_display model/test/err_letter_in_coordinate.map
 run_test_display model/test/err_link_to_unknown_room.map
 run_test_display model/test/err_no_ants.map
 run_test_display model/test/err_no_ants2.map

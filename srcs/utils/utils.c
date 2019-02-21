@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 14:53:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 16:28:29 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,22 +128,4 @@ void	print_nodes(t_glist *nodes)
 		curr = curr->next;
 	}
 	ft_fprintf(2, "\n");
-}
-
-/*
-** return if the string S is a number.
-*/
-
-t_bool		is_number(char *s)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (!ft_isdigit(s[i]))
-			return (false);
-		i++;
-	}
-	return (true);
 }
