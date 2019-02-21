@@ -71,7 +71,7 @@ _SRC =	room/room.c \
 		parser/parse_optimizer.c \
 		parser/parse_opt_print.c \
 		parser/parse_utils.c \
-		data.c \
+		display.c \
 		main.c
 
 
