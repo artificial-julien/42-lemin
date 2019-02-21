@@ -4,8 +4,15 @@
 	- Suppression des boucles ?
 	- Arret de la creation de groupes en fonction du nb. de fourmis
 - Verifier le cas de 2 nodes (start et end)
-- Erreur si nom de salle commence par "L"
+
+Parse:
+	- Crash quand pas de end
+	- Erreur si nom de salle commence par "L"
+	- Erreur si une coordonnee contient un non chiffre au moins
+Algo:
+	- Erreur si aucun resultat
 - Securisation des mallocs avec exit()
+- Protection lecture entier.
 Avant rendu :
 - Leaks
 - Norme

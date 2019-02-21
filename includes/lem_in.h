@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 13:19:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 15:13:11 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 /*
 **	Defines.
 */
+
+#define MAX_NB_SIZE 10
 
 /*
 **	Types.
@@ -221,14 +223,16 @@ void		ft_glstrev(t_glist **list);
 void		parse(t_lem_in *lem_in);
 
 /*
-** Parse_core.
+**	Parse core.
 */
 
 void		parse_ants_count(t_lem_in *lem_in, char **line);
-t_bool		parse_rooms(t_lem_in *lem_in, char **line);
-int			parse_room_line(t_lem_in *lem_in, char *line, t_roomtype type);
+void		parse_rooms(t_lem_in *lem_in, char **line);
+t_bool		parse_room(t_lem_in *lem_in, char *line, t_roomtype type);
 int			read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
+t_bool		parse_is_link(char *line);
 void		parse_links(t_lem_in *lem_in, char **line);
+void		parse_link(t_lem_in *lem_in, char *line);
 
 /*
 **	Room.
@@ -386,10 +390,10 @@ void		room_print_extra(t_room *room);
 void		lem_in_print_all_rooms(t_lem_in *lem_in);
 
 /*
-**
+**	Lines saving and display.
 */
 
-void		get_data(t_lem_in *lem_in, char *line);
-void		print_data(t_lem_in *lem_in);
+void		save_line(t_lem_in *lem_in, char *line);
+void		print_lines(t_lem_in *lem_in);
 
 #endif

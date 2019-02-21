@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/20 15:31:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/21 14:53:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ int		gnl_no_comm(const int fd, char **line)
 	{
 		ft_strdel(line);
 	}
+	if (res == -1)
+		return (-1);
 	return (res);
 }
 

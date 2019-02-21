@@ -3,29 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   data.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*                                                    ###   ########.fr       */
+/*   Updated: 2019/02/21 15:08:28 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-void	get_data(t_lem_in *lem_in, char *line)
+/*
+**	Saves the specified non comment line for display.
+*/
+
+void	save_line(t_lem_in *lem_in, char *line)
 {
 	t_list *new;
 
 	new = NULL;
 	if (line)
 	{
-		new = ft_lstnew(ft_strdup(line),1);
-		ft_lstadd_last(&lem_in->data,new);
+		new = ft_lstnew(ft_strdup(line), 1);
+		ft_lstadd_last(&lem_in->data, new);
 	}
 }
 
+/*
+**	Prints all saved lines with save_line()
+*/
 
-void	print_data(t_lem_in *lem_in)
+void	print_lines(t_lem_in *lem_in)
 {
 	t_list *curr;
 
