@@ -6,11 +6,16 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 17:27:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/20 17:41:29 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+
+/*
+**	Runs the Edmonds-Karp traverse as many time as possible and records a group
+**	of routes every time.
+*/
 
 static void	create_groups(t_room *start, t_glist **groups, int rooms_count)
 {
