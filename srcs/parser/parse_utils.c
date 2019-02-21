@@ -95,6 +95,10 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	save_line(lem_in, line);
 }
 
+/*
+**
+*/
+
 void	parse_link(t_lem_in *lem_in, char *line)
 {
 	char	*s1;
