@@ -390,5 +390,6 @@ void		lem_in_print_all_rooms(t_lem_in *lem_in);
 
 void		save_line(t_lem_in *lem_in, char *line);
 void		print_lines(t_lem_in *lem_in);
+void		free_saved_line(t_lem_in *lem_in);
 
 #endif

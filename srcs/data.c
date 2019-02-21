@@ -44,3 +44,12 @@ void	print_lines(t_lem_in *lem_in)
 	}
 	ft_printf("\n");
 }
+
+/*
+**	Free saved lines.
+*/
+
+void	free_saved_line(t_lem_in *lem_in)
+{
+	ft_lst_del(&lem_in->data);
+}
