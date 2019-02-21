@@ -6,7 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/02/21 16:35:54 by juazouz          ###   ########.fr       */
+=======
+/*   Updated: 2019/02/21 16:42:37 by juazouz          ###   ########.fr       */
+>>>>>>> 76bf254d644f0f89a4a28740853b32515f51d559
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +20,11 @@
 **	Parses the specified string to a number. Exit on error.
 */
 
+<<<<<<< HEAD
 int		parse_number(char *s)
+=======
+int		parse_number_safe(char *s)
+>>>>>>> 76bf254d644f0f89a4a28740853b32515f51d559
 {
 	int	i;
 	int	res;
@@ -36,7 +44,11 @@ int		parse_number(char *s)
 		if (!ft_isdigit(s[i]))
 			lem_in_die();
 		res *= 10;
+<<<<<<< HEAD
 		res += '0' - s[i];
+=======
+		res += s[i] - '0';
+>>>>>>> 76bf254d644f0f89a4a28740853b32515f51d559
 		if (res < 0)
 			lem_in_die();
 		i++;
@@ -86,8 +98,8 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 		ft_free_tab(&tab);
 		lem_in_die();
 	}
-	x = parse_number(tab[1]);
-	y = parse_number(tab[2]);
+	x = parse_number_safe(ab[1]);
+	y = parse_number_safe(tab[2]);
 	new = room_new(tab[0], type, x, y);
 	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);

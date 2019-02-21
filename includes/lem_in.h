@@ -6,7 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2019/02/21 16:33:25 by juazouz          ###   ########.fr       */
+=======
+/*   Updated: 2019/02/21 16:42:45 by juazouz          ###   ########.fr       */
+>>>>>>> 76bf254d644f0f89a4a28740853b32515f51d559
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -228,7 +232,7 @@ int			read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
 t_bool		parse_is_link(char *line);
 void		parse_links(t_lem_in *lem_in, char **line);
 void		parse_link(t_lem_in *lem_in, char *line);
-int			parse_number(char *s);
+int			parse_number_safe(char *s);
 
 /*
 **	Room.
