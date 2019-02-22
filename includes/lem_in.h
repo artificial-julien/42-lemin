@@ -272,29 +272,6 @@ void		route_print(t_route *route);
 void		route_add_node(t_route *route, t_room *room);
 
 /*
-** Route.
-*/
-
-t_route		*route_new();
-t_bool		route_equals(t_route *a, t_route *b);
-void		route_free(void *content, size_t size);
-t_route		*route_copy(t_route *src);
-int			route_cmp(void *a, void *b);
-
-/*
-**	Routes create conflict map
-*/
-
-void		route_create_conflicts_map(t_route *route, t_glist *routes, int count);
-t_bool		route_has_conflict(t_route *a, t_route *b);
-
-/*
-** Routes
-*/
-
-t_bool		routes_routechr(t_glist *routes, t_route *route);
-
-/*
 ** Group.
 */
 
