@@ -1,21 +1,20 @@
-- Implementer Edmonds-Karp
+- (FAIT) Implementer Edmonds-Karp
 - Optimization possibles:
-	- Suppression des cul de sac
-	- Suppression des boucles ?
+	- (FAIT) Suppression des cul de sac
 	- Arret de la creation de groupes en fonction du nb. de fourmis
 - Verifier le cas de 2 nodes (start et end)
 
 Parse:
-	- Crash quand pas de end
-	- Erreur si nom de salle commence par "L"
-	- Erreur si une coordonnee contient un non chiffre au moins
+	- (FAIT) Crash quand pas de end
+	- (FAIT) Erreur si nom de salle commence par "L"
+	- (FAIT) Erreur si une coordonnee contient un non chiffre au moins
 Algo:
-	- Erreur si aucun resultat
-- Securisation des mallocs avec exit()
-- Protection lecture entier.
+	- (FAIT) Erreur si aucun resultat
+	- Freeze avec 2 rooms.
 Avant rendu :
 - Leaks
 - Norme
 - Flag debug
 - Fonctions / fichiers / non utilisés
 - Fonctions interdites
+- Fichiers externes (sauf README et .gitignore)
