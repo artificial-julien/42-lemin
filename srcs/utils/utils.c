@@ -6,11 +6,14 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 16:28:29 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/22 14:13:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
+#if DEBUG
+# include <time.h>
+#endif
 
 /*
 **	return the minum between the number of links of startroom ,
@@ -129,3 +132,40 @@ void	print_nodes(t_glist *nodes)
 	}
 	ft_fprintf(2, "\n");
 }
+
+/*
+**	Prints the elapsed time since the last call of the function and the
+**	associated label.
+*/
+
+#ifdef DEBUG
+
+void	time_profiling(t_lem_in *lem_in, t_bool initial, char *label)
+{
+	static clock_t	start;
+	clock_t			end;
+	int				elapsed_time;
+
+	if (!lem_in->opt.print_time)
+		return ;
+	if (initial)
+	{
+		start = clock();
+		return ;
+	}
+	end = clock();
+	elapsed_time = (end - start) / ((double)CLOCKS_PER_SEC / 1000);
+	ft_fprintf(2, "%-20s: %d ms\n", label, elapsed_time);
+
+	start = end;
+}
+
+#else
+
+void	time_profiling(t_lem_in *lem_in, t_bool initial, char *label)
+{
+	(void)lem_in;
+	(void)initial;
+	(void)label;
+}
+#endif

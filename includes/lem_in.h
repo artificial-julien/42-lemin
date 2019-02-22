@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 18:46:17 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/22 14:05:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ struct	s_opt
 	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
+	t_bool	print_time;
 };
 
 struct	s_lem_in
@@ -358,13 +359,15 @@ int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
 void		print_nodes(t_glist *nodes);
 t_bool		is_number(char *s);
+void		time_profiling(t_lem_in *lem_in, t_bool initial, char *label);
+
 /*
 ** Parsing opt of lem_in.
 */
 
 void		init_opt(t_lem_in *lem_in);
 void		printf_help(void);
-void		print_unknow();
+void		print_unknown();
 void		parse_opt(t_lem_in *lem_in, int ac, char **av);
 void		parse_arg(char *s, t_lem_in *lem_in);
 

@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/21 18:43:42 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/22 14:12:35 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ CC = clang
 
 # Laisser en mode debug avant la version finale
 #CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR)
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -D DEBUG
 
 IDIR = includes
 SDIR = srcs
