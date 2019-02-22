@@ -54,8 +54,6 @@ t_bool	parse_is_link(char *line)
 	int	len;
 
 	len = ft_strlen(line);
-	if (len < 3)
-		return (false);
 	pos = ft_strindex(line, '-');
 	if (pos == -1 || pos < 1 || pos >= len - 1)
 		return (false);
@@ -76,9 +74,10 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	t_room	*new;
 
 	if (((tab = ft_strsplit(line, ' ')) == NULL)
-		|| tab[0] == NULL || tab[1] == NULL
+		|| tab[0] == NULL || (ft_strncmp(tab[0], "L", 1) == true)
+	//	|| (room_find_name(lem_in, tab[0])) == 1
+		|| tab[1] == NULL
 		|| tab[2] == NULL || tab[3] != NULL
-		//|| (room_find_name(lem_in, tab[0])) == 1
 		|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
 		|| (ft_strlen(tab[2]) > MAX_NB_SIZE))
 	{

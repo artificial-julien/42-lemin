@@ -42,8 +42,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type)
 {
 	save_line(lem_in, *line);
-	if (gnl_no_comm(0, line) == -1
-		|| (ft_strncmp(*line, "L", 1) == true))
+	if (gnl_no_comm(0, line) == -1)
 		lem_in_die();
 	parse_room(lem_in, *line, type);
 	return (1);
