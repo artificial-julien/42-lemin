@@ -24,6 +24,11 @@ static void	debug_print_new_group(t_lem_in *lem_in, t_group *group)
 		ft_fprintf(2, "Created group :\n");
 		group_print(group);
 	}
+	else if (lem_in->opt.print_groups == true)
+	{
+		ft_fprintf(2, "Created group :\n");
+		group_print_extra(group);
+	}
 }
 
 /*
