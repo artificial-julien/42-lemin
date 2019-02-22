@@ -53,7 +53,7 @@ char		*ft_strtrim(char const *s)
 	len = end - start + 1;
 	if (0 >= len)
 		len = 0;
-	result = malloc(len + 1);
+	result = ft_safe_malloc(len + 1);
 	if (result == NULL)
 		return (NULL);
 	ft_strncpy(result, (char*)(s + start), len);

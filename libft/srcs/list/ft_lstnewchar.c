@@ -18,7 +18,7 @@ t_list	*ft_lstnewchar(void const *content, size_t content_size)
 	t_list	*new;
 
 	new = NULL;
-	if ((new = (t_list*)malloc(sizeof(t_list))) == NULL)
+	if ((new = (t_list*)ft_safe_malloc(sizeof(t_list))) == NULL)
 		return (NULL);
 	if (content == NULL)
 	{

@@ -55,7 +55,7 @@ static char		*try_create_word(char const *str, char separator, int *word_len)
 	*word_len = get_word_len(str, separator);
 	if (*word_len > 0)
 	{
-		result = malloc(*word_len + 1);
+		result = ft_safe_malloc(*word_len + 1);
 		ft_strncpy(result, str, *word_len);
 		*(result + (*word_len)) = '\0';
 		str += (*word_len);
@@ -74,7 +74,7 @@ char			**ft_strsplit(char const *str, char separator)
 	if (str == NULL)
 		return (NULL);
 	word_count = get_word_count(str, separator);
-	result = malloc(sizeof(char*) * (word_count + 1));
+	result = ft_safe_malloc(sizeof(char*) * (word_count + 1));
 	if (result == NULL)
 		return (NULL);
 	i = 0;
