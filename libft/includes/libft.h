@@ -125,6 +125,7 @@ char			*ft_itoa(int n);
 */
 
 void			*ft_memalloc(size_t size);
+void			*ft_safe_malloc(size_t size);
 void			ft_memdel(void **ap);
 
 void			ft_strclr(char *s);

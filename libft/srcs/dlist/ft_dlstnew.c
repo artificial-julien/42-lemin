@@ -17,7 +17,7 @@ t_dlist	*ft_dlstnew(void const *content, size_t content_size)
 	t_dlist	*result;
 	void	*new_content;
 
-	result = malloc(sizeof(t_dlist));
+	result = ft_safe_malloc(sizeof(t_dlist));
 	if (result == NULL)
 		return (NULL);
 	result->content = (void*)content;
@@ -28,7 +28,7 @@ t_dlist	*ft_dlstnew(void const *content, size_t content_size)
 	}
 	else
 	{
-		new_content = malloc(content_size);
+		new_content = ft_safe_malloc(content_size);
 		if (new_content == NULL)
 			return (NULL);
 		ft_memcpy(new_content, content, content_size);

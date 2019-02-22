@@ -16,7 +16,7 @@ t_glist	*ft_glstnew(void const *content, size_t content_size)
 {
 	t_glist	*result;
 
-	result = malloc(sizeof(t_glist));
+	result = ft_safe_malloc(sizeof(t_glist));
 	if (result == NULL)
 	{
 		return (NULL);

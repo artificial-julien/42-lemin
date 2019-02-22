@@ -62,6 +62,7 @@ _SRC =	./char/ft_isalnum.c \
 		./dlist/ft_dlstnew.c \
 		./dlist/ft_dlstfirst.c \
 		./memory/ft_bzero.c \
+		./memory/ft_safe_malloc.c \
 		./memory/ft_memalloc.c \
 		./memory/ft_memccpy.c \
 		./memory/ft_memchr.c \

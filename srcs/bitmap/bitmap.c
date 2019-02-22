@@ -21,7 +21,7 @@ t_bitmap	*bitmap_new(size_t bits_size)
 {
 	t_bitmap	*res;
 
-	res = malloc(sizeof(t_bitmap));
+	res = ft_safe_malloc(sizeof(t_bitmap));
 	res->map = ft_memalloc(bits_size / 8 + (((bits_size % 8) > 0) ? 1 : 0));
 	res->bits_size = bits_size;
 	return (res);
