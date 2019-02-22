@@ -35,8 +35,7 @@ static void	print_round(t_round *round)
 		ft_printf("L%d-%s", ant_id, move->dst->name);
 		move->dst->ant_id = ant_id;
 		move->src->ant_id = 0;
-		curr = curr->prev;
-		if (curr != NULL)
+		if ((curr = curr->prev) != NULL)
 			ft_putchar(' ');
 	}
 	ft_putendl("");
