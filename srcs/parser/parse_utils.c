@@ -96,7 +96,7 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 }
 
 /*
-**
+**	Create links between rooms.
 */
 
 void	parse_link(t_lem_in *lem_in, char *line)
