@@ -74,6 +74,10 @@ void		route_free(void *content, size_t size)
 	free(route);
 }
 
+/*
+**
+*/
+
 void		route_add_node(t_route *route, t_room *room)
 {
 	t_glist	*new;
@@ -81,15 +85,4 @@ void		route_add_node(t_route *route, t_room *room)
 	new = ft_glstnew(room, sizeof(t_room));
 	ft_glstadd(&route->rooms, new);
 	route->len++;
-}
-
-/*
-**	Prints the specified route.
-**	Debug purposes.
-*/
-
-void		route_print(t_route *route)
-{
-	ft_fprintf(2, "Route #%d\t", route->id_route);
-	print_nodes(route->rooms);
 }
