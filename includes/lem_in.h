@@ -93,7 +93,7 @@ struct	s_lem_in
 	t_room	*end;
 	int		room_len;
 	t_glist	*rooms;
-	t_list	*data;
+	t_list	*display;
 	t_opt	opt;
 };
 
