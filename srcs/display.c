@@ -29,7 +29,7 @@ void	save_line(t_lem_in *lem_in, char *line)
 }
 
 /*
-**	Prints all saved lines with save_line()
+**	Prints line of the list form the end to the start.
 */
 
 void	print_rec_line(t_list *display)
@@ -45,6 +45,11 @@ void	print_rec_line(t_list *display)
 		}
 	}
 }
+
+/*
+**	Print the lines of display.
+*/
+
 void	print_lines(t_lem_in *lem_in)
 {
 	print_rec_line(lem_in->display);
