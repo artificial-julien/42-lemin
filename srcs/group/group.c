@@ -84,6 +84,10 @@ void	group_free(void *content, size_t size)
 	free(group);
 }
 
+/*
+**	Debug : Print a group and his routes.
+*/
+
 void	group_print(t_group *group)
 {
 	t_glist	*curr;
