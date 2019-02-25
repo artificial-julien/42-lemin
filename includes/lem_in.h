@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/25 18:15:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:45:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -358,7 +358,7 @@ void		bitmap_print(t_bitmap *bitmap);
 void		bitmap_reset(t_bitmap *bitmap);
 
 /*
-**	Memory pool;
+**	Memory pool.
 */
 
 t_mempool	*mempool_new(size_t unit_count, size_t unit_size);

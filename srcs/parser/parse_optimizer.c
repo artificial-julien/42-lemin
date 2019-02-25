@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/21 15:14:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:47:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 /*
 **	Remove a room dead_end from all the list links of all the room of lem.
+**	Removes a room with a dead end and the whole way.
 */
 
 void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
@@ -31,7 +32,7 @@ void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
 }
 
 /*
-**	Remove all room of type dead_end : with no links to advance.
+**	Clean rooms with dead ends.
 */
 
 void	parse_optimizer(t_lem_in *lem_in)

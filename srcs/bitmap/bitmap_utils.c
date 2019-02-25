@@ -6,14 +6,14 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/19 18:43:20 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 10:59:56 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:41:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-** Print the bitmap.
+**	Prints the bitmap.
 */
 
 void		bitmap_print(t_bitmap *bitmap)
