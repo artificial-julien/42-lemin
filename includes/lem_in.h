@@ -81,7 +81,6 @@ struct	s_opt
 {
 	t_bool	debug;
 	t_bool	print_room;
-	t_bool	print_routes;
 	t_bool	print_groups;
 	t_bool	print_help;
 	t_bool	print_time;
@@ -94,7 +93,7 @@ struct	s_lem_in
 	t_room	*end;
 	int		room_len;
 	t_glist	*rooms;
-	t_list	*data;
+	t_list	*display;
 	t_opt	opt;
 };
 
@@ -344,7 +343,7 @@ void		time_profiling(t_lem_in *lem_in, t_bool initial, char *label);
 
 void		init_opt(t_lem_in *lem_in);
 void		printf_help(void);
-void		print_unknown();
+void		print_unknow();
 void		parse_opt(t_lem_in *lem_in, int ac, char **av);
 void		parse_arg(char *s, t_lem_in *lem_in);
 

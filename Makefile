@@ -66,11 +66,13 @@ _SRC =	room/room.c \
 		glist/ft_glstrev.c \
 		group/group.c \
 		route/route.c \
+		route/route_print.c \
 		bitmap/bitmap.c \
 		bitmap/bitmap_utils.c \
 		parser/parser_opt.c \
 		parser/parse_optimizer.c \
 		parser/parse_opt_print.c \
+		parser/parse_opt_print_help.c \
 		parser/parse_utils.c \
 		display.c \
 		main.c

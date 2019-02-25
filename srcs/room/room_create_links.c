@@ -20,13 +20,17 @@ void	room_add_link(t_lem_in *lem_in, char *origin, char *target)
 {
 	t_room	*origin_room;
 	t_room	*target_room;
-	t_glist	*new;
+	t_glist	*new_o;
+	t_glist	*new_t;
 
 	origin_room = room_find_by_name(lem_in, origin);
 	target_room = room_find_by_name(lem_in, target);
-	new = ft_glstnew(target_room, sizeof(t_room));
-	ft_glstadd(&origin_room->links, new);
+	new_t = ft_glstnew(target_room, sizeof(t_room));
+	ft_glstadd(&origin_room->links, new_t);
+	new_o = ft_glstnew(origin_room, sizeof(t_room));
+	ft_glstadd(&target_room->links, new_o);
 	origin_room->links_count++;
+	target_room->links_count++;
 }
 
 /*
