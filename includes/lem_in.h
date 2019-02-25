@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/22 15:06:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:15:06 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ typedef struct s_group		t_group;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_opt		t_opt;
 typedef struct s_bft		t_bft;
+typedef struct s_mempool	t_mempool;
+typedef struct s_memunit	t_memunit;
 
 /*
 **	Project generic list.
@@ -190,6 +192,36 @@ struct	s_bitmap
 	char	*map;
 };
 
+
+
+/*
+**	Memory pool unit content head.
+**	Head structure followed by the content.
+*/
+
+struct	s_memunit
+{
+	// t_memunit	*prev;
+	t_memunit	*next;
+	char		content[0];
+};
+
+/*
+**	Memory pool.
+**	For the linked list "objects".
+**	Head structure followed by the mem units.
+*/
+
+struct	s_mempool
+{
+	size_t		unit_size;
+	size_t		unit_count;
+	t_memunit	*free;
+	t_memunit	units[0];
+};
+
+t_mempool	*g_glstpool;
+
 /*
 **	Core.
 */
@@ -324,6 +356,14 @@ void		bitmap_free(t_bitmap *bitmap);
 t_bitmap	*bitmap_copy(t_bitmap *bitmap);
 void		bitmap_print(t_bitmap *bitmap);
 void		bitmap_reset(t_bitmap *bitmap);
+
+/*
+**	Memory pool;
+*/
+
+t_mempool	*mempool_new(size_t unit_count, size_t unit_size);
+void		*mempool_alloc(t_mempool *mempool);
+void		mempool_free(t_mempool *mempool, void *unit);
 
 /*
 **	Utils.

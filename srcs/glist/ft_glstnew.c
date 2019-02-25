@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 19:25:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/01 17:01:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/25 18:13:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,7 @@ t_glist	*ft_glstnew(void const *content, size_t content_size)
 {
 	t_glist	*result;
 
-	result = ft_safe_malloc(sizeof(t_glist));
-	if (result == NULL)
-	{
-		return (NULL);
-	}
+	result = mempool_alloc(g_glstpool);
 	result->content = (void*)content;
 	if (content == NULL)
 	{

@@ -6,14 +6,14 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/22 15:57:21 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/25 17:53:42 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
 # Laisser en mode debug avant la version finale
-#CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
 CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -D DEBUG
 
 IDIR = includes
@@ -74,6 +74,7 @@ _SRC =	room/room.c \
 		parser/parse_opt_print.c \
 		parser/parse_opt_print_help.c \
 		parser/parse_utils.c \
+		mempool/mempool.c \
 		display.c \
 		main.c
 
