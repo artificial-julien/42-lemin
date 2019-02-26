@@ -6,39 +6,23 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:21:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/25 18:15:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:08:50 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	Returns the pool element at the specified index.
-*/
-
-static t_memunit	*get_by_index(t_mempool *mempool, size_t index)
-{
-	size_t	res;
-	size_t	offset;
-
-	offset = (size_t)(index * (mempool->unit_size + sizeof(t_memunit)));
-	res = (size_t)&mempool->units;
-	res += (size_t)offset;
-	return ((t_memunit*)res);
-}
-
-/*
 **	Extends an existing memory pool.
-**	Not implemented.
 */
 
 static t_mempool	*mempool_extend(t_mempool *mempool, size_t extra_unit_count)
 {
 	t_mempool	*res;
 
+	// ft_fprintf(2, "Extending pool\n");
 	res = mempool_new(extra_unit_count, mempool->unit_size);
-	ft_fprintf(2, "throw new NotImplementedException();\n");
-	exit(EXIT_FAILURE);
+	mempool->extention = res;
 	return (res);
 }
 
@@ -58,17 +42,31 @@ t_mempool			*mempool_new(size_t unit_count, size_t unit_size)
 	res->free = &res->units[0];
 	res->unit_count = unit_count;
 	res->unit_size = unit_size;
+	res->extention = NULL;
 	unit = &res->units[0];
 	i = 0;
-	while (i < unit_count)
+	while (i < unit_count - 1)
 	{
-		if (i < unit_count - 1)
-			get_by_index(res, i)->next = get_by_index(res, i + 1);
-		else
-			get_by_index(res, i)->next = NULL;
+		get_by_index(res, i)->mempool = res;
+		get_by_index(res, i)->next = get_by_index(res, i + 1);
 		i++;
 	}
+	get_by_index(res, i)->mempool = res;
+	get_by_index(res, i)->next = NULL;
 	return (res);
+}
+
+/*
+**	Liberates the pool and its extentions.
+*/
+
+void				mempool_del(t_mempool *mempool)
+{
+	if (mempool->extention != NULL)
+	{
+		mempool_del(mempool->extention);
+	}
+	free(mempool);
 }
 
 /*
@@ -77,19 +75,18 @@ t_mempool			*mempool_new(size_t unit_count, size_t unit_size)
 
 void				*mempool_alloc(t_mempool *mempool)
 {
-	t_mempool	*new;
+	t_mempool	*target_pool;
 	t_memunit	*old_free;
 	void		*res;
 
-	if (mempool->free == NULL)
+	target_pool = get_mempool_with_free_space(mempool);
+	if (target_pool == NULL)
 	{
-		new = mempool_extend(mempool, mempool->unit_count);
-		free(mempool);
-		mempool = new;
+		target_pool = mempool_extend(mempool, mempool->unit_count);
 	}
-	res = &mempool->free->content;
-	old_free = mempool->free;
-	mempool->free = mempool->free->next;
+	res = &target_pool->free->content;
+	old_free = target_pool->free;
+	target_pool->free = target_pool->free->next;
 	old_free->next = NULL;
 	return (res);
 }
@@ -98,12 +95,14 @@ void				*mempool_alloc(t_mempool *mempool)
 **	Liberates the specified address in the pool.
 */
 
-void				mempool_free(t_mempool *mempool, void *content)
+void				mempool_free(void *ptr)
 {
 	t_memunit	*prev;
 	t_memunit	*unit;
+	t_mempool	*mempool;
 
-	unit = content - sizeof(t_memunit);
+	unit = ptr - sizeof(t_memunit);
+	mempool = unit->mempool;
 	prev = mempool->free;
 	mempool->free = unit;
 	mempool->free->next = prev;

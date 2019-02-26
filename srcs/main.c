@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/25 17:47:03 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 13:54:56 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int			main(int ac, char **av)
 	t_lem_in	lem_in;
 	t_solution	solution;
 
-	g_glstpool = mempool_new(1024 * 256 * 256, sizeof(t_glist));
+	g_glstpool = mempool_new(LST_POOL_SIZE, sizeof(t_glist));
 	lem_in_init(&lem_in);
 	parse_opt(&lem_in, ac, av);
 	if (lem_in.opt.print_help == true)

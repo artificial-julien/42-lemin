@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/25 18:45:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:05:51 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,11 @@
 # include "libft.h"
 
 /*
-**	Defines.
+**	Defines / Configuration.
 */
 
 #define MAX_NB_SIZE 10
+#define LST_POOL_SIZE	(524288 * 32)
 
 /*
 **	Types.
@@ -201,7 +202,7 @@ struct	s_bitmap
 
 struct	s_memunit
 {
-	// t_memunit	*prev;
+	t_mempool	*mempool;
 	t_memunit	*next;
 	char		content[0];
 };
@@ -210,6 +211,13 @@ struct	s_memunit
 **	Memory pool.
 **	For the linked list "objects".
 **	Head structure followed by the mem units.
+
+**	unit_size:	element size.
+**	unit_count:	element capacity.
+**	free:		next free unit.
+**	extention:	pool extension. (relloc() system call is forbidden)
+**	units[0]:	memory units. Dynamic.
+**
 */
 
 struct	s_mempool
@@ -217,6 +225,7 @@ struct	s_mempool
 	size_t		unit_size;
 	size_t		unit_count;
 	t_memunit	*free;
+	t_mempool	*extention;
 	t_memunit	units[0];
 };
 
@@ -363,7 +372,11 @@ void		bitmap_reset(t_bitmap *bitmap);
 
 t_mempool	*mempool_new(size_t unit_count, size_t unit_size);
 void		*mempool_alloc(t_mempool *mempool);
-void		mempool_free(t_mempool *mempool, void *unit);
+void		mempool_free(void *ptr);
+void		mempool_del(t_mempool *mempool);
+
+t_memunit	*get_by_index(t_mempool *mempool, size_t index);
+t_mempool	*get_mempool_with_free_space(t_mempool *mempool);
 
 /*
 **	Utils.
