@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 19:05:07 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/26 19:21:22 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ t_bool	room_find_duplicate_name(t_lem_in *lem_in)
 
 	pos = 0;
 	while (lem_in
-		&& (pos + 1) < lem_in->room_count - 1
+		&& (pos + 1) < lem_in->room_count
 		&& lem_in->array_room)
 	{
 		curr = lem_in->array_room[pos]->name;
