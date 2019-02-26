@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/25 18:39:20 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 13:52:42 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,13 @@ t_bool	ant_try_move(t_room *src, t_room *dest, t_solution *solution)
 	{
 		src->ants--;
 		dest->ants++;
-		solution_add_move(solution, src, dest);
+		dest->ant_id = src->ant_id;
+		if (src->type == start)
+		{
+			src->ant_id++;
+			dest->ant_id = src->ant_id;
+		}
+		solution_add_move(solution, dest);
 		return (true);
 	}
 	return (false);
@@ -83,12 +89,9 @@ static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 void		build_solution(t_lem_in *lem_in, t_group *group,
 	t_solution *solution)
 {
-	int ants_left;
-
 	while ((lem_in->start->ants) >= 0
 		&& lem_in->end->ants != lem_in->total_ants)
 	{
-		ants_left = lem_in->total_ants - lem_in->end->ants;
 		run_round(group, lem_in, solution);
 	}
 }
