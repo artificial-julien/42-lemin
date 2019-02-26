@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
+#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/25 18:40:22 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/25 19:03:26 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,6 @@ _SRC =	room/room.c \
 		solution/solution.c \
 		solution_builder/build_solution.c \
 		utils/utils.c \
-		utils/utils_array.c \
 		glist/ft_glstadd.c \
 		glist/ft_glstadd_last.c \
 		glist/ft_glstdel.c \
