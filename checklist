@@ -1,7 +1,7 @@
 - (FAIT) Implementer Edmonds-Karp
 - Optimization possibles:
 	- (FAIT) Suppression des cul de sac
-	- Arret de la creation de groupes en fonction du nb. de fourmis
+	- (FAIT) Arret de la creation de groupes en fonction du nb. de fourmis
 - Verifier le cas de 2 nodes (start et end)
 
 Parse:

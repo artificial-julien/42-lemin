@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:15:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:22:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ struct	s_opt
 struct	s_lem_in
 {
 	int		total_ants;
+	int		max_routes;
 	t_room	*start;
 	t_room	*end;
 	int		room_len;
@@ -325,7 +326,7 @@ void		group_print(t_group *group);
 int			group_total_rounds(t_group *group, int total_ants);
 
 /*
-**	Solver.
+**	Solve.
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
@@ -334,6 +335,12 @@ t_group		*select_best_group(t_glist *groups, int total_ants);
 void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 void		sort_routes(t_group *group);
 int			ants_distribution(t_group *group, int total_ants, int **res);
+
+/*
+**	Solve utils.
+*/
+
+int			max_routes(t_lem_in *lem_in);
 
 /*
 **	Solution printer.
@@ -382,7 +389,6 @@ t_mempool	*get_mempool_with_free_space(t_mempool *mempool);
 **	Utils.
 */
 
-int			min_lem_in(t_lem_in *lem);
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
 int			gnl_no_comm(const int fd, char **line);
@@ -391,7 +397,7 @@ t_bool		is_number(char *s);
 void		time_profiling(t_lem_in *lem_in, t_bool initial, char *label);
 
 /*
-** Parsing opt of lem_in.
+**	Parsing opt of lem_in.
 */
 
 void		init_opt(t_lem_in *lem_in);
@@ -400,9 +406,8 @@ void		print_unknow();
 void		parse_opt(t_lem_in *lem_in, int ac, char **av);
 void		parse_arg(char *s, t_lem_in *lem_in);
 
-
 /*
-**	Parser optimiser
+**	Parse optimiser.
 */
 
 void		delete_dead_end(t_lem_in *lem_in, t_room *dead_end);

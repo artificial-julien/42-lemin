@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/22 14:13:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:18:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,6 @@
 #if DEBUG
 # include <time.h>
 #endif
-
-/*
-**	return the minum between the number of links of startroom ,
-**	the numbers links of endroom and the numbers finals  of ants .
-*/
-
-int		min_lem_in(t_lem_in *lem)
-{
-	int res;
-	int start;
-	int end;
-
-	res = 0;
-	if (lem->start == NULL || lem->end == NULL)
-		lem_in_die();
-	start = lem->start->links_count;
-	end = lem->end->links_count;
-	res = (start < end) ? start : end;
-	if (res < lem->total_ants)
-		res = lem->total_ants;
-	return (res);
-}
 
 /*
 ** Fonction to free a tab of char of 2 dimension

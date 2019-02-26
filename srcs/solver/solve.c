@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:22:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:29:54 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,20 +56,22 @@ static void	create_groups(t_lem_in *lem_in, t_glist **groups, int rooms_count)
 	t_bft	*initial_bft;
 	t_bft	*bft;
 	t_group	*group;
-	t_glist	*new;
+	int		count;
 
 	initial_bft = bft_new(rooms_count);
 	bft_add_node(initial_bft, lem_in->start);
-	while ((bft = bft_run(lem_in, initial_bft)) != NULL)
+	count = 0;
+	while (count < lem_in->max_routes
+		&& (bft = bft_run(lem_in, initial_bft)) != NULL)
 	{
 		ft_glstrev(&bft->virtual_route->rooms);
 		rebuild_routes(bft->virtual_route);
 		debug_print_new_route(lem_in, bft->virtual_route);
 		group = group_build(lem_in->start);
 		debug_print_new_group(lem_in, group);
-		new = ft_glstnew(group, sizeof(t_group));
-		ft_glstadd(groups, new);
+		ft_glstadd(groups, ft_glstnew(group, sizeof(t_group)));
 		bft_free(bft, sizeof(t_bft));
+		count++;
 	}
 }
 
@@ -100,6 +102,7 @@ void		solve(t_lem_in *lem_in, t_solution *solution)
 	t_group		*best_group;
 
 	groups = NULL;
+	lem_in->max_routes = max_routes(lem_in);
 	create_groups(lem_in, &groups, ft_glstlen(lem_in->rooms));
 	if (groups == NULL)
 		lem_in_die();
