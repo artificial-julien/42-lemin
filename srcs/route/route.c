@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   route.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 18:54:42 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/20 15:30:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 19:08:20 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void		route_free(void *content, size_t size)
 }
 
 /*
-**
+**	Add a new element to route.
 */
 
 void		route_add_node(t_route *route, t_room *room)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:15:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 18:48:46 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ struct	s_lem_in
 	int		total_ants;
 	t_room	*start;
 	t_room	*end;
-	int		room_len;
+	int		room_count;
 	t_glist	*rooms;
+	t_room	**array_room;
 	t_list	*display;
 	t_opt	opt;
 };
@@ -279,8 +280,9 @@ int			parse_number_safe(char *s);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
-t_bool		room_find_name(t_lem_in *lem_in, char *name);
+t_bool		room_find_duplicate_name(t_lem_in *lem_in);
 void		room_free(void *content, size_t size);
+int 		room_cmp(void *a, void *b);
 
 /*
 ** Room_links.
@@ -425,4 +427,10 @@ void		save_line(t_lem_in *lem_in, char *line);
 void		print_lines(t_lem_in *lem_in);
 void		free_saved_line(t_lem_in *lem_in);
 
+/*
+**
+*/
+
+void			**glist_to_array(t_glist *list);
+void			array_sort(void **array, size_t size, int (cmp)(void*, void*));
 #endif

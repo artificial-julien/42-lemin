@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:11:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/26 14:55:27 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 
 	new = ft_glstnew(room, sizeof(t_room));
 	ft_glstadd(&lem_in->rooms, new);
-	lem_in->room_len++;
+	lem_in->room_count++;
 	if (room->type == start)
 	{
 		if (lem_in->start != NULL)
@@ -70,7 +70,7 @@ void	lem_in_remove_room(t_lem_in *lem_in, t_room *room)
 		if ((*curr)->room == room)
 		{
 			ft_glstdelone(curr, NULL);
-			lem_in->room_len--;
+			lem_in->room_count--;
 			return ;
 		}
 		curr = &(*curr)->next;
