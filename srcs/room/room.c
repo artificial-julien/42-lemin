@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 15:17:22 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:31:42 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,30 +29,6 @@ t_room	*room_new(char *name, t_roomtype type, int x, int y)
 	res->pos.y = y;
 	id++;
 	return (res);
-}
-
-/*
-** return if a name is has a duplicat in a sorted list.
-*/
-
-t_bool	room_find_duplicate_name(t_lem_in *lem_in)
-{
-	int		pos;
-	char	*curr;
-	char	*curr_next;
-
-	pos = 0;
-	while (lem_in
-		&& (pos + 1) < lem_in->room_count
-		&& lem_in->array_room)
-	{
-		curr = lem_in->array_room[pos]->name;
-		curr_next = lem_in->array_room[pos + 1]->name;
-		if (ft_strcmp(curr, curr_next) == 0)
-			return (true);
-		pos++;
-	}
-	return (false);
 }
 
 /*

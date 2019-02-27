@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 14:46:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:32:41 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -280,7 +280,6 @@ int			parse_number_safe(char *s);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
-t_bool		room_find_duplicate_name(t_lem_in *lem_in);
 void		room_free(void *content, size_t size);
 int 		room_cmp(void *a, void *b);
 
