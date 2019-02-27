@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 16:42:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:11:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,7 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	t_room	*new;
 
 	if (((tab = ft_strsplit(line, ' ')) == NULL)
-		|| tab[0] == NULL || (ft_strncmp(tab[0], "L", 1) == true)
-	//	|| (room_find_name(lem_in, tab[0])) == 1
+		|| tab[0] == NULL || (ft_strnequ(tab[0], "L", 1) == true)
 		|| tab[1] == NULL
 		|| tab[2] == NULL || tab[3] != NULL
 		|| (ft_strlen(tab[1]) > MAX_NB_SIZE)
