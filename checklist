@@ -3,6 +3,7 @@
 	- (FAIT) Suppression des cul de sac
 	- Arret de la creation de groupes en fonction du nb. de fourmis
 - Verifier le cas de 2 nodes (start et end)
+- Verifier le cas 1.map et 2.map dans test segfault.
 
 Parse:
 	- (FAIT) Crash quand pas de end
@@ -11,6 +12,12 @@ Parse:
 Algo:
 	- (FAIT) Erreur si aucun resultat
 	- Freeze avec 2 rooms.
+	- avec fsanitize=address : faille dans bitmap_get.
+
+print :
+	-(FAIT)print_display risque avec stack ? a verifier.
+	- verifier securite free_display
+
 Avant rendu :
 - Leaks
 - Norme
