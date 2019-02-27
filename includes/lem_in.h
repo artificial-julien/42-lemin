@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 18:48:46 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:46:30 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -423,9 +423,9 @@ void		lem_in_print_all_rooms(t_lem_in *lem_in);
 **	Lines saving and display.
 */
 
-void		save_line(t_lem_in *lem_in, char *line);
-void		print_lines(t_lem_in *lem_in);
-void		free_saved_line(t_lem_in *lem_in);
+void		save_display(t_lem_in *lem_in, char *line);
+void		print_display(t_lem_in *lem_in);
+void		free_saved_display(t_lem_in *lem_in);
 
 /*
 **

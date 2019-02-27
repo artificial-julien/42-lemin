@@ -16,7 +16,7 @@
 **	Saves the specified non comment line for display.
 */
 
-void	save_line(t_lem_in *lem_in, char *line)
+void	save_display(t_lem_in *lem_in, char *line)
 {
 	t_list *new;
 
@@ -32,17 +32,12 @@ void	save_line(t_lem_in *lem_in, char *line)
 **	Prints line of the list form the end to the start.
 */
 
-void	print_rec_line(t_list *display)
+void	print_display_line(t_list *display)
 {
-	if (display->content != NULL)
+	while (display && display->content != NULL)
 	{
-		if (display->next == NULL)
-			ft_printf("%s\n", display->content);
-		else
-		{
-			print_rec_line(display->next);
-			ft_printf("%s\n", display->content);
-		}
+		ft_printf("%s\n", display->content);
+		display = display->next;
 	}
 }
 
@@ -50,9 +45,10 @@ void	print_rec_line(t_list *display)
 **	Print the lines of display.
 */
 
-void	print_lines(t_lem_in *lem_in)
+void	print_display(t_lem_in *lem_in)
 {
-	print_rec_line(lem_in->display);
+	ft_lstrev(&lem_in->display);
+	print_display_line(lem_in->display);
 	ft_printf("\n");
 }
 
@@ -60,7 +56,7 @@ void	print_lines(t_lem_in *lem_in)
 **	Free saved lines.
 */
 
-void	free_saved_line(t_lem_in *lem_in)
+void	free_saved_display(t_lem_in *lem_in)
 {
 	ft_lst_del(&lem_in->display);
 }
