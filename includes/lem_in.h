@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:22:39 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 13:53:51 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -357,8 +357,8 @@ t_bool		ant_can_move(t_room *room);
 void		solution_init(t_solution *solution);
 void		solution_print(t_solution *solution);
 void		solution_add_round(t_solution *solution);
-void		solution_discard_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
+void		solution_free(t_solution *solution);
 
 /*
 **	Bitmap.

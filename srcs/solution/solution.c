@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solution.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:24:30 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 13:53:16 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:00:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,23 @@ void		solution_add_move(t_solution *solution, t_room *dst)
 	t_move	*move;
 
 	move = ft_memalloc(sizeof(t_move));
-	move->ant_id= dst->ant_id;
+	move->ant_id = dst->ant_id;
 	move->dst = dst;
 	new = ft_dlstnew(move, sizeof(t_move));
 	round = (t_round*)solution->rounds->content;
 	ft_dlstadd(&round->moves, new);
+}
+
+void	round_free(void *content, size_t size)
+{
+	t_round	*round;
+
+	(void)size;
+	round = (t_round*)content;
+	ft_dlstdel(&round->moves, NULL);
+}
+
+void	solution_free(t_solution *solution)
+{
+	ft_dlstdel(&solution->rounds, round_free);
 }
