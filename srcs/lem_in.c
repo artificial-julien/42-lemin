@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:55:27 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:43:07 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	lem_in_add_room(t_lem_in *lem_in, t_room *room)
 void	lem_in_free(t_lem_in *lem_in)
 {
 	ft_glstdel(&lem_in->rooms, room_free);
-	free_saved_line(lem_in);
+	free_saved_display(lem_in);
 }
 
 /*

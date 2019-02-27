@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:41:07 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/26 18:48:15 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:18:00 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,16 @@ void	parse(t_lem_in *lem_in)
 	lem_in->array_room = (t_room**)glist_to_array(lem_in->rooms);
 	array_sort((void **)lem_in->array_room, lem_in->room_count, room_cmp);
 	time_profiling(lem_in, false, "List to array");
-	if (room_find_duplicate_name(lem_in))
-		lem_in_die();
+	int i;
+
+	i = 0;
+	while (lem_in->array_room[i])
+	{
+		ft_printf("%d %s\n",i, lem_in->array_room[i]->name);
+		i++;
+	}
+	//if (room_find_duplicate_name(lem_in))
+	//	lem_in_die();
 	parse_links(lem_in, &line);
 	time_profiling(lem_in, false, "Links parsing");
 	lem_in->start->ants = lem_in->total_ants;

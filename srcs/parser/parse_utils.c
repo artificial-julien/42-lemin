@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:32:48 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:47:17 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	new = room_new(tab[0], type, x, y);
 	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);
-	save_line(lem_in, line);
+	save_display(lem_in, line);
 }
 
 /*
@@ -107,5 +107,5 @@ void	parse_link(t_lem_in *lem_in, char *line)
 	room_add_link(lem_in, s1, s2);
 	free(s1);
 	free(s2);
-	save_line(lem_in, line);
+	save_display(lem_in, line);
 }

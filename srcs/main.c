@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 13:54:56 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:47:41 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			main(int ac, char **av)
 	solution_init(&solution);
 	solve(&lem_in, &solution);
 	time_profiling(&lem_in, false, "Solving");
-	print_lines(&lem_in);
+	print_display(&lem_in);
 	solution_print(&solution);
 	time_profiling(&lem_in, false, "Writing result");
 	lem_in_free(&lem_in);
