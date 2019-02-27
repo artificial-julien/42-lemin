@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 15:31:42 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 18:13:02 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,12 @@ t_room	*room_new(char *name, t_roomtype type, int x, int y)
 t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 {
 	int		pos;
-	int		step;
 	int		size;
 	int		cmp;
 	t_room	*room;
 
-	pos = lem_in->room_count / 2;
-	step = pos / 2 ;
-	size = lem_in->room_count - 1;
+	pos = (lem_in->room_count - 1) / 2;
+	size = (lem_in->room_count - 1);
 	while (pos >= 0 && pos <= size)
 	{
 		room = lem_in->array_room[pos];
@@ -58,7 +56,6 @@ t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 			else
 				pos = (pos + 1);
 		}
-		step = step / 2;
 	}
 	lem_in_die();
 	return (NULL);
@@ -91,7 +88,7 @@ int		room_cmp(void *a, void *b)
 
 	room_a = (t_room*)a;
 	room_b = (t_room*)b;
-	 if ((cmp = ft_strcmp(room_a->name, room_b->name)) == 0)
+	if ((cmp = ft_strcmp(room_a->name, room_b->name)) == 0)
 		lem_in_die();
 	return (cmp);
 }
