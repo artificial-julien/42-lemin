@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 19:21:22 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:17:22 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,15 @@ t_bool	room_find_duplicate_name(t_lem_in *lem_in)
 t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 {
 	int		pos;
+	int		step;
 	int		size;
 	int		cmp;
 	t_room	*room;
 
 	pos = lem_in->room_count / 2;
-	size = lem_in->room_count;
-	while (pos >= 0 && pos < size)
+	step = pos / 2 ;
+	size = lem_in->room_count - 1;
+	while (pos >= 0 && pos <= size)
 	{
 		room = lem_in->array_room[pos];
 		if ((cmp = ft_strcmp(name, room->name)) == 0)
@@ -76,10 +78,11 @@ t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 		else
 		{
 			if (cmp < 0)
-				pos = pos / 2;
+				pos = (pos <= 1) ? (pos - 1) : (pos / 2);
 			else
-				pos++;
+				pos = (pos + 1);
 		}
+		step = step / 2;
 	}
 	lem_in_die();
 	return (NULL);
@@ -108,8 +111,11 @@ int		room_cmp(void *a, void *b)
 {
 	t_room	*room_a;
 	t_room	*room_b;
+	int		cmp;
 
 	room_a = (t_room*)a;
 	room_b = (t_room*)b;
-	return (ft_strcmp(room_a->name, room_b->name));
+	 if ((cmp = ft_strcmp(room_a->name, room_b->name)) == 0)
+		lem_in_die();
+	return (cmp);
 }
