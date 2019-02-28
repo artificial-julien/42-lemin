@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:25:25 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:58:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 	{
 		res = route_tree_create_child(lem_in, res, res->room->prev);
 	}
-	res->skip = res->room->distance - 1;
+	res->skip = tree->room->distance - 1;
 	return (res);
 }
 
@@ -98,6 +98,14 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		ft_fprintf(2, "Extending from:\t");
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
+	}
+	// Dois encore attendre ?
+	if (node->skip > 0)
+	{
+		ft_fprintf(2, "(Waiting for %d more turns)\n", node->skip);
+		node->skip--;
+		ft_glstadd(next_nodes, ft_glstnew(node, sizeof(t_route_tree)));
+		return (NULL);
 	}
 	// Viens d'entrer sur une route -> Remonter jusqu'a start.
 	if (node->intersection != NULL && node->intersection == node->room)
