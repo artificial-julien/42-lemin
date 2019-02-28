@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 01:32:36 by juazouz           #+#    #+#             */
-/*   Updated: 2018/11/20 15:59:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 17:53:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char		*try_create_word(char const *str, char separator, int *word_len)
 	*word_len = get_word_len(str, separator);
 	if (*word_len > 0)
 	{
-		result = ft_safe_malloc(*word_len + 1);
+		result = ft_memalloc(*word_len + 1);
 		ft_strncpy(result, str, *word_len);
 		*(result + (*word_len)) = '\0';
 		str += (*word_len);
@@ -74,7 +74,7 @@ char			**ft_strsplit(char const *str, char separator)
 	if (str == NULL)
 		return (NULL);
 	word_count = get_word_count(str, separator);
-	result = ft_safe_malloc(sizeof(char*) * (word_count + 1));
+	result = ft_memalloc(sizeof(char*) * (word_count + 1));
 	if (result == NULL)
 		return (NULL);
 	i = 0;

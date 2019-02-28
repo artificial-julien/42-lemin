@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/17 01:10:14 by juazouz           #+#    #+#             */
-/*   Updated: 2018/11/13 15:33:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 17:53:05 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ char		*ft_strtrim(char const *s)
 	len = end - start + 1;
 	if (0 >= len)
 		len = 0;
-	result = ft_safe_malloc(len + 1);
+	result = ft_memalloc(len + 1);
 	if (result == NULL)
 		return (NULL);
 	ft_strncpy(result, (char*)(s + start), len);
