@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 18:13:02 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/28 18:54:15 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	room_free(void *content, size_t size)
 	room = (t_room*)content;
 	free(room->name);
 	ft_glstdel(&room->links, NULL);
+	free(content);
 }
 
 /*
