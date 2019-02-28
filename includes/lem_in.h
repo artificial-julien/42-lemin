@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 17:26:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:21:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ typedef struct s_round		t_round;
 typedef struct s_solution	t_solution;
 typedef struct s_route		t_route;
 typedef struct s_group		t_group;
-typedef struct s_bitmap		t_bitmap;
 typedef struct s_opt		t_opt;
 typedef struct s_route_tree	t_route_tree;
 typedef struct s_mempool	t_mempool;
@@ -197,14 +196,6 @@ struct	s_group
 	int		*ants_distribution;
 	t_route	**routes;
 };
-
-struct	s_bitmap
-{
-	size_t	bits_size;
-	char	*map;
-};
-
-
 
 /*
 **	Memory pool unit content head.
@@ -368,19 +359,6 @@ void		solution_print(t_solution *solution);
 void		solution_add_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
 void		solution_free(t_solution *solution);
-
-/*
-**	Bitmap.
-*/
-
-t_bitmap	*bitmap_new(size_t bits_size);
-t_bool		bitmap_get(t_bitmap *bitmap, size_t index);
-void		bitmap_set(t_bitmap *bitmap, size_t index);
-void		bitmap_unset(t_bitmap *bitmap, size_t index);
-void		bitmap_free(t_bitmap *bitmap);
-t_bitmap	*bitmap_copy(t_bitmap *bitmap);
-void		bitmap_print(t_bitmap *bitmap);
-void		bitmap_reset(t_bitmap *bitmap);
 
 /*
 **	Memory pool.

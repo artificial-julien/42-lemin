@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/28 17:40:20 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/28 19:20:22 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,8 +66,6 @@ _SRC =	room/room.c \
 		group/group_build.c \
 		route/route.c \
 		route/route_print.c \
-		bitmap/bitmap.c \
-		bitmap/bitmap_utils.c \
 		parser/parser_opt.c \
 		parser/parse_optimizer.c \
 		parser/parse_opt_print.c \
