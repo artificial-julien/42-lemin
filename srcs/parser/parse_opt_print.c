@@ -6,46 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/20 15:42:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 14:58:31 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-**	Prints the specified group information.
-*/
-
-void	group_print_extra(t_group *group)
-{
-	t_glist	*curr;
-
-	curr = group->routes;
-	ft_fprintf(2, " __________________________________________________\n");
-	ft_fprintf(2, "|                                                  |\n");
-	ft_fprintf(2, "Group:                                              \n\n");
-	ft_fprintf(2, "nb of routes : %d\n", group->count);
-	ft_fprintf(2, "minimun size of routes : %d\n", group->low_len);
-	ft_fprintf(2, "maximun size of routes : %d\n", group->high_len);
-	while (curr != NULL)
-	{
-		ft_fprintf(2, "	");
-		route_print_extra(curr->route);
-		curr = curr->next;
-	}
-	ft_fprintf(2, "|__________________________________________________|\n\n");
-}
-
-/*
-**	Prints the specified route.
-**	Debug purposes.
-*/
-
-void	route_print_extra(t_route *route)
-{
-	ft_fprintf(2, "Route #%d | length: %d |\t", route->id_route, route->len);
-	print_nodes(route->rooms);
-}
 
 /*
 **	Prints the specified room information.

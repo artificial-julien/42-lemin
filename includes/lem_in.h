@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 13:53:51 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 15:34:21 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -180,12 +180,20 @@ struct	s_route
 	t_glist		*rooms;
 };
 
+/*
+**	Combination of non conflicting routes.
+**	total_rounds:		required rounds to send ants using this group. The lower the better.
+**	count:				routes count.
+**	ants_distribution:	optimal ants distribution array accross the routes.
+**	routes:				group routes array.
+*/
+
 struct	s_group
 {
-	int		count;
-	int		high_len;
-	int		low_len;
-	t_glist	*routes;
+	int		route_count;
+	int		total_rounds;
+	int		*ants_distribution;
+	t_route	**routes;
 };
 
 struct	s_bitmap
@@ -313,17 +321,14 @@ void		route_print(t_route *route);
 void		route_add_node(t_route *route, t_room *room);
 
 /*
-** Group.
+**	Group.
 */
 
-t_group		*group_new();
-t_group		*group_build(t_room *start);
+t_group		*group_build(t_lem_in *lem_in);
 void		group_add_route(t_group *group, t_route *route);
 void		group_free(void *content, size_t size);
-t_bool		group_equals(t_group *group_a, t_group *group_b);
-t_bool		group_has_route(t_group *group, t_route *route);
 void		group_print(t_group *group);
-int			group_total_rounds(t_group *group, int total_ants);
+void		distribute_ants(t_group *group, int total_ants, int *tab);
 
 /*
 **	Solve.
@@ -331,10 +336,7 @@ int			group_total_rounds(t_group *group, int total_ants);
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
 void		rebuild_routes(t_route *route);
-t_group		*select_best_group(t_glist *groups, int total_ants);
 void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
-void		sort_routes(t_group *group);
-int			ants_distribution(t_group *group, int total_ants, int **res);
 
 /*
 **	Solve utils.
@@ -397,6 +399,13 @@ t_bool		is_number(char *s);
 void		time_profiling(t_lem_in *lem_in, t_bool initial, char *label);
 
 /*
+**	Array utils.
+*/
+
+void		**glist_to_array(t_glist *list, size_t *size);
+void		array_sort(void **array, size_t size, int (cmp)(void*, void*));
+
+/*
 **	Parsing opt of lem_in.
 */
 
@@ -417,8 +426,6 @@ void		parse_optimizer(t_lem_in *lem_in);
 **	Print for for debug.
 */
 
-void		group_print_extra(t_group *group);
-void		route_print_extra(t_route *route);
 void		room_print_extra(t_room *room);
 void		lem_in_print_all_rooms(t_lem_in *lem_in);
 

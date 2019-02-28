@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/25 15:21:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:08:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 15:18:10 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static t_mempool	*mempool_extend(t_mempool *mempool, size_t extra_unit_count)
 {
 	t_mempool	*res;
 
-	// ft_fprintf(2, "Extending pool\n");
+	ft_fprintf(2, "Extending pool\n");
 	res = mempool_new(extra_unit_count, mempool->unit_size);
 	mempool->extention = res;
 	return (res);

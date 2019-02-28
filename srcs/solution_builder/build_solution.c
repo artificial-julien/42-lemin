@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 14:46:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 14:47:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,14 +71,14 @@ static void	run_route(t_lem_in *lem_in, t_route *route, t_solution *solution)
 
 static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 {
-	t_glist *curr;
+	int		i;
 
 	solution_add_round(solution);
-	curr = group->routes;
-	while (curr != NULL)
+	i = 0;
+	while (i < group->route_count)
 	{
-		run_route(lem_in, curr->route, solution);
-		curr = curr->next;
+		run_route(lem_in, group->routes[i], solution);
+		i++;
 	}
 }
 

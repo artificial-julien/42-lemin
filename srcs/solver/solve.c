@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:29:54 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 15:48:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,12 @@
 **	Prints the specified newly created group.
 */
 
-static void	debug_print_new_group(t_lem_in *lem_in, t_group *group)
+static void		debug_print_new_group(t_lem_in *lem_in, t_group *group)
 {
-	if (lem_in->opt.debug == true)
+	if (lem_in->opt.debug || lem_in->opt.print_groups)
 	{
 		ft_fprintf(2, "Created group :\n");
 		group_print(group);
-	}
-	else if (lem_in->opt.print_groups == true)
-	{
-		ft_fprintf(2, "Created group :\n");
-		group_print_extra(group);
 	}
 }
 
@@ -36,7 +31,7 @@ static void	debug_print_new_group(t_lem_in *lem_in, t_group *group)
 **	Prints the specified newly created virtual route.
 */
 
-static void	debug_print_new_route(t_lem_in *lem_in, t_route *virtual_route)
+static void		debug_print_new_route(t_lem_in *lem_in, t_route *virtual_route)
 {
 	if (lem_in->opt.debug == true)
 	{
@@ -51,28 +46,39 @@ static void	debug_print_new_route(t_lem_in *lem_in, t_route *virtual_route)
 **	of routes every time.
 */
 
-static void	create_groups(t_lem_in *lem_in, t_glist **groups, int rooms_count)
+static t_group	*create_best_group(t_lem_in *lem_in)
 {
 	t_bft	*initial_bft;
 	t_bft	*bft;
+	t_group	*prev_group;
 	t_group	*group;
 	int		count;
 
-	initial_bft = bft_new(rooms_count);
+	initial_bft = bft_new(lem_in->room_len);
 	bft_add_node(initial_bft, lem_in->start);
 	count = 0;
+	prev_group = NULL;
 	while (count < lem_in->max_routes
 		&& (bft = bft_run(lem_in, initial_bft)) != NULL)
 	{
 		ft_glstrev(&bft->virtual_route->rooms);
 		rebuild_routes(bft->virtual_route);
 		debug_print_new_route(lem_in, bft->virtual_route);
-		group = group_build(lem_in->start);
+		group = group_build(lem_in);
 		debug_print_new_group(lem_in, group);
-		ft_glstadd(groups, ft_glstnew(group, sizeof(t_group)));
 		bft_free(bft, sizeof(t_bft));
+		if (prev_group != NULL
+			&& prev_group->total_rounds < group->total_rounds)
+		{
+			group_free(group, sizeof(t_group));
+			return (prev_group);
+		}
+		if (prev_group != NULL)
+			group_free(prev_group, sizeof(t_group));
+		prev_group = group;
 		count++;
 	}
+	return (group);
 }
 
 /*
@@ -80,12 +86,12 @@ static void	create_groups(t_lem_in *lem_in, t_glist **groups, int rooms_count)
 **	Prints the number of round for each group for a number of ants given.
 */
 
-static void	debug_print_rounds_info(t_lem_in *lem_in, t_group *best_group)
+static void		debug_print_rounds_info(t_lem_in *lem_in, t_group *best_group)
 {
 	if (lem_in->opt.debug == true)
 	{
 		ft_fprintf(2, "Rounds for group:\nRounds:\t%d\nAnts:\t%d\n",
-			group_total_rounds(best_group, lem_in->total_ants),
+			best_group->total_rounds,
 			lem_in->total_ants);
 		group_print(best_group);
 	}
@@ -96,18 +102,14 @@ static void	debug_print_rounds_info(t_lem_in *lem_in, t_group *best_group)
 **	Selects the best group and prints the solution.
 */
 
-void		solve(t_lem_in *lem_in, t_solution *solution)
+void			solve(t_lem_in *lem_in, t_solution *solution)
 {
-	t_glist		*groups;
 	t_group		*best_group;
 
-	groups = NULL;
 	lem_in->max_routes = max_routes(lem_in);
-	create_groups(lem_in, &groups, ft_glstlen(lem_in->rooms));
-	if (groups == NULL)
+	best_group = create_best_group(lem_in);
+	if (best_group == NULL)
 		lem_in_die();
-	best_group = select_best_group(groups, lem_in->total_ants);
 	debug_print_rounds_info(lem_in, best_group);
 	build_solution(lem_in, best_group, solution);
-	ft_glstdel(&groups, group_free);
 }

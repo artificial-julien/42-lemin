@@ -43,12 +43,11 @@ _SRC =	room/room.c \
 		solver/solve.c \
 		solver/solve_utils.c \
 		solver/select_best_group.c \
-		solver/ants_distribution.c \
-		solver/group_total_rounds.c \
 		solver/rebuild_routes.c \
 		solution/solution_print.c \
 		solution/solution.c \
 		solution_builder/build_solution.c \
+		utils/utils_array.c \
 		utils/utils.c \
 		glist/ft_glstadd.c \
 		glist/ft_glstadd_last.c \
@@ -63,7 +62,9 @@ _SRC =	room/room.c \
 		glist/ft_glstlen.c \
 		glist/ft_glstinsert.c \
 		glist/ft_glstrev.c \
+		group/ants_distribution.c \
 		group/group.c \
+		group/group_build.c \
 		route/route.c \
 		route/route_print.c \
 		bitmap/bitmap.c \

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/11 17:01:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 15:22:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,18 +20,15 @@ static int	routes_use_count(t_group *group, int total_ants)
 {
 	int		i;
 	int		p;
-	t_glist	*curr;
 
 	i = 0;
 	p = 0;
-	curr = group->routes;
-	while (curr != NULL)
+	while (i < group->route_count)
 	{
+		p += group->routes[i]->len - 1;
 		i++;
-		p += curr->route->len - 2;
 		if (p >= total_ants)
 			return (i);
-		curr = curr->next;
 	}
 	return (i);
 }
@@ -44,18 +41,13 @@ static int	routes_use_count(t_group *group, int total_ants)
 static int	get_grand_total(t_group *group, int total_ants, int routes_count)
 {
 	int		res;
-	t_glist	*curr;
 	int		i;
 
 	res = total_ants;
-	curr = group->routes;
 	i = 0;
 	while (i < routes_count)
 	{
-		if (curr == NULL)
-			lem_in_die();
-		res += curr->route->len;
-		curr = curr->next;
+		res += group->routes[i]->len;
 		i++;
 	}
 	return (res);
@@ -65,44 +57,38 @@ static int	get_grand_total(t_group *group, int total_ants, int routes_count)
 **	Distributes the ants.
 */
 
-static void	distribute(t_group *group, int grand_total, int *array, int size)
+static void	distribute(t_group *group, int grand_total, int *tab, int size)
 {
 	int		i;
 	int		average;
 	int		remainder;
-	t_glist	*curr;
 
 	remainder = grand_total % size;
 	average = grand_total / size;
-	curr = group->routes;
 	i = 0;
 	while (i < size)
 	{
-		array[i] = average - curr->route->len - 2;
+		tab[i] = average - group->routes[i]->len;
 		i++;
-		curr = curr->next;
 	}
 	i = 0;
 	while (i < remainder)
 	{
-		array[i]++;
+		tab[i]++;
 		i++;
 	}
 }
 
 /*
-**	Stores and array of ants to move in to routes.
-**	Returns the array size.
+**	Stores and array of the number of ants to move in to routes.
 */
 
-int			ants_distribution(t_group *group, int total_ants, int **res)
+void		distribute_ants(t_group *group, int total_ants, int *tab)
 {
 	int		routes_count;
 	int		grand_total;
 
 	routes_count = routes_use_count(group, total_ants);
 	grand_total = get_grand_total(group, total_ants, routes_count);
-	*res = ft_memalloc(sizeof(int) * routes_count);
-	distribute(group, grand_total, *res, routes_count);
-	return (routes_count);
+	distribute(group, grand_total, tab, routes_count);
 }
