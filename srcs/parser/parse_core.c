@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/27 17:44:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/28 18:43:24 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ void	parse_links(t_lem_in *lem_in, char **line)
 		{
 			break ;
 		}
-		parse_link(lem_in, *line);
+		parse_link(lem_in, line);
 		if (gnl_no_comm(0, line) == -1)
 			break ;
 	}
