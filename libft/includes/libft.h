@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 23:18:06 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/22 14:03:46 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 14:29:03 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ void			ft_lst_del(t_list **lst);
 void			ft_lstadd_last(t_list **alst, t_list *n);
 t_list			*ft_lst_del_one(t_list *curr, void *value, size_t size);
 t_list			*ft_lstnewchar(void const *content, size_t content_size);
+void			ft_lstrev(t_list **list);
 
 /*
 **	Double linked list functions.

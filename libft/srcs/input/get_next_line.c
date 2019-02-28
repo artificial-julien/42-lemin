@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:47:56 by juazouz           #+#    #+#             */
-/*   Updated: 2019/01/28 15:14:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:03:14 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ int					get_next_line(int const fd, char **line)
 
 	if (fd < 0 || BUFF_SIZE < 1 || !line || read(fd, buff, 0) < 0)
 		return (-1);
+	if (*line != NULL)
+		ft_strdel(line);
 	if (!(save[fd]) && (save[fd] = ft_strnew(0)) == NULL)
 		return (-1);
 	while (!(ft_strchr(save[fd], '\n')) &&
@@ -74,6 +76,8 @@ int					get_next_line(int const fd, char **line)
 	}
 	*line = ft_strsub(save[fd], 0, linelen(save[fd]));
 	if (!shift_to_end(save[fd]))
+	{
 		return (0);
+	}
 	return (1);
 }

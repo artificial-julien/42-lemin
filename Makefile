@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/28 19:20:22 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/28 19:30:39 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ _SRC =	room/room.c \
 		solution_builder/build_solution.c \
 		utils/utils_array.c \
 		utils/utils.c \
+		utils/utils_array.c \
 		glist/ft_glstadd.c \
 		glist/ft_glstadd_last.c \
 		glist/ft_glstdel.c \

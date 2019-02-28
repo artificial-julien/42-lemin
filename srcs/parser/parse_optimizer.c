@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_optimizer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/25 18:47:17 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/27 19:10:56 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,17 @@
 
 void	delete_dead_end(t_lem_in *lem_in, t_room *dead_end)
 {
-	t_glist	*rooms;
+	t_room	*next;
 	t_room	*curr;
 
-	rooms = lem_in->rooms;
-	while (rooms != NULL && dead_end)
+	(void)lem_in;
+	curr = dead_end;
+	while (curr->type == standard && curr->links_count <= 1)
 	{
-		curr = rooms->room;
-		room_remove_link(curr, dead_end);
-		rooms = rooms->next;
+		next = curr->links->room;
+		room_remove_link(next, curr);
+		lem_in_remove_room(lem_in, curr);
+		curr = next;
 	}
 }
 
@@ -52,7 +54,6 @@ void	parse_optimizer(t_lem_in *lem_in)
 		if (room->links_count <= 1 && room->type == standard)
 		{
 			delete_dead_end(lem_in, room);
-			lem_in_remove_room(lem_in, room);
 			curr = lem_in->rooms;
 			cpt++;
 		}

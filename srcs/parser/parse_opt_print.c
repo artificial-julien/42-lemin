@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/28 14:58:31 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:29:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	lem_in_print_all_rooms(t_lem_in *lem_in)
 	curr = lem_in->rooms;
 	ft_fprintf(2, "\n");
 	ft_fprintf(2, "		Print_rooms\n");
-	ft_fprintf(2, "length = %d\n\n", lem_in->room_len);
+	ft_fprintf(2, "length = %d\n\n", lem_in->room_count);
 	while (curr != NULL)
 	{
 		room_print_extra(curr->room);

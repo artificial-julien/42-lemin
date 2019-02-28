@@ -1,35 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/12 19:25:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 17:52:45 by agoulas          ###   ########.fr       */
+/*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
+/*   Updated: 2019/02/27 14:28:44 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
-{
-	t_list	*result;
+/*
+**	Reverses the specified list.
+*/
 
-	result = ft_memalloc(sizeof(t_list));
-	if (result == NULL)
+void	ft_lstrev(t_list **list)
+{
+	t_list	*curr;
+	t_list	*prev;
+	t_list	*next;
+
+	curr = *list;
+	prev = 0;
+	while (curr)
 	{
-		return (NULL);
+		next = curr->next;
+		curr->next = prev;
+		prev = curr;
+		curr = next;
 	}
-	result->content = (void*)content;
-	if (content == NULL)
-	{
-		result->content_size = 0;
-	}
-	else
-	{
-		result->content_size = content_size;
-	}
-	result->next = NULL;
-	return (result);
+	*list = prev;
 }

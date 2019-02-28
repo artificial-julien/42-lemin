@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:25:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:31:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ struct	s_lem_in
 	int		max_routes;
 	t_room	*start;
 	t_room	*end;
-	int		room_len;
+	int		room_count;
 	t_glist	*rooms;
+	t_room	**array_room;
 	t_list	*display;
 	t_opt	opt;
 };
@@ -276,7 +277,7 @@ void		parse_room(t_lem_in *lem_in, char *line, t_roomtype type);
 int			read_room_line(t_lem_in *lem_in, char **line, t_roomtype type);
 t_bool		parse_is_link(char *line);
 void		parse_links(t_lem_in *lem_in, char **line);
-void		parse_link(t_lem_in *lem_in, char *line);
+void		parse_link(t_lem_in *lem_in, char **line);
 int			parse_number_safe(char *s);
 
 /*
@@ -285,8 +286,8 @@ int			parse_number_safe(char *s);
 
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
-t_bool		room_find_name(t_lem_in *lem_in, char *name);
 void		room_free(void *content, size_t size);
+int 		room_cmp(void *a, void *b);
 
 /*
 ** Room_links.
@@ -391,7 +392,7 @@ void		time_profiling(t_lem_in *lem_in, t_bool initial, char *label);
 **	Array utils.
 */
 
-void		**glist_to_array(t_glist *list, size_t *size);
+void		*glist_to_array(t_glist *list);
 void		array_sort(void **array, size_t size, int (cmp)(void*, void*));
 
 /*
@@ -422,8 +423,14 @@ void		lem_in_print_all_rooms(t_lem_in *lem_in);
 **	Lines saving and display.
 */
 
-void		save_line(t_lem_in *lem_in, char *line);
-void		print_lines(t_lem_in *lem_in);
-void		free_saved_line(t_lem_in *lem_in);
+void		save_display(t_lem_in *lem_in, char *line);
+void		print_display(t_lem_in *lem_in);
+void		free_saved_display(t_lem_in *lem_in);
 
+/*
+**
+*/
+
+void			*glist_to_array(t_glist *list);
+void			array_sort(void **array, size_t size, int (cmp)(void*, void*));
 #endif

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/12 19:25:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 14:50:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:28:26 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ t_dlist	*ft_dlstnew(void const *content, size_t content_size)
 {
 	t_dlist	*result;
 
-	result = ft_safe_malloc(sizeof(t_dlist));
+	result = ft_memalloc(sizeof(t_dlist));
 	if (result == NULL)
 		return (NULL);
 	result->content = (void*)content;

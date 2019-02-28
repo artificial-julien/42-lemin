@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 14:47:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:30:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 **	Move the ants forn a room to another and print the move.
 */
 
-t_bool	ant_try_move(t_room *src, t_room *dest, t_solution *solution)
+t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution)
 {
 	if (src->ants > 0 && ant_can_move(dest))
 	{
@@ -38,7 +38,7 @@ t_bool	ant_try_move(t_room *src, t_room *dest, t_solution *solution)
 **	Function testing the links for if the next room is empty
 */
 
-t_bool	ant_can_move(t_room *room)
+t_bool		ant_can_move(t_room *room)
 {
 	if ((room->ants == 0 && room->type == standard) || (room->type == end))
 		return (true);

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/21 14:10:58 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 15:11:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:29:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,24 +88,25 @@ void	parse_room(t_lem_in *lem_in, char *line, t_roomtype type)
 	new = room_new(tab[0], type, x, y);
 	lem_in_add_room(lem_in, new);
 	ft_free_tab(&tab);
-	save_line(lem_in, line);
+	save_display(lem_in, line);
 }
 
 /*
 **	Create links between rooms.
 */
 
-void	parse_link(t_lem_in *lem_in, char *line)
+void	parse_link(t_lem_in *lem_in, char **line)
 {
 	char	*s1;
 	char	*s2;
 	int		pos;
 
-	pos = ft_strindex(line, '-');
-	s1 = ft_strsub(line, 0, pos);
-	s2 = ft_strsub(line, pos + 1, ft_strlen(line) - pos);
+	pos = ft_strindex(*line, '-');
+	s1 = ft_strsub(*line, 0, pos);
+	s2 = ft_strsub(*line, pos + 1, ft_strlen(*line) - pos);
 	room_add_link(lem_in, s1, s2);
 	free(s1);
 	free(s2);
-	save_line(lem_in, line);
+	save_display(lem_in, *line);
+	ft_strdel(line);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
+#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/01/29 14:07:46 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/27 14:29:41 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,6 +54,7 @@ _SRC =	./char/ft_isalnum.c \
 		./list/ft_lst_del_one.c \
 		./list/ft_lstadd_last.c \
 		./list/ft_lst_del.c \
+		./list/ft_lstrev.c \
 		./dlist/ft_dlstadd.c \
 		./dlist/ft_dlstdel.c \
 		./dlist/ft_dlstdelone.c \

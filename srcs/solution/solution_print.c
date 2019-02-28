@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 12:33:38 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 13:47:28 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/02/26 19:07:17 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ static void	print_round(t_round *round)
 {
 	t_dlist		*curr;
 	t_move		*move;
-
 
 	curr = ft_dlstfirst(round->moves);
 	while (curr != NULL)

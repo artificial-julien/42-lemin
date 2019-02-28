@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 15:44:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:30:30 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int			main(int ac, char **av)
 	solution_init(&solution);
 	solve(&lem_in, &solution);
 	time_profiling(&lem_in, false, "Solving");
-	// print_lines(&lem_in);
+	// print_display(&lem_in);
 	solution_print(&solution);
 	time_profiling(&lem_in, false, "Writing result");
 	lem_in_free(&lem_in);

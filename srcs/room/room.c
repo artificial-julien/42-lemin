@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/19 15:09:41 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 18:54:15 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,25 @@ t_room	*room_new(char *name, t_roomtype type, int x, int y)
 
 t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 {
-	t_glist	*curr;
+	int		pos;
+	int		size;
+	int		cmp;
+	t_room	*room;
 
-	curr = lem_in->rooms;
-	while (curr != NULL)
+	pos = (lem_in->room_count - 1) / 2;
+	size = (lem_in->room_count - 1);
+	while (pos >= 0 && pos <= size)
 	{
-		if (ft_strequ(((t_room*)curr->content)->name, name))
-			return ((t_room*)curr->content);
-		curr = curr->next;
+		room = lem_in->array_room[pos];
+		if ((cmp = ft_strcmp(name, room->name)) == 0)
+			return ((t_room*)lem_in->array_room[pos]);
+		else
+		{
+			if (cmp < 0)
+				pos = (pos <= 1) ? (pos - 1) : (pos / 2);
+			else
+				pos = (pos + 1);
+		}
 	}
 	lem_in_die();
 	return (NULL);
@@ -63,22 +74,22 @@ void	room_free(void *content, size_t size)
 	room = (t_room*)content;
 	free(room->name);
 	ft_glstdel(&room->links, NULL);
+	free(content);
 }
 
 /*
-** return if a name is already used for a room.
+**	Sort by lexical order the two room.
 */
 
-t_bool	room_find_name(t_lem_in *lem_in, char *name)
+int		room_cmp(void *a, void *b)
 {
-	t_glist	*curr;
+	t_room	*room_a;
+	t_room	*room_b;
+	int		cmp;
 
-	curr = lem_in->rooms;
-	while (curr != NULL)
-	{
-		if (ft_strequ(((t_room*)curr->content)->name, name))
-			return (true);
-		curr = curr->next;
-	}
-	return (false);
+	room_a = (t_room*)a;
+	room_b = (t_room*)b;
+	if ((cmp = ft_strcmp(room_a->name, room_b->name)) == 0)
+		lem_in_die();
+	return (cmp);
 }
