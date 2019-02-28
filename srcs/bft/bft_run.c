@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:03:25 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:25:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 	{
 		res = route_tree_create_child(lem_in, res, res->room->prev);
 	}
+	res->skip = res->room->distance - 1;
 	return (res);
 }
 

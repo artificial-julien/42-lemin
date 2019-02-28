@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:21:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:25:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,13 @@ struct	s_lem_in
 **	struct	s_room
 **	description:	Ant room or node.
 **
-**	name:	Room name. Display purposes.
-**	id:		Room id.
-**	type:	Start / end / standard (intermediate node)
-**	ants:	Ants count in the current room. Up to 1 for standard type.
-**	ant_id:	Present ant id going from 1 to ants_count. 0 when no ants are present.
-**	links:	Connected rooms list.
+**	name:		Room name. Display purposes.
+**	id:			Room id.
+**	type:		Start / end / standard (intermediate node)
+**	ants:		Ants count in the current room. Up to 1 for standard type.
+**	ant_id:		Present ant id going from 1 to ants_count. 0 when no ants are present.
+**	links:		Connected rooms list.
+**	distance:	Distance to end if a route is present.
 */
 
 struct	s_room
@@ -125,6 +126,7 @@ struct	s_room
 	t_room		*prev;
 	t_room		*next;
 	t_bool		visited;
+	int			distance;
 };
 
 /*
@@ -154,6 +156,7 @@ struct	s_round
 **	parent:			parent node.
 **	child_count:	child count. 0 means a dead end.
 **	intersection:	node where the traverse starts splitting an existant route.
+**	skip:			turns to skip until resuming the traverse.
 */
 
 struct	s_route_tree
@@ -162,6 +165,7 @@ struct	s_route_tree
 	t_route_tree	*parent;
 	int				child_count;
 	t_room			*intersection;
+	int				skip;
 };
 
 /*
