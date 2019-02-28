@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/21 18:39:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:03:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,55 +22,60 @@
 */
 
 /*
-**	Returns the traverse possibility for the specified node.
+**	Returns the actual traverse destination for the specified node.
+**	Returns NULL when the destination is not possible.
 */
 
-static int		can_traverse_node(t_bft *bft, t_room *src, t_room *dst)
+static t_bool		can_go_to(t_route_tree *tree, t_room *dst)
 {
-	if (src->next != NULL && src->next == dst)
+	// If going from start into an existing route.
+	if (tree->room->type == start && dst->prev == tree->room)
 	{
-		return (NONE);
+		return (false);
 	}
-	if (bitmap_get(bft->forbidden, dst->id))
-	{
-		return (NONE);
-	}
-	if (dst->type == end)
-	{
-		return (FINAL);
-	}
-	if (dst->prev != NULL && dst->prev != src)
-	{
-		return (RUN_TO_START);
-	}
-	if (dst->prev != NULL && dst->prev == src)
-	{
-		return (NONE);
-	}
-	return (STANDARD);
+	return (!dst->visited
+		&& tree->intersection != dst);
 }
 
 /*
-**	Returns true if the bft reached a successful end.
-**	Stores the new bft information.
+**	Returns true if going from src to dst means stepping IN an existant route.
 */
 
-static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_bft)
+static t_bool		in_intersection(t_room *src, t_room *dst)
 {
-	int		traverse_mode;
+	if (src->next != NULL && src->next == dst)
+		return (false);
+	if (dst->prev == NULL)
+		return (false);
+	if (dst->prev == src)
+		return (false);
+	return (true);
+}
 
-	traverse_mode = can_traverse_node(bft, src, dst);
-	if (traverse_mode == NONE)
+/*
+**	Returns true if going from src to dst means stepping OUT of an existant route.
+*/
+
+static t_bool		out_intersection(t_room *src, t_room *dst)
+{
+	return (src->next != NULL && dst->prev != src);
+}
+
+/*
+**	Extends the specified tree following the existant route to the first node
+**	before start.
+*/
+
+static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
+{
+	t_route_tree	*res;
+
+	res = tree;
+	while (res->room->prev->type != start)
 	{
-		return (NONE);
+		res = route_tree_create_child(lem_in, res, res->room->prev);
 	}
-	*new_bft = bft_copy(bft);
-	bft_add_node(*new_bft, dst);
-	if (src->next == NULL && dst->prev != NULL)
-	{
-		bft_add_node(*new_bft, dst->prev);
-	}
-	return (traverse_mode);
+	return (res);
 }
 
 /*
@@ -79,64 +84,75 @@ static int		try_traverse_node(t_bft *bft, t_room *src, t_room *dst, t_bft **new_
 **	Returns the bft information of the found path.
 */
 
-static t_bft	*extend_node(t_lem_in *lem_in, t_bft *bft, t_glist **next_nodes)
+static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **next_nodes)
 {
-	t_glist	*curr;
-	t_glist	*new_node;
-	t_bft	*new_bft;
-	t_room	*last_room;
-	int		traverse_res;
+	t_glist			*curr;
+	t_route_tree	*new_node;
+	static int		debug_pass;
 
-	last_room = bft->virtual_route->rooms->room;
-	bitmap_set(bft->forbidden, last_room->id);
-	curr = last_room->links;
+	debug_pass++;
 	if (lem_in->opt.debug)
 	{
-		ft_fprintf(2, "\nExtending from:\t");
-		route_print(bft->virtual_route);
+		ft_fprintf(2, "\nPass #%d\n", debug_pass);
+		ft_fprintf(2, "Extending from:\t");
+		// ft_fprintf(2, "\nExtending from:\t");
+		route_tree_print(node);
 	}
+	// Viens d'entrer sur une route -> Remonter jusqu'a start.
+	if (node->intersection != NULL && node->intersection == node->room)
+	{
+		new_node = go_to_start(lem_in, node);
+		ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
+		return (NULL);
+	}
+	node->room->visited = true;
+	curr = node->room->links;
 	while (curr != NULL)
 	{
-		traverse_res = try_traverse_node(bft, last_room, curr->room, &new_bft);
-		if (traverse_res == FINAL)
+		if (can_go_to(node, curr->room))
 		{
-			if (lem_in->opt.debug)
+			new_node = route_tree_create_child(lem_in, node, curr->room);
+			if (in_intersection(node->room, curr->room))
+				new_node->intersection = curr->room;
+			else if (out_intersection(node->room, curr->room))
+				new_node->intersection = NULL;
+			else if (curr->room->type == end)
 			{
-				ft_fprintf(2, "Found:\t\t");
-				route_print((new_bft)->virtual_route);
+				if (lem_in->opt.debug)
+				{
+					ft_fprintf(2, "Found:\t\t");
+					route_tree_print(node);
+				}
+				return (route_tree_to_route(new_node));
 			}
-			return (new_bft);
-		}
-		else if (traverse_res != NONE)
-		{
 			if (lem_in->opt.debug)
 			{
 				ft_fprintf(2, "Extending to:\t");
-				route_print((new_bft)->virtual_route);
+				route_tree_print(new_node);
 			}
-			new_node = ft_glstnew(new_bft, sizeof(t_bft));
-			ft_glstadd(next_nodes, new_node);
+			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
 		}
 		curr = curr->next;
 	}
+	route_tree_del(lem_in, node);
 	return (NULL);
 }
 
 /*
 **	Iterates over current level nodes.
 **	Stores a list of the next level nodes.
-**	Returns the bft information of the found path.
+**	Returns the tree leaf of the first found path if any.
 */
 
-static t_bft	*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes, t_glist **next_nodes)
+static t_route		*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes, t_glist **next_nodes)
 {
-	t_glist	*curr;
-	t_bft	*res;
+	t_glist		*curr;
+	t_route		*res;
 
 	curr = nodes;
 	while (curr != NULL)
 	{
-		if ((res = extend_node(lem_in, curr->bft, next_nodes)))
+		if ((res = extend_node(lem_in, curr->tree, next_nodes)))
 			return (res);
 		curr = curr->next;
 	}
@@ -145,32 +161,33 @@ static t_bft	*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes, t_glist **next
 
 /*
 **	Runs breadth-first traverse through the graph and builds routes.
-**	Returns the relevant breadth-first traverse information.
+**	Returns a virtual route.
 **	Returns null if no relevant traverse path are found.
 */
 
-t_bft			*bft_run(t_lem_in *lem_in, t_bft *initial)
+t_route				*run_bft(t_lem_in *lem_in)
 {
-	t_bft	*initial_cpy;
-	t_glist	*nodes;
-	t_glist	*next_nodes;
-	t_bft	*res;
+	t_glist			*nodes;
+	t_glist			*next_nodes;
+	t_route			*res;
+	t_route_tree	*tree;
 
 	nodes = NULL;
-	initial_cpy = bft_copy(initial);
-	ft_glstadd(&nodes, ft_glstnew(initial_cpy, sizeof(t_bft)));
+	tree = route_tree_new(lem_in);
+	tree->room = lem_in->start;
+	ft_glstadd(&nodes, ft_glstnew(tree, sizeof(t_route_tree)));
 	next_nodes = NULL;
 	while (1)
 	{
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
 		if (res != NULL)
-			res = bft_copy(res);
-		else if (next_nodes == NULL)
+			return (res);
+		if (next_nodes == NULL)
 			return (NULL);
-		ft_glstdel(&nodes, bft_free);
+		ft_glstdel(&nodes, NULL);
 		if (res != NULL)
 		{
-			ft_glstdel(&next_nodes, bft_free);
+			ft_glstdel(&next_nodes, NULL);
 			return (res);
 		}
 		nodes = next_nodes;

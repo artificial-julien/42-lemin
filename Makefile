@@ -6,15 +6,15 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/26 14:26:37 by juazouz          ###   ########.fr        #
+#    Updated: 2019/02/28 17:40:20 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
 # Laisser en mode debug avant la version finale
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG -fsanitize=address
-# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -D DEBUG
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG #-fsanitize=address
+# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -g
 
 IDIR = includes
 SDIR = srcs
@@ -37,12 +37,11 @@ _SRC =	room/room.c \
 		room/room_create_links.c \
 		lem_in.c \
 		bft/bft_run.c \
-		bft/bft.c \
+		bft/route_tree.c \
 		parser/parse.c \
 		parser/parse_core.c \
 		solver/solve.c \
 		solver/solve_utils.c \
-		solver/select_best_group.c \
 		solver/rebuild_routes.c \
 		solution/solution_print.c \
 		solution/solution.c \

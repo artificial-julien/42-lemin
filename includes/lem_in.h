@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 15:34:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 17:26:07 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ typedef struct s_route		t_route;
 typedef struct s_group		t_group;
 typedef struct s_bitmap		t_bitmap;
 typedef struct s_opt		t_opt;
-typedef struct s_bft		t_bft;
+typedef struct s_route_tree	t_route_tree;
 typedef struct s_mempool	t_mempool;
 typedef struct s_memunit	t_memunit;
 
@@ -54,14 +54,14 @@ struct	s_glist
 {
 	union
 	{
-		void		*content;
-		t_room		*room;
-		t_route		*route;
-		t_group		*group;
-		t_round		*round;
-		t_move		*move;
-		t_glist		*glist;
-		t_bft		*bft;
+		void			*content;
+		t_room			*room;
+		t_route			*route;
+		t_group			*group;
+		t_round			*round;
+		t_move			*move;
+		t_glist			*glist;
+		t_route_tree	*tree;
 	};
 	size_t			content_size;
 	struct s_glist	*next;
@@ -122,9 +122,10 @@ struct	s_room
 	int			ants;
 	int			ant_id;
 	t_glist		*links;
+	int			links_count;
 	t_room		*prev;
 	t_room		*next;
-	int			links_count;
+	t_bool		visited;
 };
 
 /*
@@ -149,18 +150,19 @@ struct	s_round
 };
 
 /*
-**	Breadth-first traverse informations.
-**
-**	virtual_route:	Every traversed nodes. Virtual route used for flows creation.
-**	augment_count:	How many times the path augmented the total flow.
-**	forbidden:		Forbidden nodes map.
+**	Virtual route tree. Used for forking breadth first traverse.
+**	room:			route room.
+**	parent:			parent node.
+**	child_count:	child count. 0 means a dead end.
+**	intersection:	node where the traverse starts splitting an existant route.
 */
 
-struct	s_bft
+struct	s_route_tree
 {
-	t_route		*virtual_route;
-	int			augment_count;
-	t_bitmap	*forbidden;
+	t_room			*room;
+	t_route_tree	*parent;
+	int				child_count;
+	t_room			*intersection;
 };
 
 /*
@@ -302,12 +304,17 @@ void		room_remove_link(t_room *room, t_room *link);
 **	Breadth-first traverse.
 */
 
-t_bft		*bft_run(t_lem_in *lem_in, t_bft *initial);
-t_bft		*bft_new(int rooms_count);
-void		bft_free(void *content, size_t size);
-t_bft		*bft_copy(t_bft *bft);
-void		bft_add_node(t_bft *bft, t_room *room);
-void		bft_run_to_start(t_bft *bft);
+t_route			*run_bft(t_lem_in *lem_in);
+
+/*
+**	Route tree.
+*/
+
+t_route_tree	*route_tree_new(t_lem_in *lem_in);
+void			route_tree_del(t_lem_in *lem_in, t_route_tree *route_tree);
+t_route_tree	*route_tree_create_child(t_lem_in *lem_in, t_route_tree *parent, t_room *room);
+void			route_tree_print(t_route_tree *route_tree);
+t_route			*route_tree_to_route(t_route_tree *route_tree);
 
 /*
 **	Route.
