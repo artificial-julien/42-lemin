@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:47:03 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 17:48:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		&& (virtual_route = run_bft(lem_in)) != NULL)
 	{
 		rebuild_routes(virtual_route);
-		build_routes_distances(lem_in);
 		debug_print_new_route(lem_in, virtual_route);
 		group = group_build(lem_in);
 		debug_print_new_group(lem_in, group);

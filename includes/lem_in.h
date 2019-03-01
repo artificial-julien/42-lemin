@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:45:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/02/28 19:31:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -346,7 +346,6 @@ void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 */
 
 int			max_routes(t_lem_in *lem_in);
-void		build_routes_distances(t_lem_in *lem_in);
 
 /*
 **	Solution printer.
