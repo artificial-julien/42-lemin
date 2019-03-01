@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/26 14:19:01 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/26 14:21:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:07:12 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	min(int a, int b)
 **	and the number of ants.
 */
 
-int		max_routes(t_lem_in *lem_in)
+int			max_routes(t_lem_in *lem_in)
 {
 	int	res;
 	int	start;
