@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 14:43:34 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:55:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ struct	s_opt
 {
 	t_bool	debug;
 	t_bool	print_room;
+	t_bool	print_route;
 	t_bool	print_groups;
 	t_bool	print_help;
 	t_bool	print_time;
@@ -138,6 +139,7 @@ struct	s_room
 struct	s_solution
 {
 	int		round;
+	int		route;
 	t_dlist	*rounds;
 };
 
@@ -173,6 +175,7 @@ struct	s_route_tree
 
 struct	s_move
 {
+	int		id_route;
 	int		ant_id;
 	t_room	*dst;
 };
@@ -350,7 +353,7 @@ int			max_routes(t_lem_in *lem_in);
 */
 
 void		print_solution(t_group *group, t_lem_in *lem_in);
-t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution);
+t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution, int *ants_routes);
 t_bool		ant_can_move(t_room *room);
 
 /*
@@ -358,7 +361,7 @@ t_bool		ant_can_move(t_room *room);
 */
 
 void		solution_init(t_solution *solution);
-void		solution_print(t_solution *solution);
+void		solution_print(t_lem_in lem_in, t_solution *solution);
 void		solution_add_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
 void		solution_free(t_solution *solution);

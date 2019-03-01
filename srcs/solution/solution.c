@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solution.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:24:30 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:30:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:07:48 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void		solution_add_move(t_solution *solution, t_room *dst)
 	t_move	*move;
 
 	move = ft_memalloc(sizeof(t_move));
+	move->id_route = solution->route;
 	move->ant_id = dst->ant_id;
 	move->dst = dst;
 	new = ft_dlstnew(move, sizeof(t_move));
@@ -69,7 +70,7 @@ void		solution_add_move(t_solution *solution, t_room *dst)
 	ft_dlstadd(&round->moves, new);
 }
 
-void	round_free(void *content, size_t size)
+void		round_free(void *content, size_t size)
 {
 	t_round	*round;
 
@@ -78,7 +79,7 @@ void	round_free(void *content, size_t size)
 	ft_dlstdel(&round->moves, NULL);
 }
 
-void	solution_free(t_solution *solution)
+void		solution_free(t_solution *solution)
 {
 	ft_dlstdel(&solution->rounds, round_free);
 }

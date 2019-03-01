@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/27 19:10:56 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/01 14:56:37 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	parse_optimizer(t_lem_in *lem_in)
 	int			cpt;
 
 	cpt = 0;
-	if (lem_in->opt.print_room == true || lem_in->opt.debug == true)
+	if (lem_in->opt.print_room == true)
 		lem_in_print_all_rooms(lem_in);
 	room = NULL;
 	curr = lem_in->rooms;
@@ -61,6 +61,6 @@ void	parse_optimizer(t_lem_in *lem_in)
 			curr = curr->next;
 	}
 	if (cpt != 0
-		&& (lem_in->opt.print_room == true || lem_in->opt.debug == true))
+		&& (lem_in->opt.print_room == true))
 		lem_in_print_all_rooms(lem_in);
 }
