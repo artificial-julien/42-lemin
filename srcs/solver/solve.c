@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:03:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:54:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void		debug_print_rounds_info(t_lem_in *lem_in, t_group *best_group)
 **	Resets the visited flags and the routes.
 */
 
-static void		reset_map(t_lem_in *lem_in)
+static void		reset_visited(t_lem_in *lem_in)
 {
 	t_glist	*curr;
 
@@ -69,8 +69,6 @@ static void		reset_map(t_lem_in *lem_in)
 	while (curr != NULL)
 	{
 		curr->room->visited = false;
-		curr->room->next = NULL;
-		curr->room->prev = NULL;
 		curr = curr->next;
 	}
 }
@@ -92,7 +90,7 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 	while (count < lem_in->max_routes
 		&& (virtual_route = run_bft(lem_in)) != NULL)
 	{
-		reset_map(lem_in);
+		reset_visited(lem_in);
 		rebuild_routes(virtual_route);
 		debug_print_new_route(lem_in, virtual_route);
 		group = group_build(lem_in);
