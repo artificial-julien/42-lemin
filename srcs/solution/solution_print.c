@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 12:33:38 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:06:40 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:13:13 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	print_round(t_lem_in lem_in, t_round *round)
 	{
 		move = (t_move*)curr->content;
 		if (lem_in.opt.print_route == true)
-			ft_printf("r_%d:L%d-%s", move->id_route, move->ant_id,
+			ft_printf("R%d:L%d-%s", move->id_route, move->ant_id,
 				move->dst->name);
 		else
 			ft_printf("L%d-%s", move->ant_id, move->dst->name);
