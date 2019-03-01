@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/01 16:08:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:04:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	group_print(t_group *group)
 	i = 0;
 	while (i < group->route_count)
 	{
+		ft_fprintf(2, "(ants=%d) ", group->ants_distribution[i]);
 		route_print(group->routes[i]);
 		i++;
 	}
