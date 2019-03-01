@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:31:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 14:43:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,12 +152,11 @@ struct	s_round
 };
 
 /*
-**	Virtual route tree. Used for forking breadth first traverse.
-**	room:			route room.
+**	Virtual route tree. Used for forking in breadth first traverse.
+**	room:			current node room.
 **	parent:			parent node.
 **	child_count:	child count. 0 means a dead end.
-**	intersection:	node where the traverse starts splitting an existant route.
-**	skip:			turns to skip until resuming the traverse.
+**	intersection:	node where the traverse starts cutting an existant route.
 */
 
 struct	s_route_tree
@@ -166,7 +165,6 @@ struct	s_route_tree
 	t_route_tree	*parent;
 	int				child_count;
 	t_room			*intersection;
-	int				skip;
 };
 
 /*

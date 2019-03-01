@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:25:25 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:27:04 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,33 @@
 
 static t_bool		can_go_to(t_route_tree *tree, t_room *dst)
 {
-	// If going from start into an existing route.
+	if (dst->visited)
+	{
+		return (false);
+	}
+	// On ne remonte pas la route existante.
+	if (tree->room->prev != NULL && tree->room->prev == dst)
+	{
+		return (false);
+	}
+	// On ne repasse pas par le point d'intersection de la route actuellement coupée.
+	if (tree->intersection == dst)
+	{
+		return (false);
+	}
+	// On ne resort pas aussitot de la route sur laquelle on vient d'entrer car on creerait une route croisée.
+	if (tree->intersection != NULL
+		&& tree->room == tree->intersection
+		&& dst != tree->room->next)
+	{
+		return (false);
+	}
+	// On part de start en prenant une route existante (on evite de la suivre jusqu'a la fin)
 	if (tree->room->type == start && dst->prev == tree->room)
 	{
 		return (false);
 	}
-	return (!dst->visited
-		&& tree->intersection != dst);
+	return (true);
 }
 
 /*
@@ -58,24 +78,25 @@ static t_bool		in_intersection(t_room *src, t_room *dst)
 
 static t_bool		out_intersection(t_room *src, t_room *dst)
 {
-	return (src->next != NULL && dst->prev != src);
+	return (src->next != NULL && src->next != dst);
 }
 
 /*
-**	Extends the specified tree following the existant route to the first node
-**	before start.
+**	Continues the traverse from the first node of the existant route we are on.
 */
 
 static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 {
+	t_room			*room;
 	t_route_tree	*res;
 
-	res = tree;
-	while (res->room->prev->type != start)
+	room = tree->parent->room;
+	while (room->prev->type != start)
 	{
-		res = route_tree_create_child(lem_in, res, res->room->prev);
+		room = room->prev;
 	}
-	res->skip = res->room->distance - 1;
+	res = route_tree_create_child(lem_in, tree, lem_in->start);
+	res = route_tree_create_child(lem_in, res, room);
 	return (res);
 }
 
@@ -99,14 +120,33 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}
-	// Viens d'entrer sur une route -> Remonter jusqu'a start.
-	if (node->intersection != NULL && node->intersection == node->room)
+	if (node->room->type == end)
 	{
-		new_node = go_to_start(lem_in, node);
-		ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
-		return (NULL);
+		// Est sur end en suivant une route -> Remonter jusqu'a start.
+		if (node->parent->room->next != NULL)
+		{
+			new_node = go_to_start(lem_in, node);
+			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
+			if (lem_in->opt.debug)
+			{
+				ft_fprintf(2, "Extending to (from start):\t");
+				route_tree_print(new_node);
+			}
+			return (NULL);
+		}
+		// Est sur end -> Trouvé
+		else
+		{
+			if (lem_in->opt.debug)
+			{
+				ft_fprintf(2, "Found:\t\t");
+				route_tree_print(node);
+			}
+			return (route_tree_to_route(node));
+		}
 	}
-	node->room->visited = true;
+	if (node->room->next == NULL)
+		node->room->visited = true;
 	curr = node->room->links;
 	while (curr != NULL)
 	{
@@ -117,15 +157,6 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 				new_node->intersection = curr->room;
 			else if (out_intersection(node->room, curr->room))
 				new_node->intersection = NULL;
-			else if (curr->room->type == end)
-			{
-				if (lem_in->opt.debug)
-				{
-					ft_fprintf(2, "Found:\t\t");
-					route_tree_print(node);
-				}
-				return (route_tree_to_route(new_node));
-			}
 			if (lem_in->opt.debug)
 			{
 				ft_fprintf(2, "Extending to:\t");
