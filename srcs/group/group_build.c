@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 17:30:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:39:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,7 @@ t_group			*group_build(t_lem_in *lem_in)
 	distribute_ants(res, lem_in->total_ants);
 	res->total_rounds =
 		res->routes[0]->len
-		+ (lem_in->total_ants / res->route_count)
-		+ ((lem_in->total_ants % res->route_count) > 0 ? 1 : 0)
+		+ res->ants_distribution[0]
 		- 1;
 	return (res);
 }
