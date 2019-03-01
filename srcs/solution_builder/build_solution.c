@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:30:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 16:05:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,18 @@
 **	Move the ants forn a room to another and print the move.
 */
 
-t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution)
+t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
+	int *ants_left)
 {
-	if (src->ants > 0 && ant_can_move(dest))
+	if (src->ants > 0 && ant_can_move(dest) && ants_left > 0)
 	{
+		ants_left--;
 		src->ants--;
 		dest->ants++;
 		dest->ant_id = src->ant_id;
 		if (src->type == start)
 		{
+			(*ants_left)--;
 			src->ant_id++;
 			dest->ant_id = src->ant_id;
 		}
@@ -49,18 +52,19 @@ t_bool		ant_can_move(t_room *room)
 **	Move all ants of one route of the group.
 */
 
-static void	run_route(t_lem_in *lem_in, t_route *route, t_solution *solution)
+static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_routes,
+	t_solution *solution)
 {
 	t_glist	*curr;
 	t_room	*room_a;
 	t_room	*room_b;
 
 	curr = route->rooms;
-	while (curr->room != lem_in->start)
+	while (curr->room != lem_in->start && ants_routes > 0)
 	{
 		room_a = curr->room;
 		room_b = curr->next->room;
-		ant_try_move(room_b, room_a, solution);
+		ant_try_move(room_b, room_a, solution, ants_routes);
 		curr = curr->next;
 	}
 }
@@ -77,7 +81,9 @@ static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 	i = 0;
 	while (i < group->route_count)
 	{
-		run_route(lem_in, group->routes[i], solution);
+		solution->route = i;
+		run_route(lem_in, group->routes[i], &group->ants_distribution[i],
+			solution);
 		i++;
 	}
 }
