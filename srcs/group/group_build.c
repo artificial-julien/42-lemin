@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 15:28:41 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:30:13 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ t_group			*group_build(t_lem_in *lem_in)
 	res->ants_distribution = ft_memalloc(sizeof(int) * res->route_count);
 	create_routes(lem_in, res);
 	array_sort((void**)res->routes, res->route_count, route_cmp_len);
-	distribute_ants(res, lem_in->total_ants, res->ants_distribution);
+	distribute_ants(res, lem_in->total_ants);
 	res->total_rounds =
 		res->routes[0]->len
 		+ (lem_in->total_ants / res->route_count)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:05:51 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:00:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,8 @@
 t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
 	int *ants_left)
 {
-	if (src->ants > 0 && ant_can_move(dest) && ants_left > 0)
+	if (src->ants > 0 && ant_can_move(dest))
 	{
-		ants_left--;
 		src->ants--;
 		dest->ants++;
 		dest->ant_id = src->ant_id;
@@ -60,7 +59,7 @@ static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_routes,
 	t_room	*room_b;
 
 	curr = route->rooms;
-	while (curr->room != lem_in->start && ants_routes > 0)
+	while (curr->room != lem_in->start)
 	{
 		room_a = curr->room;
 		room_b = curr->next->room;

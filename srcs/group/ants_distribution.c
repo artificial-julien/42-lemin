@@ -6,89 +6,44 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 15:22:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:30:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-/*
-**	Returns the total number of routes needed.
-*/
-
-static int	routes_use_count(t_group *group, int total_ants)
+static int	rounds_for_route(t_group *group, int index)
 {
-	int		i;
-	int		p;
-
-	i = 0;
-	p = 0;
-	while (i < group->route_count)
-	{
-		p += group->routes[i]->len - 1;
-		i++;
-		if (p >= total_ants)
-			return (i);
-	}
-	return (i);
+	if (group->ants_distribution[index] == 0)
+		return (0);
+	return (group->routes[index]->len + group->ants_distribution[index] - 1);
 }
 
-/*
-**	Returns the grand total (total ants + sum of the len of used routes).
-**	Math used for ants distribution.
-*/
-
-static int	get_grand_total(t_group *group, int total_ants, int routes_count)
+static void	distribute_one(t_group *group)
 {
-	int		res;
-	int		i;
+	int	i;
 
-	res = total_ants;
 	i = 0;
-	while (i < routes_count)
+	while (i < group->route_count - 1
+		&& rounds_for_route(group, i) > rounds_for_route(group, i + 1))
 	{
-		res += group->routes[i]->len;
 		i++;
 	}
-	return (res);
-}
-
-/*
-**	Distributes the ants.
-*/
-
-static void	distribute(t_group *group, int grand_total, int *tab, int size)
-{
-	int		i;
-	int		average;
-	int		remainder;
-
-	remainder = grand_total % size;
-	average = grand_total / size;
-	i = 0;
-	while (i < size)
-	{
-		tab[i] = average - group->routes[i]->len;
-		i++;
-	}
-	i = 0;
-	while (i < remainder)
-	{
-		tab[i]++;
-		i++;
-	}
+	group->ants_distribution[i]++;
 }
 
 /*
 **	Stores and array of the number of ants to move in to routes.
 */
 
-void		distribute_ants(t_group *group, int total_ants, int *tab)
+void		distribute_ants(t_group *group, int total_ants)
 {
-	int		routes_count;
-	int		grand_total;
+	int	left_ants;
 
-	routes_count = routes_use_count(group, total_ants);
-	grand_total = get_grand_total(group, total_ants, routes_count);
-	distribute(group, grand_total, tab, routes_count);
+	left_ants = total_ants;
+	while (left_ants > 0)
+	{
+		distribute_one(group);
+		left_ants--;
+	}
 }
