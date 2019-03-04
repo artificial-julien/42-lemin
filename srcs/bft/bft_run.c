@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bft_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:27:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/04 18:43:48 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 	static int		debug_pass;
 
 	debug_pass++;
+	new_node = NULL;
 	if (lem_in->opt.debug)
 	{
 		ft_fprintf(2, "\nPass #%d\n", debug_pass);
@@ -123,7 +124,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}
-	if (node->room->type == end)
+	if (node && node->room->type == end)
 	{
 		// Est sur end en suivant une route -> Remonter jusqu'a start.
 		if (node->parent->room->next != NULL)
@@ -138,7 +139,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 			return (NULL);
 		}
 		// Est sur end -> Trouvé ET augmentation > 0
-		else if (new_node->augmentation > 0)
+		else if (node->augmentation > 0)
 		{
 			if (lem_in->opt.debug)
 			{
@@ -217,7 +218,7 @@ t_route				*run_bft(t_lem_in *lem_in)
 	t_glist			*next_nodes;
 	t_route			*res;
 	t_route_tree	*tree;
-	
+
 	// Création du noeud initial.
 	nodes = NULL;
 	tree = route_tree_new(lem_in);
