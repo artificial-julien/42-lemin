@@ -63,10 +63,13 @@ static t_bool		can_go_to(t_route_tree *tree, t_room *dst)
 
 static t_bool		in_intersection(t_room *src, t_room *dst)
 {
+	// Si on est sur une route et on la suit.
 	if (src->next != NULL && src->next == dst)
 		return (false);
+	// Si dst n'a pas de route.
 	if (dst->prev == NULL)
 		return (false);
+	// Si on est sur une route et on la suit. (encore?)
 	if (dst->prev == src)
 		return (false);
 	return (true);
@@ -134,8 +137,8 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 			}
 			return (NULL);
 		}
-		// Est sur end -> Trouvé
-		else
+		// Est sur end -> Trouvé ET augmentation > 0
+		else if (new_node->augmentation > 0)
 		{
 			if (lem_in->opt.debug)
 			{
@@ -144,7 +147,13 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 			}
 			return (route_tree_to_route(node));
 		}
+		else
+		{
+			route_tree_del(lem_in, node);
+			return (NULL);
+		}
 	}
+	// Marque la room si elle n'a pas de route.
 	if (node->room->next == NULL)
 		node->room->visited = true;
 	curr = node->room->links;
@@ -154,7 +163,10 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		{
 			new_node = route_tree_create_child(lem_in, node, curr->room);
 			if (in_intersection(node->room, curr->room))
+			{
+				new_node->augmentation--;
 				new_node->intersection = curr->room;
+			}
 			else if (out_intersection(node->room, curr->room))
 				new_node->intersection = NULL;
 			if (lem_in->opt.debug)
@@ -162,6 +174,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 				ft_fprintf(2, "Extending to:\t");
 				route_tree_print(new_node);
 			}
+			// Ajoute le noeud créé pour le prochaine niveau du parcours en largeur.
 			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
 		}
 		curr = curr->next;
