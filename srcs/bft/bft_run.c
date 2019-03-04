@@ -179,6 +179,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		}
 		curr = curr->next;
 	}
+	// Efface le noeud et ses parents SEULEMENT SI ceux-ci n'ont plus d'enfants.
 	route_tree_del(lem_in, node);
 	return (NULL);
 }
@@ -216,14 +217,17 @@ t_route				*run_bft(t_lem_in *lem_in)
 	t_glist			*next_nodes;
 	t_route			*res;
 	t_route_tree	*tree;
-
+	
+	// Création du noeud initial.
 	nodes = NULL;
 	tree = route_tree_new(lem_in);
 	tree->room = lem_in->start;
+	tree->augmentation = 1;
 	ft_glstadd(&nodes, ft_glstnew(tree, sizeof(t_route_tree)));
 	next_nodes = NULL;
 	while (1)
 	{
+		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
 		if (res != NULL)
 			return (res);
