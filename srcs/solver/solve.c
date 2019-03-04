@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:54:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/04 19:28:48 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,11 @@ void			solve(t_lem_in *lem_in, t_solution *solution)
 {
 	t_group		*best_group;
 
-	lem_in->max_routes = max_routes(lem_in);
+	max_routes(lem_in);
 	best_group = create_best_group(lem_in);
-	if (best_group == NULL)
+	if (best_group == NULL || best_group->routes == NULL)
 		lem_in_die();
 	debug_print_rounds_info(lem_in, best_group);
 	build_solution(lem_in, best_group, solution);
 }
+
