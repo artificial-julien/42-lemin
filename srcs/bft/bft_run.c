@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 16:26:17 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 16:37:08 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,9 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}
+	// Marque la room si elle n'a pas de route.
+	if (node->room->type == standard && node->room->next == NULL)
+		node->room->visited = true;
 	if (node && node->room->type == end)
 	{
 		if ((res = try_finalize_traverse(lem_in, node)) != NULL)
@@ -192,17 +195,17 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		if (new_node != NULL)
 			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
 	}
-	// Marque la room si elle n'a pas de route.
-	if (node->room->type == standard && node->room->next == NULL)
-		node->room->visited = true;
-	curr = node->room->links;
-	while (curr != NULL)
+	else
 	{
-		new_node = traverse(lem_in, node, curr->room);
-		// Ajoute le noeud créé pour le prochain niveau du parcours en largeur.
-		if (new_node != NULL)
-			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
-		curr = curr->next;
+		curr = node->room->links;
+		while (curr != NULL)
+		{
+			new_node = traverse(lem_in, node, curr->room);
+			// Ajoute le noeud créé pour le prochain niveau du parcours en largeur.
+			if (new_node != NULL)
+				ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
+			curr = curr->next;
+		}
 	}
 	// Efface le noeud et ses parents SEULEMENT SI ceux-ci n'ont plus d'enfants.
 	route_tree_del(lem_in, node);
