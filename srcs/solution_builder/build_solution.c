@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 17:00:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 17:50:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,20 @@
 */
 
 t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
-	int *ants_left)
+	int *ants_for_routes)
 {
 	if (src->ants > 0 && ant_can_move(dest))
 	{
+		if (src->type == start)
+		{
+			if ((*ants_for_routes) <= 0)
+				return (false);
+			(*ants_for_routes)--;
+			src->ant_id++;
+		}
 		src->ants--;
 		dest->ants++;
 		dest->ant_id = src->ant_id;
-		if (src->type == start)
-		{
-			(*ants_left)--;
-			src->ant_id++;
-			dest->ant_id = src->ant_id;
-		}
 		solution_add_move(solution, dest);
 		return (true);
 	}
@@ -51,7 +52,7 @@ t_bool		ant_can_move(t_room *room)
 **	Move all ants of one route of the group.
 */
 
-static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_routes,
+static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_for_routes,
 	t_solution *solution)
 {
 	t_glist	*curr;
@@ -63,7 +64,7 @@ static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_routes,
 	{
 		room_a = curr->room;
 		room_b = curr->next->room;
-		ant_try_move(room_b, room_a, solution, ants_routes);
+		ant_try_move(room_b, room_a, solution, ants_for_routes);
 		curr = curr->next;
 	}
 }

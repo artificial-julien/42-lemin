@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/04 19:29:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:34:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -333,6 +333,7 @@ t_group		*group_build(t_lem_in *lem_in);
 void		group_add_route(t_group *group, t_route *route);
 void		group_free(void *content, size_t size);
 void		group_print(t_group *group);
+int			group_rounds_for_route(t_group *group, int index);
 void		distribute_ants(t_group *group, int total_ants);
 
 /*
@@ -340,14 +341,14 @@ void		distribute_ants(t_group *group, int total_ants);
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
-void		rebuild_routes(t_route *route);
+void		rebuild_routes(t_lem_in *lem_in, t_route *route);
 void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 
 /*
 **	Solve utils.
 */
 
-void			max_routes(t_lem_in *lem_in);
+int			max_routes(t_lem_in *lem_in);
 
 /*
 **	Solution printer.

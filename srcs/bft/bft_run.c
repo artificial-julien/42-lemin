@@ -3,19 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   bft_run.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/04 18:43:48 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 16:42:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-#define NONE 0
-#define STANDARD 1
-#define RUN_TO_START 2
-#define FINAL 3
 
 /*
 **	============= breadth-first traversal execution =============
@@ -26,7 +21,7 @@
 **	Returns NULL when the destination is not possible.
 */
 
-static t_bool		can_go_to(t_route_tree *tree, t_room *dst)
+static t_bool		can_traverse(t_route_tree *tree, t_room *dst)
 {
 	if (dst->visited)
 	{
@@ -51,6 +46,11 @@ static t_bool		can_go_to(t_route_tree *tree, t_room *dst)
 	}
 	// On part de start en prenant une route existante (on evite de la suivre jusqu'a la fin)
 	if (tree->room->type == start && dst->prev == tree->room)
+	{
+		return (false);
+	}
+	// On ne retourne jamais sur start directement.
+	if (dst->type == start)
 	{
 		return (false);
 	}
@@ -100,13 +100,77 @@ static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 	}
 	res = route_tree_create_child(lem_in, tree, lem_in->start);
 	res = route_tree_create_child(lem_in, res, room);
+	res->augmentation++;
 	return (res);
+}
+
+static t_route_tree	*traverse(t_lem_in *lem_in, t_route_tree *node, t_room *dst)
+{
+	t_route_tree	*res;
+	int				augmentation;
+	t_room			*intersection;
+
+	if (!can_traverse(node, dst))
+		return (NULL);
+	augmentation = node->augmentation;
+	intersection = NULL;
+	if (in_intersection(node->room, dst))
+	{
+		augmentation--;
+		if (augmentation < 0)
+			return (NULL);
+		intersection = node->intersection;
+	}
+	else if (out_intersection(node->room, dst))
+		intersection = NULL;
+	res = route_tree_create_child(lem_in, node, dst);
+	res->augmentation = augmentation;
+	res->intersection = intersection;
+	if (lem_in->opt.debug)
+	{
+		ft_fprintf(2, "Extending to:\t");
+		route_tree_print(res);
+	}
+	return (res);
+}
+
+static t_route_tree	*traverse_end(t_lem_in *lem_in, t_route_tree *node)
+{
+	t_route_tree	*res;
+
+	// Est sur end en suivant une route -> Remonter jusqu'a start.
+	if (node->parent->room->next != NULL)
+	{
+		res = go_to_start(lem_in, node);
+		if (lem_in->opt.debug)
+		{
+			ft_fprintf(2, "Extending to (from start):\t");
+			route_tree_print(res);
+		}
+		return (res);
+	}
+	return (NULL);
+}
+
+static t_route	*try_finalize_traverse(t_lem_in *lem_in, t_route_tree *node)
+{
+	// Est sur end -> Trouvé ET augmentation > 0
+	if (node->augmentation > 0)
+	{
+		if (lem_in->opt.debug)
+		{
+			ft_fprintf(2, "Found:\t\t");
+			route_tree_print(node);
+		}
+		return (route_tree_to_route(node));
+	}
+	return (NULL);
 }
 
 /*
 **	Iterates over current level node connections.
 **	Stores the new list of node's connections.
-**	Returns the bft information of the found path.
+**	Returns the found path if any.
 */
 
 static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **next_nodes)
@@ -114,71 +178,39 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 	t_glist			*curr;
 	t_route_tree	*new_node;
 	static int		debug_pass;
+	t_route			*res;
 
 	debug_pass++;
 	new_node = NULL;
 	if (lem_in->opt.debug)
 	{
 		ft_fprintf(2, "\nPass #%d\n", debug_pass);
-		ft_fprintf(2, "Extending from:\t");
+		ft_fprintf(2, "Extending from (augmentations=%d):\t", node->augmentation);
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}
+	// Marque la room si elle n'a pas de route.
+	if (node->room->type == standard && node->room->next == NULL)
+		node->room->visited = true;
 	if (node && node->room->type == end)
 	{
-		// Est sur end en suivant une route -> Remonter jusqu'a start.
-		if (node->parent->room->next != NULL)
-		{
-			new_node = go_to_start(lem_in, node);
+		if ((res = try_finalize_traverse(lem_in, node)) != NULL)
+			return (res);
+		new_node = traverse_end(lem_in, node);
+		if (new_node != NULL)
 			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
-			if (lem_in->opt.debug)
-			{
-				ft_fprintf(2, "Extending to (from start):\t");
-				route_tree_print(new_node);
-			}
-			return (NULL);
-		}
-		// Est sur end -> Trouvé ET augmentation > 0
-		else if (node->augmentation > 0)
-		{
-			if (lem_in->opt.debug)
-			{
-				ft_fprintf(2, "Found:\t\t");
-				route_tree_print(node);
-			}
-			return (route_tree_to_route(node));
-		}
-		else
-		{
-			route_tree_del(lem_in, node);
-			return (NULL);
-		}
 	}
-	// Marque la room si elle n'a pas de route.
-	if (node->room->next == NULL)
-		node->room->visited = true;
-	curr = node->room->links;
-	while (curr != NULL)
+	else
 	{
-		if (can_go_to(node, curr->room))
+		curr = node->room->links;
+		while (curr != NULL)
 		{
-			new_node = route_tree_create_child(lem_in, node, curr->room);
-			if (in_intersection(node->room, curr->room))
-			{
-				new_node->augmentation--;
-				new_node->intersection = curr->room;
-			}
-			else if (out_intersection(node->room, curr->room))
-				new_node->intersection = NULL;
-			if (lem_in->opt.debug)
-			{
-				ft_fprintf(2, "Extending to:\t");
-				route_tree_print(new_node);
-			}
-			// Ajoute le noeud créé pour le prochaine niveau du parcours en largeur.
-			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
+			new_node = traverse(lem_in, node, curr->room);
+			// Ajoute le noeud créé pour le prochain niveau du parcours en largeur.
+			if (new_node != NULL)
+				ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
+			curr = curr->next;
 		}
-		curr = curr->next;
 	}
 	// Efface le noeud et ses parents SEULEMENT SI ceux-ci n'ont plus d'enfants.
 	route_tree_del(lem_in, node);
@@ -228,13 +260,12 @@ t_route				*run_bft(t_lem_in *lem_in)
 	next_nodes = NULL;
 	while (1)
 	{
+		ft_fprintf(2, "Active branches : %d\n", ft_glstlen(nodes));
 		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
-		if (res != NULL)
-			return (res);
+		ft_glstdel(&nodes, NULL);
 		if (next_nodes == NULL)
 			return (NULL);
-		ft_glstdel(&nodes, NULL);
 		if (res != NULL)
 		{
 			ft_glstdel(&next_nodes, NULL);
