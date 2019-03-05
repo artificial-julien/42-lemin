@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/28 19:30:39 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/05 19:17:03 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -72,8 +72,6 @@ _SRC =	room/room.c \
 		parser/parse_opt_print.c \
 		parser/parse_opt_print_help.c \
 		parser/parse_utils.c \
-		mempool/mempool.c \
-		mempool/mempool_utils.c \
 		display.c \
 		main.c
 

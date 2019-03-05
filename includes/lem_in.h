@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:19:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:17:29 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,30 +217,6 @@ struct	s_memunit
 };
 
 /*
-**	Memory pool.
-**	For the linked list "objects".
-**	Head structure followed by the mem units.
-
-**	unit_size:	element size.
-**	unit_count:	element capacity.
-**	free:		next free unit.
-**	extention:	pool extension. (relloc() system call is forbidden)
-**	units[0]:	memory units. Dynamic.
-**
-*/
-
-struct	s_mempool
-{
-	size_t		unit_size;
-	size_t		unit_count;
-	t_memunit	*free;
-	t_mempool	*extention;
-	t_memunit	units[0];
-};
-
-t_mempool	*g_glstpool;
-
-/*
 **	Core.
 */
 
@@ -368,18 +344,6 @@ void		solution_print(t_lem_in lem_in, t_solution *solution);
 void		solution_add_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
 void		solution_free(t_solution *solution);
-
-/*
-**	Memory pool.
-*/
-
-t_mempool	*mempool_new(size_t unit_count, size_t unit_size);
-void		*mempool_alloc(t_mempool *mempool);
-void		mempool_free(void *ptr);
-void		mempool_del(t_mempool *mempool);
-
-t_memunit	*get_by_index(t_mempool *mempool, size_t index);
-t_mempool	*get_mempool_with_free_space(t_mempool *mempool);
 
 /*
 **	Utils.
