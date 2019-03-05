@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 18:37:19 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 17:56:42 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	lem_in_remove_room(t_lem_in *lem_in, t_room *room)
 	{
 		if ((*curr)->room == room)
 		{
-			ft_glstdelone(curr, NULL);
+			ft_glstdelone(curr, room_free);
 			lem_in->room_count--;
 			return ;
 		}
