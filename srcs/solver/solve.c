@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:54:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 19:21:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,33 +80,35 @@ static void		reset_visited(t_lem_in *lem_in)
 
 static t_group	*create_best_group(t_lem_in *lem_in)
 {
-	t_group			*prev_group;
+	t_group			*best_group;
 	t_group			*group;
 	int				count;
 	t_route			*virtual_route;
 
 	count = 0;
-	prev_group = NULL;
+	best_group = NULL;
 	while (count < lem_in->max_routes
 		&& (virtual_route = run_bft(lem_in)) != NULL)
 	{
 		reset_visited(lem_in);
-		rebuild_routes(virtual_route);
+		rebuild_routes(lem_in, virtual_route);
 		debug_print_new_route(lem_in, virtual_route);
 		group = group_build(lem_in);
 		debug_print_new_group(lem_in, group);
-		if (prev_group != NULL
-			&& prev_group->total_rounds < group->total_rounds)
+		if (best_group == NULL)
+			best_group = group;
+		else if (best_group->total_rounds > group->total_rounds)
+		{
+			group_free(best_group, sizeof(t_group));
+			best_group = group;
+		}
+		else
 		{
 			group_free(group, sizeof(t_group));
-			return (prev_group);
 		}
-		if (prev_group != NULL)
-			group_free(prev_group, sizeof(t_group));
-		prev_group = group;
 		count++;
 	}
-	return (group);
+	return (best_group);
 }
 
 /*
