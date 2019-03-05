@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/01 18:58:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 12:17:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,8 @@ void	group_print(t_group *group)
 {
 	int	i;
 
-#if DEBUG
-
 	ft_fprintf(2, "Group (routes=%d; total_rounds=%d):\n", group->route_count,
 	 group->total_rounds);
-#endif
-
 	i = 0;
 	while (i < group->route_count)
 	{
