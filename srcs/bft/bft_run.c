@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 16:37:08 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 16:42:49 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,11 @@ static t_bool		can_traverse(t_route_tree *tree, t_room *dst)
 	}
 	// On part de start en prenant une route existante (on evite de la suivre jusqu'a la fin)
 	if (tree->room->type == start && dst->prev == tree->room)
+	{
+		return (false);
+	}
+	// On ne retourne jamais sur start directement.
+	if (dst->type == start)
 	{
 		return (false);
 	}
