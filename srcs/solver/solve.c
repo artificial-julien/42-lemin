@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 16:13:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 17:36:33 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		reset_visited(lem_in);
 		rebuild_routes(lem_in, virtual_route);
 		debug_print_new_route(lem_in, virtual_route);
+		route_free(virtual_route, sizeof(t_route));
 		group = group_build(lem_in);
 		debug_print_new_group(lem_in, group);
 		if (best_group == NULL)

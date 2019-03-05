@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 13:50:33 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/05 12:17:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 17:17:22 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	group_free(void *content, size_t size)
 		i++;
 	}
 	free(group->routes);
+	free(group->ants_distribution);
 	free(group);
 }
 

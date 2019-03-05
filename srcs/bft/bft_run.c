@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 16:42:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 17:46:47 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -264,13 +264,13 @@ t_route				*run_bft(t_lem_in *lem_in)
 		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
 		ft_glstdel(&nodes, NULL);
-		if (next_nodes == NULL)
-			return (NULL);
 		if (res != NULL)
 		{
 			ft_glstdel(&next_nodes, NULL);
 			return (res);
 		}
+		if (next_nodes == NULL)
+			return (NULL);
 		nodes = next_nodes;
 		next_nodes = NULL;
 	}
