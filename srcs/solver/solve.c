@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 17:36:33 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:26:00 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,5 +136,6 @@ void			solve(t_lem_in *lem_in, t_solution *solution)
 		lem_in_die();
 	debug_print_rounds_info(lem_in, best_group);
 	build_solution(lem_in, best_group, solution);
+	group_free(best_group, sizeof(t_group));
 }
 
