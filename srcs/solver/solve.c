@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 11:35:11 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 16:13:47 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ static void		reset_visited(t_lem_in *lem_in)
 	}
 }
 
+static void	debug_print_max_groups(t_lem_in *lem_in)
+{
+	if (lem_in->opt.print_groups)
+	{
+		ft_fprintf(2, "Max groups count: %d\n", lem_in->max_routes);
+	}
+}
+
 /*
 **	Runs the Edmonds-Karp traverse as many time as possible and records a group
 **	of routes every time.
@@ -121,6 +129,7 @@ void			solve(t_lem_in *lem_in, t_solution *solution)
 	t_group		*best_group;
 
 	lem_in->max_routes = max_routes(lem_in);
+	debug_print_max_groups(lem_in);
 	best_group = create_best_group(lem_in);
 	if (best_group == NULL || best_group->routes == NULL)
 		lem_in_die();
