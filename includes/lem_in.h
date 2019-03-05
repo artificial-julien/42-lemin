@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 19:20:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:27:03 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,7 @@ struct	s_route_tree
 	t_room			*room;
 	t_route_tree	*parent;
 	int				child_count;
+	int				augmentation;
 	t_room			*intersection;
 };
 
@@ -347,7 +348,7 @@ void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 **	Solve utils.
 */
 
-int			max_routes(t_lem_in *lem_in);
+void			max_routes(t_lem_in *lem_in);
 
 /*
 **	Solution printer.
