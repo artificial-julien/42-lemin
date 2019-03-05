@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:13:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:49:53 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 20:39:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,18 @@ static t_bool	has_route(t_room *room)
 	return (room->next != NULL && room->prev != NULL);
 }
 
+static t_room	*route_start(t_room *room)
+{
+	t_room	*res;
+
+	res = room;
+	while (res->prev->type != start)
+	{
+		res = res->prev;
+	}
+	return (res);
+}
+
 /*
 **	Breaks an encountered existant route.
 */
@@ -46,24 +58,15 @@ static void		break_route(t_room *room)
 	t_room	*curr;
 	t_room	*next;
 
-	curr = room->next;
-	while (curr->type != standard)
+	curr = route_start(room);
+	ft_fprintf(2, "Breaking route starting at %s (encountered at %s)\n", curr->name, room->name);
+	while (curr->type == standard)
 	{
 		next = curr->next;
 		curr->prev = NULL;
 		curr->next = NULL;
 		curr = next;
 	}
-	curr = room->prev;
-	while (curr->type != standard)
-	{
-		next = curr->prev;
-		curr->prev = NULL;
-		curr->next = NULL;
-		curr = next;
-	}
-	room->prev = NULL;
-	room->next = NULL;
 }
 
 /*
@@ -71,11 +74,12 @@ static void		break_route(t_room *room)
 **	the map using the virtual route created by the Edmonds-Karp traverse.
 */
 
-void			rebuild_routes(t_route *route)
+void			rebuild_routes(t_lem_in *lem_in, t_route *route)
 {
 	t_glist	*curr;
 	t_room	*prev;
 
+	(void)lem_in;
 	curr = route->rooms;
 	prev = NULL;
 	while (curr != NULL)
@@ -84,6 +88,13 @@ void			rebuild_routes(t_route *route)
 		{
 			break_route(curr->room);
 		}
+		prev = curr->room;
+		curr = curr->next;
+	}
+	curr = route->rooms;
+	prev = NULL;
+	while (curr != NULL)
+	{
 		connect(prev, curr->room);
 		prev = curr->room;
 		curr = curr->next;

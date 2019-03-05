@@ -6,16 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:27:04 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 20:19:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-#define NONE 0
-#define STANDARD 1
-#define RUN_TO_START 2
-#define FINAL 3
 
 /*
 **	============= breadth-first traversal execution =============

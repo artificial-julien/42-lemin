@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 18:57:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/01 19:20:01 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -340,7 +340,7 @@ void		distribute_ants(t_group *group, int total_ants);
 */
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
-void		rebuild_routes(t_route *route);
+void		rebuild_routes(t_lem_in *lem_in, t_route *route);
 void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
 
 /*
