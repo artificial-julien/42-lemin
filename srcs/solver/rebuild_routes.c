@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rebuild_routes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:13:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 20:39:48 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:08:51 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_room	*route_start(t_room *room)
 	t_room	*res;
 
 	res = room;
-	while (res->prev->type != start)
+	while (res->prev && res->prev->type != start)
 	{
 		res = res->prev;
 	}
@@ -59,8 +59,7 @@ static void		break_route(t_room *room)
 	t_room	*next;
 
 	curr = route_start(room);
-	ft_fprintf(2, "Breaking route starting at %s (encountered at %s)\n", curr->name, room->name);
-	while (curr->type == standard)
+	while (curr && curr->type == standard)
 	{
 		next = curr->next;
 		curr->prev = NULL;
