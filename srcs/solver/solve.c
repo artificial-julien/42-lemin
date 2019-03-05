@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 11:26:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 11:35:11 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ void			solve(t_lem_in *lem_in, t_solution *solution)
 {
 	t_group		*best_group;
 
-	max_routes(lem_in);
+	lem_in->max_routes = max_routes(lem_in);
 	best_group = create_best_group(lem_in);
 	if (best_group == NULL || best_group->routes == NULL)
 		lem_in_die();
