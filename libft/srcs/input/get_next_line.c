@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 13:47:56 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:03:14 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:20:12 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int					get_next_line(int const fd, char **line)
 	*line = ft_strsub(save[fd], 0, linelen(save[fd]));
 	if (!shift_to_end(save[fd]))
 	{
+		free(save[fd]);
 		return (0);
 	}
 	return (1);

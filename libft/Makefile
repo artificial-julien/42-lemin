@@ -6,7 +6,7 @@
 #    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/27 14:29:41 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/05 19:26:51 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -109,8 +109,6 @@ _SRC =	./char/ft_isalnum.c \
 		./string/ft_strsub.c \
 		./string/ft_strtrim.c \
 		./input/get_next_line.c \
-		./input/get_next_line_bis.c \
-		./input/get_next_line_aux.c \
 		./math/ft_powf.c \
 		./math/ft_abs.c
 

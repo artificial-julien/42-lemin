@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/10/16 23:18:06 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/27 14:29:03 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:26:24 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,9 +71,7 @@ void			ft_putnbr_fd(int n, int fd);
 */
 
 int				get_next_line(const int fd, char **line);
-int				get_next_line_bis(const int fd, char **line);
-int				gnl_lst(const int fd, t_list **tmp, char **str, t_list **lst);
-int				gnl_error(const int fd, char **line, t_list **lst);
+
 /*
 **	Memory.
 */
