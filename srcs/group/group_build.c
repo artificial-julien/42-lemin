@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   group_build.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 17:39:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 20:10:35 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,32 @@ static void		create_routes(t_lem_in *lem_in, t_group *group)
 	}
 }
 
+
+/*
+**
+*/
+
+static int	rounds_for_group(t_group *group)
+{
+	int res;
+	int i;
+	int tmp;
+
+	res = 0;
+	i = 0;
+	tmp = 0;
+	while(i < group->route_count)
+	{
+		if (group->ants_distribution[i] > 0)
+		{
+			tmp = group->ants_distribution[i] + group->routes[i]->len - 1;
+			if (tmp > res)
+				res = tmp;
+		}
+		i++;
+	}
+	return (res);
+}
 /*
 **	Creates a new group of routes using the outgoing connections from the
 **	start node.
@@ -80,5 +106,8 @@ t_group			*group_build(t_lem_in *lem_in)
 		res->routes[0]->len
 		+ res->ants_distribution[0]
 		- 1;
+	ft_printf("res1 = %d\n",res->total_rounds);
+	res->total_rounds = rounds_for_group(res);
+	ft_printf("res2 = %d\n", res->total_rounds);
 	return (res);
 }
