@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 15:44:55 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 17:59:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int			main(int ac, char **av)
 	// print_display(&lem_in);
 	solution_print(lem_in, &solution);
 	time_profiling(&lem_in, false, "Writing result");
+	solution_free(&solution);
 	lem_in_free(&lem_in);
 	free(g_glstpool);
 	return (0);
