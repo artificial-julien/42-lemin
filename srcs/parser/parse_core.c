@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_core.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/28 18:43:24 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:51:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	Function of parsing which read and test the number of ants
+**	Reads the expected number records the ants count.
 */
 
 void	parse_ants_count(t_lem_in *lem_in, char **line)
@@ -36,7 +36,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 }
 
 /*
-** Function which is parsing the line and create one rooms
+**	Reads and records a room.
 */
 
 int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type)

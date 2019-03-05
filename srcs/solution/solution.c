@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solution.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:24:30 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 16:07:48 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:29:45 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,6 @@ void		solution_add_round(t_solution *solution)
 	new = ft_dlstnew(round, sizeof(t_round));
 	ft_dlstadd(&solution->rounds, new);
 	solution->round++;
-}
-
-/*
-**	Discards the latest round and its moves.
-**	Liberates the round and moves memory.
-*/
-
-void		solution_discard_round(t_solution *solution)
-{
-	t_round	*round;
-	t_dlist	*curr;
-
-	curr = solution->rounds;
-	if (curr == NULL)
-		lem_in_die();
-	round = (t_round*)curr->content;
-	ft_dlstdel(&round->moves, NULL);
-	ft_dlstdelone(&solution->rounds, NULL);
 }
 
 /*

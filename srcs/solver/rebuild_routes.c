@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rebuild_routes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:13:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:08:51 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:33:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ static t_bool	has_route(t_room *room)
 {
 	return (room->next != NULL && room->prev != NULL);
 }
+
+/*
+**	Returns the first node of the route of the room after start.
+*/
 
 static t_room	*route_start(t_room *room)
 {
@@ -70,7 +74,7 @@ static void		break_route(t_room *room)
 
 /*
 **	Updates the nodes connections (prev, next) representing the routes on
-**	the map using the virtual route created by the Edmonds-Karp traverse.
+**	the map using the traverse created by the Edmonds-Karp algorithm.
 */
 
 void			rebuild_routes(t_lem_in *lem_in, t_route *route)

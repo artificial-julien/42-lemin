@@ -6,14 +6,14 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 17:50:09 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:32:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	Move the ants forn a room to another and print the move.
+**	Move the ants forn a room to another and saves the move.
 */
 
 t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
@@ -38,7 +38,7 @@ t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
 }
 
 /*
-**	Function testing the links for if the next room is empty
+**	Returns true if an ant can move to the specified room.
 */
 
 t_bool		ant_can_move(t_room *room)
