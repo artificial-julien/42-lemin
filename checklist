@@ -9,11 +9,12 @@ Parse:
 	- (FAIT) Crash quand pas de end
 	- (FAIT) Erreur si nom de salle commence par "L"
 	- (FAIT) Erreur si une coordonnee contient un non chiffre au moins
+	- Verifier les connections en doublon
 Algo:
 	- (FAIT) Erreur si aucun resultat
 	- Freeze avec 2 rooms.
 	- avec fsanitize=address : faille dans bitmap_get.
-
+	- Cas de la route de 3 noeuds (start + end + 1x standard) avec augmentation.
 print :
 	-(FAIT)print_display risque avec stack ? a verifier.
 	- verifier securite free_display
