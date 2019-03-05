@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:57:17 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 11:44:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:19:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,16 @@ t_route_tree	*route_tree_new(t_lem_in *lem_in)
 	(void)lem_in;
 	res = ft_memalloc(sizeof(t_route_tree));
 	return (res);
+}
+
+
+void			route_tree_del_list(t_lem_in *lem_in, t_glist **trees)
+{
+	while ((*trees) != NULL)
+	{
+		route_tree_del(lem_in, (*trees)->tree);
+		ft_glstdelone(trees, NULL);
+	}
 }
 
 /*

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 11:34:49 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:19:23 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -310,6 +310,7 @@ t_route			*run_bft(t_lem_in *lem_in);
 
 t_route_tree	*route_tree_new(t_lem_in *lem_in);
 void			route_tree_del(t_lem_in *lem_in, t_route_tree *route_tree);
+void			route_tree_del_list(t_lem_in *lem_in, t_glist **trees);
 t_route_tree	*route_tree_create_child(t_lem_in *lem_in, t_route_tree *parent, t_room *room);
 void			route_tree_print(t_route_tree *route_tree);
 t_route			*route_tree_to_route(t_route_tree *route_tree);

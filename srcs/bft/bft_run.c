@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 17:46:47 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 18:21:11 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,8 +212,6 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 			curr = curr->next;
 		}
 	}
-	// Efface le noeud et ses parents SEULEMENT SI ceux-ci n'ont plus d'enfants.
-	route_tree_del(lem_in, node);
 	return (NULL);
 }
 
@@ -263,10 +261,10 @@ t_route				*run_bft(t_lem_in *lem_in)
 		ft_fprintf(2, "Active branches : %d\n", ft_glstlen(nodes));
 		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
-		ft_glstdel(&nodes, NULL);
+		route_tree_del_list(lem_in, &nodes);
 		if (res != NULL)
 		{
-			ft_glstdel(&next_nodes, NULL);
+			route_tree_del_list(lem_in, &next_nodes);
 			return (res);
 		}
 		if (next_nodes == NULL)
