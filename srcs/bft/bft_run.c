@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 16:24:44 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/05 16:26:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -252,9 +252,9 @@ t_route				*run_bft(t_lem_in *lem_in)
 	next_nodes = NULL;
 	while (1)
 	{
+		ft_fprintf(2, "Active branches : %d\n", ft_glstlen(nodes));
 		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
-		ft_fprintf(2, "Active branches : %d\n", ft_glstlen(next_nodes));
 		ft_glstdel(&nodes, NULL);
 		if (next_nodes == NULL)
 			return (NULL);
