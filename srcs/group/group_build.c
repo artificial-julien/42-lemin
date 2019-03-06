@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 15:46:47 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:46:50 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int		routes_count(t_room *start)
 	return (res);
 }
 
-static void		create_routes(t_lem_in *lem_in, t_group *group)
+static void	create_routes(t_lem_in *lem_in, t_group *group)
 {
 	t_glist	*curr;
 	t_route	*route;
@@ -60,7 +60,6 @@ static void		create_routes(t_lem_in *lem_in, t_group *group)
 	}
 }
 
-
 /*
 **
 */
@@ -74,7 +73,7 @@ static int	rounds_for_group(t_group *group)
 	res = 0;
 	i = 0;
 	tmp = 0;
-	while(i < group->route_count)
+	while (i < group->route_count)
 	{
 		if (group->ants_distribution[i] > 0)
 		{
