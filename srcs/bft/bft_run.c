@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 16:32:05 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:18:18 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static t_bool		out_intersection(t_room *src, t_room *dst)
 
 /*
 **	Continues the traverse from the first node of the existant route we are on.
+**	Returns null if the last intersection is the first node of the route.
 */
 
 static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
@@ -97,6 +98,10 @@ static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 	while (room->prev->type != start)
 	{
 		room = room->prev;
+	}
+	if (tree->intersection == room)
+	{
+		return (NULL);
 	}
 	res = route_tree_create_child(lem_in, tree, lem_in->start);
 	res = route_tree_create_child(lem_in, res, room);
