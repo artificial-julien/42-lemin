@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
+#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/02/28 19:30:39 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/06 17:38:53 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,6 +45,7 @@ _SRC =	room/room.c \
 		solver/rebuild_routes.c \
 		solution/solution_print.c \
 		solution/solution.c \
+		solution/solution_round.c \
 		solution_builder/build_solution.c \
 		utils/utils_array.c \
 		utils/utils.c \

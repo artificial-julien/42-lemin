@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:19:23 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 17:39:34 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -368,7 +368,7 @@ void		solution_print(t_lem_in lem_in, t_solution *solution);
 void		solution_add_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
 void		solution_free(t_solution *solution);
-
+void		round_free(void *content, size_t size);
 /*
 **	Memory pool.
 */
