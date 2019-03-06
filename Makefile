@@ -38,6 +38,7 @@ _SRC =	room/room.c \
 		lem_in.c \
 		bft/bft_run.c \
 		bft/route_tree.c \
+		bft/route_tree_utils.c \
 		parser/parse.c \
 		parser/parse_core.c \
 		solver/solve.c \
