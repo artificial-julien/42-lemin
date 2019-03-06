@@ -6,12 +6,11 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/05 16:17:54 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:21:12 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
 
 /*
 ** FInd if a room is already in the list links.
@@ -19,16 +18,16 @@
 
 static t_bool	room_find_duplicate_link(t_room *room, char *name)
 {
-	t_glist  *curr;
+	t_glist	*curr;
 
 	if (room->links == NULL && room->links_count == 0)
 		return (false);
 	curr = room->links;
-	while(curr)
+	while (curr)
 	{
 		if (ft_strequ(curr->room->name, name))
 			return (true);
-			curr = curr->next;
+		curr = curr->next;
 	}
 	return (false);
 }
