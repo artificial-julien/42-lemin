@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:57:17 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 17:57:31 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:46:26 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ t_route_tree	*route_tree_new(t_lem_in *lem_in)
 
 	(void)lem_in;
 	res = ft_memalloc(sizeof(t_route_tree));
-	res->id = id;
 	id++;
 	return (res);
 }

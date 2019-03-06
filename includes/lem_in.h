@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 17:48:41 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:46:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,6 @@ struct	s_route_tree
 	int				child_count;
 	int				augmentation;
 	t_room			*intersection;
-	// Member temporaire pour debug. Supprimer avant rendu.
-	int				id;
 };
 
 /*

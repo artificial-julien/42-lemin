@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 17:30:59 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 17:50:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:46:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,7 @@ void			route_tree_print(t_route_tree *tree)
 {
 	if (tree->parent != NULL)
 		route_tree_print(tree->parent);
-	ft_fprintf(2, "BFT node #%06d [%-6s]\t(augmentation=%d, intersection=%s)\n",
-		tree->id,
+	ft_fprintf(2, "BFT node [%-6s]\t(augmentation=%d, intersection=%s)\n",
 		tree->room->name,
 		tree->augmentation,
 		tree->intersection != NULL ? tree->intersection->name : NULL);
