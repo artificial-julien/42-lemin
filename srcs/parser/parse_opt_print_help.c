@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 16:51:20 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/01 16:03:50 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:49:40 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	printf_help(void)
 	ft_fprintf(2, "	|    -help,-h: Show help.                      |\n");
 	ft_fprintf(2, "	|    -r,--rooms: print rooms of the graph.     |\n");
 	ft_fprintf(2, "	|    -R,--route: print the route used by ant.  |\n");
-	ft_fprintf(2, "	|    -g,--groups: print all group of routes.   |\n");
+	ft_fprintf(2, "	|    -g,--groups: print the group chosen.      |\n");
 	ft_fprintf(2, "	|    -d,--debug: print all for debug.          |\n");
 	ft_fprintf(2, "	|    -t,--time: print steps timing information.|\n");
 	ft_fprintf(2, "	|   extra info on stderr (2)                   |\n");
