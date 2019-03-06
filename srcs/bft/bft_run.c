@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:57:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:32:05 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,16 +113,17 @@ static t_route_tree	*traverse(t_lem_in *lem_in, t_route_tree *node, t_room *dst)
 	if (!can_traverse(node, dst))
 		return (NULL);
 	augmentation = node->augmentation;
-	intersection = NULL;
 	if (in_intersection(node->room, dst))
 	{
 		augmentation--;
 		if (augmentation < 0)
 			return (NULL);
-		intersection = node->intersection;
+		intersection = dst;
 	}
 	else if (out_intersection(node->room, dst))
 		intersection = NULL;
+	else
+		intersection = node->intersection;
 	res = route_tree_create_child(lem_in, node, dst);
 	res->augmentation = augmentation;
 	res->intersection = intersection;
@@ -185,7 +186,7 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 	if (lem_in->opt.debug)
 	{
 		ft_fprintf(2, "\nPass #%d\n", debug_pass);
-		ft_fprintf(2, "Extending from (augmentations=%d):\t", node->augmentation);
+		ft_fprintf(2, "Extending from (augmentations=%d, intersection=%s):\t", node->augmentation, node->intersection != NULL ? node->intersection->name : NULL);
 		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}

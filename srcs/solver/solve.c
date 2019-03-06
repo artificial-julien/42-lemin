@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 15:49:34 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:57:44 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void		debug_print_new_route(t_lem_in *lem_in, t_route *virtual_route)
 {
-	if (lem_in->opt.debug == true)
+	if (lem_in->opt.debug || lem_in->opt.print_groups)
 	{
 		ft_putendl_fd("=========================================", 2);
 		ft_fprintf(2, "Created virtual route :\n");
@@ -85,8 +85,8 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		&& (virtual_route = run_bft(lem_in)) != NULL)
 	{
 		reset_visited(lem_in);
-		rebuild_routes(lem_in, virtual_route);
 		debug_print_new_route(lem_in, virtual_route);
+		rebuild_routes(lem_in, virtual_route);
 		route_free(virtual_route, sizeof(t_route));
 		group = group_build(lem_in);
 		if (best_group == NULL)
