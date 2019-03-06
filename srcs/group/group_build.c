@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 20:10:35 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:46:47 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ static int	rounds_for_group(t_group *group)
 	}
 	return (res);
 }
+
 /*
 **	Creates a new group of routes using the outgoing connections from the
 **	start node.
@@ -102,12 +103,6 @@ t_group			*group_build(t_lem_in *lem_in)
 	create_routes(lem_in, res);
 	array_sort((void**)res->routes, res->route_count, route_cmp_len);
 	distribute_ants(res, lem_in->total_ants);
-	res->total_rounds =
-		res->routes[0]->len
-		+ res->ants_distribution[0]
-		- 1;
-	ft_printf("res1 = %d\n",res->total_rounds);
 	res->total_rounds = rounds_for_group(res);
-	ft_printf("res2 = %d\n", res->total_rounds);
 	return (res);
 }
