@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 18:46:17 by juazouz          ###   ########.fr       */
+/*   Created: 2019/03/06 19:12:59 by juazouz           #+#    #+#             */
+/*   Updated: 2019/03/06 19:28:53 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@
 **	Defines / Configuration.
 */
 
-#define MAX_NB_SIZE 10
-#define LST_POOL_SIZE	(524288 * 32)
+# define MAX_NB_SIZE 10
 
 /*
 **	Types.
@@ -49,21 +48,23 @@ typedef struct s_memunit	t_memunit;
 **	Project generic list.
 */
 
+union	u_generic
+{
+	void			*content;
+	t_room			*room;
+	t_route			*route;
+	t_group			*group;
+	t_round			*round;
+	t_move			*move;
+	t_glist			*glist;
+	t_route_tree	*tree;
+};
+
 struct	s_glist
 {
-	union
-	{
-		void			*content;
-		t_room			*room;
-		t_route			*route;
-		t_group			*group;
-		t_round			*round;
-		t_move			*move;
-		t_glist			*glist;
-		t_route_tree	*tree;
-	};
-	size_t			content_size;
-	struct s_glist	*next;
+	union u_generic		gen;
+	size_t				content_size;
+	struct s_glist		*next;
 };
 
 struct	s_point
@@ -110,7 +111,8 @@ struct	s_lem_in
 **	id:			Room id.
 **	type:		Start / end / standard (intermediate node)
 **	ants:		Ants count in the current room. Up to 1 for standard type.
-**	ant_id:		Present ant id going from 1 to ants_count. 0 when no ants are present.
+**	ant_id:		Present ant id going from 1 to ants_count
+**				0 when no ants are present.
 **	links:		Connected rooms list.
 **	distance:	Distance to end if a route is present.
 */
@@ -190,7 +192,8 @@ struct	s_route
 
 /*
 **	Combination of non conflicting routes.
-**	total_rounds:		required rounds to send ants using this group. The lower the better.
+**	total_rounds:		required rounds to send ants using this group.
+**						The lower the better.
 **	count:				routes count.
 **	ants_distribution:	optimal ants distribution array accross the routes.
 **	routes:				group routes array.
@@ -224,7 +227,7 @@ void		lem_in_init(t_lem_in *lem_in);
 void		lem_in_add_room(t_lem_in *lem_in, t_room *room);
 void		lem_in_free(t_lem_in *lem_in);
 void		lem_in_die();
-void		lem_in_remove_room(t_lem_in *lem_in ,t_room *room);
+void		lem_in_remove_room(t_lem_in *lem_in, t_room *room);
 
 /*
 **	Project generic list functions.
@@ -235,7 +238,6 @@ void		ft_glstdelone(t_glist **alst, void (*del)(void*, size_t));
 void		ft_glstdel(t_glist **alst, void (*del)(void*, size_t));
 void		ft_glstadd(t_glist **alst, t_glist *new);
 void		ft_glstiter(t_glist *lst, void (*f)(t_glist *elem));
-void		ft_glstinsert(t_glist **dest, t_glist *new, int (*cmp)(void*, void*));
 t_glist		*ft_glstmap(t_glist *lst, t_glist *(*f)(t_glist *elem));
 void		ft_glstadd_last(t_glist **alst, t_glist *n);
 t_glist		*ft_glstcpy(t_glist *src);
@@ -265,7 +267,7 @@ int			parse_number_safe(char *s);
 t_room		*room_new(char *name, t_roomtype type, int x, int y);
 t_room		*room_find_by_name(t_lem_in *lem_in, char *name);
 void		room_free(void *content, size_t size);
-int 		room_cmp(void *a, void *b);
+int			room_cmp(void *a, void *b);
 
 /*
 ** Room_links.
@@ -279,6 +281,27 @@ void		room_remove_link(t_room *room, t_room *link);
 */
 
 t_route			*run_bft(t_lem_in *lem_in);
+
+/*
+**	Breadth-first traverse core.
+*/
+
+t_route				*extend_nodes_list(t_lem_in *lem_in,
+	t_glist *nodes, t_glist **next_nodes);
+t_route				*extend_node(t_lem_in *lem_in, t_route_tree *node,
+	t_glist **next_nodes);
+t_route				*try_finalize_traverse(t_lem_in *lem_in, t_route_tree *node);
+t_route_tree		*traverse_end(t_lem_in *lem_in, t_route_tree *node);
+t_route_tree		*traverse(t_lem_in *lem_in, t_route_tree *node, t_room *dst);
+
+/*
+**	Breadth-first traverse utils.
+*/
+
+t_bool				can_traverse(t_route_tree *tree, t_room *dst);
+t_bool				in_intersection(t_room *src, t_room *dst);
+t_bool				out_intersection(t_room *src, t_room *dst);
+t_route_tree		*go_to_start(t_lem_in *lem_in, t_route_tree *tree);
 
 /*
 **	Route tree.
@@ -319,7 +342,8 @@ void		distribute_ants(t_group *group, int total_ants);
 
 void		solve(t_lem_in *lem_in, t_solution *solution);
 void		rebuild_routes(t_lem_in *lem_in, t_route *route);
-void		build_solution(t_lem_in *lem_in, t_group *group, t_solution *solution);
+void		build_solution(t_lem_in *lem_in, t_group *group,
+	t_solution *solution);
 
 /*
 **	Solve utils.
@@ -332,7 +356,8 @@ int			max_routes(t_lem_in *lem_in);
 */
 
 void		print_solution(t_group *group, t_lem_in *lem_in);
-t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution, int *ants_routes);
+t_bool		ant_try_move(t_room *src, t_room *dest,
+	t_solution *solution, int *ants_routes);
 t_bool		ant_can_move(t_room *room);
 
 /*
@@ -396,9 +421,10 @@ void		print_display(t_lem_in *lem_in);
 void		free_saved_display(t_lem_in *lem_in);
 
 /*
-**
+**	Array utils.
 */
 
 void			*glist_to_array(t_glist *list);
 void			array_sort(void **array, size_t size, int (cmp)(void*, void*));
+
 #endif

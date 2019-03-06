@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/06 18:27:25 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/06 19:28:26 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,9 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 _SRC =	room/room.c \
 		room/room_create_links.c \
 		lem_in.c \
-		bft/bft_run.c \
+		bft/run_bft.c \
+		bft/run_bft_core.c \
+		bft/run_bft_utils.c \
 		bft/route_tree.c \
 		bft/route_tree_utils.c \
 		parser/parse.c \
