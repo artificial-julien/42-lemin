@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 15:50:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:39:35 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,17 +61,29 @@ static void		create_routes(t_lem_in *lem_in, t_group *group)
 }
 
 /*
-**	If debug option is on
-**	Prints the specified  group.
+**  init the total_round of the group.
 */
 
-static void		debug_print_group(t_lem_in *lem_in, t_group *group)
+static int		rounds_for_group(t_group *group)
 {
-	if (lem_in->opt.debug || lem_in->opt.print_groups)
+	int res;
+	int i;
+	int tmp;
+
+	res = 0;
+	i = 0;
+	tmp = 0;
+	while (i < group->route_count)
 	{
-		ft_fprintf(2, "Created group :\n");
-		group_print(group);
+		if (group->ants_distribution[i] > 0)
+		{
+			tmp = group->ants_distribution[i] + group->routes[i]->len - 1;
+			if (tmp > res)
+				res = tmp;
+		}
+		i++;
 	}
+	return (res);
 }
 
 /*
@@ -90,10 +102,6 @@ t_group			*group_build(t_lem_in *lem_in)
 	create_routes(lem_in, res);
 	array_sort((void**)res->routes, res->route_count, route_cmp_len);
 	distribute_ants(res, lem_in->total_ants);
-	res->total_rounds =
-		res->routes[0]->len
-		+ res->ants_distribution[0]
-		- 1;
-	debug_print_group(lem_in, res);
+	res->total_rounds = rounds_for_group(res);
 	return (res);
 }

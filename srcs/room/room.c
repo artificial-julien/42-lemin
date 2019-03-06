@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 15:16:36 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 18:54:15 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:20:01 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,22 @@ t_room	*room_find_by_name(t_lem_in *lem_in, char *name)
 	int		pos;
 	int		size;
 	int		cmp;
-	t_room	*room;
+	int		step;
 
 	pos = (lem_in->room_count - 1) / 2;
 	size = (lem_in->room_count - 1);
-	while (pos >= 0 && pos <= size)
+	step = 0;
+	while (pos >= 0 && pos <= size && step != pos)
 	{
-		room = lem_in->array_room[pos];
-		if ((cmp = ft_strcmp(name, room->name)) == 0)
+		if ((cmp = ft_strcmp(name, lem_in->array_room[pos]->name)) == 0)
 			return ((t_room*)lem_in->array_room[pos]);
 		else
 		{
 			if (cmp < 0)
+			{
+				step = pos;
 				pos = (pos <= 1) ? (pos - 1) : (pos / 2);
+			}
 			else
 				pos = (pos + 1);
 		}

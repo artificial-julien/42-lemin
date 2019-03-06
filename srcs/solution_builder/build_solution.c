@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 19:32:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:38:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,12 @@ static void	run_round(t_group *group, t_lem_in *lem_in, t_solution *solution)
 void		build_solution(t_lem_in *lem_in, t_group *group,
 	t_solution *solution)
 {
+	if (lem_in->opt.print_groups == true)
+	{
+		ft_printf("/******/\n");
+		group_print(group);
+		ft_printf("/******/\n");
+	}
 	while ((lem_in->start->ants) >= 0
 		&& lem_in->end->ants != lem_in->total_ants)
 	{
