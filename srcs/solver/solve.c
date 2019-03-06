@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:26:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 16:22:32 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void		debug_print_new_group(t_lem_in *lem_in, t_group *group)
 {
-	if (lem_in->opt.debug || lem_in->opt.print_groups)
+	if (lem_in->opt.debug)
 	{
 		ft_fprintf(2, "Created group :\n");
 		group_print(group);
@@ -112,9 +112,7 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 			best_group = group;
 		}
 		else
-		{
 			group_free(group, sizeof(t_group));
-		}
 		count++;
 	}
 	return (best_group);
