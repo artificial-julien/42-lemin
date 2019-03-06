@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 17:56:42 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:32:21 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	lem_in_remove_room(t_lem_in *lem_in, t_room *room)
 	curr = &lem_in->rooms;
 	while (*curr != NULL)
 	{
-		if ((*curr)->room == room)
+		if ((*curr)->gen.room == room)
 		{
 			ft_glstdelone(curr, room_free);
 			lem_in->room_count--;

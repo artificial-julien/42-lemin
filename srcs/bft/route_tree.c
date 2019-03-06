@@ -3,42 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   route_tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:57:17 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:19:15 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 20:06:01 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
-t_route_tree	*route_tree_new(t_lem_in *lem_in)
+t_tree	*route_tree_new(t_lem_in *lem_in)
 {
-	t_route_tree	*res;
+	t_tree	*res;
+	static int		id;
 
 	(void)lem_in;
-	res = ft_memalloc(sizeof(t_route_tree));
+	res = ft_memalloc(sizeof(t_tree));
+	id++;
 	return (res);
-}
-
-
-void			route_tree_del_list(t_lem_in *lem_in, t_glist **trees)
-{
-	while ((*trees) != NULL)
-	{
-		route_tree_del(lem_in, (*trees)->tree);
-		ft_glstdelone(trees, NULL);
-	}
 }
 
 /*
 **	Deletes the specified tree element ands its parents if there is no child.
 */
 
-void			route_tree_del(t_lem_in *lem_in, t_route_tree *route_tree)
+void			route_tree_del(t_lem_in *lem_in, t_tree *route_tree)
 {
-	t_route_tree	*del;
-	t_route_tree	*curr;
+	t_tree	*del;
+	t_tree	*curr;
 
 	(void)lem_in;
 	curr = route_tree;
@@ -52,9 +44,9 @@ void			route_tree_del(t_lem_in *lem_in, t_route_tree *route_tree)
 	}
 }
 
-t_route_tree	*route_tree_create_child(t_lem_in *lem_in, t_route_tree *parent, t_room *room)
+t_tree	*route_tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room)
 {
-	t_route_tree	*res;
+	t_tree	*res;
 
 	(void)lem_in;
 	res = route_tree_new(lem_in);
@@ -67,18 +59,9 @@ t_route_tree	*route_tree_create_child(t_lem_in *lem_in, t_route_tree *parent, t_
 	return (res);
 }
 
-void			route_tree_print(t_route_tree *route_tree)
+t_route			*route_tree_to_route(t_tree *route_tree)
 {
-	t_route		*route;
-
-	route = route_tree_to_route(route_tree);
-	route_print(route);
-	route_free(route, sizeof(t_route));
-}
-
-t_route			*route_tree_to_route(t_route_tree *route_tree)
-{
-	t_route_tree	*curr;
+	t_tree	*curr;
 	t_route			*res;
 
 	res = route_new();

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/22 15:03:03 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/28 19:31:30 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:36:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void			*glist_to_array(t_glist *list)
 	curr = list;
 	while (curr != NULL)
 	{
-		res[pos] = curr->content;
+		res[pos] = curr->gen.content;
 		pos++;
 		curr = curr->next;
 	}

@@ -6,15 +6,14 @@
 #    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/06 17:38:53 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/06 19:49:54 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = clang
 
-# Laisser en mode debug avant la version finale
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG #-fsanitize=address
-# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -g
+# CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -g -D DEBUG #-fsanitize=address
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -I $(LIBFTIDIR) -O3 -g
 
 IDIR = includes
 SDIR = srcs
@@ -36,8 +35,11 @@ SRC = $(patsubst %,$(SDIR)/%,$(_SRC))
 _SRC =	room/room.c \
 		room/room_create_links.c \
 		lem_in.c \
-		bft/bft_run.c \
+		bft/run_bft.c \
+		bft/run_bft_core.c \
+		bft/run_bft_utils.c \
 		bft/route_tree.c \
+		bft/route_tree_utils.c \
 		parser/parse.c \
 		parser/parse_core.c \
 		solver/solve.c \
@@ -51,17 +53,13 @@ _SRC =	room/room.c \
 		utils/utils.c \
 		utils/utils_array.c \
 		glist/ft_glstadd.c \
-		glist/ft_glstadd_last.c \
 		glist/ft_glstdel.c \
 		glist/ft_glstdelone.c \
-		glist/ft_glstiter.c \
-		glist/ft_glstmap.c \
 		glist/ft_glstnew.c \
 		glist/ft_glstcpy.c \
 		glist/ft_glsthascontent.c \
 		glist/ft_glstsort.c \
 		glist/ft_glstlen.c \
-		glist/ft_glstinsert.c \
 		glist/ft_glstrev.c \
 		group/ants_distribution.c \
 		group/group.c \
@@ -73,8 +71,6 @@ _SRC =	room/room.c \
 		parser/parse_opt_print.c \
 		parser/parse_opt_print_help.c \
 		parser/parse_utils.c \
-		mempool/mempool.c \
-		mempool/mempool_utils.c \
 		display.c \
 		main.c
 

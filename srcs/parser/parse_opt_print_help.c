@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse_opt_print_help.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 16:51:20 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/06 15:49:40 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:38:43 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	print message error of flags.
+**	Prints command line error.
 */
 
 void	print_unknow(char *s)
@@ -31,7 +31,7 @@ void	print_unknow(char *s)
 }
 
 /*
-** Print manual of the option of lem_in
+**	Prints command line help.
 */
 
 void	printf_help(void)

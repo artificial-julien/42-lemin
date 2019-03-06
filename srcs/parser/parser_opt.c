@@ -3,18 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parser_opt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 16:51:20 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/01 15:52:44 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:22:41 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-** init opt of print.
-*/
 
 void	init_opt(t_lem_in *lem_in)
 {
@@ -23,10 +19,6 @@ void	init_opt(t_lem_in *lem_in)
 	lem_in->opt.print_help = false;
 	lem_in->opt.print_time = false;
 }
-
-/*
-** parsing of the args of lem_in
-*/
 
 void	parse_arg_sym(t_lem_in *lem_in, char *s)
 {
@@ -54,7 +46,7 @@ void	parse_arg_sym(t_lem_in *lem_in, char *s)
 }
 
 /*
-** parsing of the args of lem_in
+**	Parses a single argument.
 */
 
 void	parse_arg(char *s, t_lem_in *lem_in)
@@ -81,7 +73,7 @@ void	parse_arg(char *s, t_lem_in *lem_in)
 }
 
 /*
-**	Parse every string find a the call of lem_in
+**	Parses the command line options.
 */
 
 void	parse_opt(t_lem_in *lem_in, int ac, char **av)
@@ -89,13 +81,10 @@ void	parse_opt(t_lem_in *lem_in, int ac, char **av)
 	int i;
 
 	i = 1;
-	init_opt(lem_in);
-	if (ac > 1)
+	ft_memset(&lem_in->opt, 0, sizeof(lem_in->opt));
+	while (av[i] != NULL && i < ac)
 	{
-		while (av[i] != NULL && i < ac)
-		{
-			parse_arg(av[i], lem_in);
-			i++;
-		}
+		parse_arg(av[i], lem_in);
+		i++;
 	}
 }

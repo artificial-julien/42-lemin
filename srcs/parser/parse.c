@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:41:07 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/27 15:30:38 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/05 19:20:37 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-**	Function for parsing the input and create the information for the progams
+**	Main parsing function.
 */
 
 void	parse(t_lem_in *lem_in)
