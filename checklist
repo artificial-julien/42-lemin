@@ -12,8 +12,7 @@ Parse:
 	- Verifier les connections en doublon
 Algo:
 	- (FAIT) Erreur si aucun resultat
-	- Freeze avec 2 rooms.
-	- avec fsanitize=address : faille dans bitmap_get.
+	- (FAIT) Freeze avec 2 rooms.
 	- Cas de la route de 3 noeuds (start + end + 1x standard) avec augmentation.
 print :
 	-(FAIT)print_display risque avec stack ? a verifier.
@@ -25,9 +24,12 @@ Leaks:
 	Leak sur GNL
 
 Avant rendu :
+- Supprimer les fonctions de deboguage
 - Leaks
 - Norme
 - Flag debug
 - Fonctions / fichiers / non utilisés
 - Fonctions interdites
 - Fichiers externes (sauf README et .gitignore)
+
+- Refaire quelques tests (generator + validator) et verifier le nb de lignes.
