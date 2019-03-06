@@ -6,25 +6,11 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/05 18:26:00 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:49:34 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-
-/*
-**	If debug option is on
-**	Prints the specified newly created group.
-*/
-
-static void		debug_print_new_group(t_lem_in *lem_in, t_group *group)
-{
-	if (lem_in->opt.debug || lem_in->opt.print_groups)
-	{
-		ft_fprintf(2, "Created group :\n");
-		group_print(group);
-	}
-}
 
 /*
 **	If debug option is on
@@ -103,7 +89,6 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		debug_print_new_route(lem_in, virtual_route);
 		route_free(virtual_route, sizeof(t_route));
 		group = group_build(lem_in);
-		debug_print_new_group(lem_in, group);
 		if (best_group == NULL)
 			best_group = group;
 		else if (best_group->total_rounds > group->total_rounds)

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/01 17:39:01 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 15:50:10 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,20 @@ static void		create_routes(t_lem_in *lem_in, t_group *group)
 }
 
 /*
+**	If debug option is on
+**	Prints the specified  group.
+*/
+
+static void		debug_print_group(t_lem_in *lem_in, t_group *group)
+{
+	if (lem_in->opt.debug || lem_in->opt.print_groups)
+	{
+		ft_fprintf(2, "Created group :\n");
+		group_print(group);
+	}
+}
+
+/*
 **	Creates a new group of routes using the outgoing connections from the
 **	start node.
 */
@@ -80,5 +94,6 @@ t_group			*group_build(t_lem_in *lem_in)
 		res->routes[0]->len
 		+ res->ants_distribution[0]
 		- 1;
+	debug_print_group(lem_in, res);
 	return (res);
 }
