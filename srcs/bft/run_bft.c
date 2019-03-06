@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bft_run.c                                          :+:      :+:    :+:   */
+/*   run_bft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 18:18:18 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 18:52:15 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,29 +27,24 @@ static t_bool		can_traverse(t_route_tree *tree, t_room *dst)
 	{
 		return (false);
 	}
-	// On ne remonte pas la route existante.
 	if (tree->room->prev != NULL && tree->room->prev == dst)
 	{
 		return (false);
 	}
-	// On ne repasse pas par le point d'intersection de la route actuellement coupée.
 	if (tree->intersection == dst)
 	{
 		return (false);
 	}
-	// On ne resort pas aussitot de la route sur laquelle on vient d'entrer car on creerait une route croisée.
 	if (tree->intersection != NULL
 		&& tree->room == tree->intersection
 		&& dst != tree->room->next)
 	{
 		return (false);
 	}
-	// On part de start en prenant une route existante (on evite de la suivre jusqu'a la fin)
 	if (tree->room->type == start && dst->prev == tree->room)
 	{
 		return (false);
 	}
-	// On ne retourne jamais sur start directement.
 	if (dst->type == start)
 	{
 		return (false);
@@ -63,13 +58,10 @@ static t_bool		can_traverse(t_route_tree *tree, t_room *dst)
 
 static t_bool		in_intersection(t_room *src, t_room *dst)
 {
-	// Si on est sur une route et on la suit.
 	if (src->next != NULL && src->next == dst)
 		return (false);
-	// Si dst n'a pas de route.
 	if (dst->prev == NULL)
 		return (false);
-	// Si on est sur une route et on la suit. (encore?)
 	if (dst->prev == src)
 		return (false);
 	return (true);
@@ -144,7 +136,6 @@ static t_route_tree	*traverse_end(t_lem_in *lem_in, t_route_tree *node)
 {
 	t_route_tree	*res;
 
-	// Est sur end en suivant une route -> Remonter jusqu'a start.
 	if (node->parent->room->next != NULL)
 	{
 		res = go_to_start(lem_in, node);
@@ -160,7 +151,6 @@ static t_route_tree	*traverse_end(t_lem_in *lem_in, t_route_tree *node)
 
 static t_route	*try_finalize_traverse(t_lem_in *lem_in, t_route_tree *node)
 {
-	// Est sur end -> Trouvé ET augmentation > 0
 	if (node->augmentation > 0)
 	{
 		if (lem_in->opt.debug)
@@ -192,10 +182,8 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 	{
 		ft_fprintf(2, "\nPass #%d\n", debug_pass);
 		ft_fprintf(2, "Extending from (augmentations=%d, intersection=%s):\t", node->augmentation, node->intersection != NULL ? node->intersection->name : NULL);
-		// ft_fprintf(2, "\nExtending from:\t");
 		route_tree_print(node);
 	}
-	// Marque la room si elle n'a pas de route.
 	if (node->room->type == standard && node->room->next == NULL)
 		node->room->visited = true;
 	if (node && node->room->type == end)
@@ -212,7 +200,6 @@ static t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node, t_glist **nex
 		while (curr != NULL)
 		{
 			new_node = traverse(lem_in, node, curr->room);
-			// Ajoute le noeud créé pour le prochain niveau du parcours en largeur.
 			if (new_node != NULL)
 				ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
 			curr = curr->next;
@@ -255,7 +242,6 @@ t_route				*run_bft(t_lem_in *lem_in)
 	t_route			*res;
 	t_route_tree	*tree;
 
-	// Création du noeud initial.
 	nodes = NULL;
 	tree = route_tree_new(lem_in);
 	tree->room = lem_in->start;
@@ -264,7 +250,6 @@ t_route				*run_bft(t_lem_in *lem_in)
 	next_nodes = NULL;
 	while (1)
 	{
-		// On avance au niveau suivant.
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
 		route_tree_del_list(lem_in, &nodes);
 		if (res != NULL)
