@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 12:49:05 by juazouz           #+#    #+#             */
-/*   Updated: 2019/02/05 12:51:08 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:37:48 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_bool	ft_glsthascontent(t_glist *lst, void *content)
 	curr = lst;
 	while (curr != NULL)
 	{
-		if (curr->content == content)
+		if (curr->gen.content == content)
 			return (true);
 		curr = curr->next;
 	}

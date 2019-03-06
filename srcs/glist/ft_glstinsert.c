@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/05 13:22:36 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:39:25 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void				ft_glstinsert(t_glist **dest, t_glist *new,
 	curr = (*dest);
 	while ((curr))
 	{
-		if ((tmp = cmp((curr)->content, (new)->content)) <= 0)
+		if ((tmp = cmp((curr)->gen.content, (new)->gen.content)) <= 0)
 			break ;
 		(curr_prev) = (curr);
 		(curr) = (curr)->next;

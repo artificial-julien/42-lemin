@@ -27,7 +27,7 @@ static void			reset_visited(t_lem_in *lem_in)
 	curr = lem_in->rooms;
 	while (curr != NULL)
 	{
-		curr->room->visited = false;
+		curr->gen.room->visited = false;
 		curr = curr->next;
 	}
 }

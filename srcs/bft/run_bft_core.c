@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:50 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:26:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:35:17 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ t_route_tree	*traverse_end(t_lem_in *lem_in, t_route_tree *node)
 	return (NULL);
 }
 
-static t_route		*try_finalize_traverse(t_lem_in *lem_in, t_route_tree *node)
+t_route		*try_finalize_traverse(t_lem_in *lem_in, t_route_tree *node)
 {
+	(void)lem_in;
 	if (node->augmentation > 0)
 	{
 		return (route_tree_to_route(node));
@@ -87,7 +88,7 @@ t_route		*extend_node(t_lem_in *lem_in, t_route_tree *node,
 	curr = node->room->links;
 	while (curr != NULL)
 	{
-		new_node = traverse(lem_in, node, curr->room);
+		new_node = traverse(lem_in, node, curr->gen.room);
 		if (new_node != NULL)
 			ft_glstadd(next_nodes, ft_glstnew(new_node, sizeof(t_route_tree)));
 		curr = curr->next;
@@ -110,7 +111,7 @@ t_route		*extend_nodes_list(t_lem_in *lem_in,
 	curr = nodes;
 	while (curr != NULL)
 	{
-		if ((res = extend_node(lem_in, curr->tree, next_nodes)))
+		if ((res = extend_node(lem_in, curr->gen.tree, next_nodes)))
 			return (res);
 		curr = curr->next;
 	}

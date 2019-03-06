@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:27:37 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:35:50 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ t_bool		in_intersection(t_room *src, t_room *dst)
 **	route.
 */
 
-static t_bool		out_intersection(t_room *src, t_room *dst)
+t_bool		out_intersection(t_room *src, t_room *dst)
 {
 	return (src->next != NULL && src->next != dst);
 }
@@ -68,7 +68,7 @@ static t_bool		out_intersection(t_room *src, t_room *dst)
 **	Returns null if the last intersection is the first node of the route.
 */
 
-static t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
+t_route_tree	*go_to_start(t_lem_in *lem_in, t_route_tree *tree)
 {
 	t_room			*room;
 	t_route_tree	*res;

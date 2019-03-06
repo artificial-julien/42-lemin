@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/12/21 13:24:14 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/01 16:47:22 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:36:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_glstadd_last(t_glist **alst, t_glist *n)
 			(*alst) = n;
 			(*alst)->next = NULL;
 		}
-		else if ((*alst)->content == NULL)
+		else if ((*alst)->gen.content == NULL)
 		{
 			free(*alst);
 			*alst = n;

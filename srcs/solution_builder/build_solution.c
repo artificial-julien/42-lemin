@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 18:38:52 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:36:32 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,10 +60,10 @@ static void	run_route(t_lem_in *lem_in, t_route *route, int *ants_for_routes,
 	t_room	*room_b;
 
 	curr = route->rooms;
-	while (curr->room != lem_in->start)
+	while (curr->gen.room != lem_in->start)
 	{
-		room_a = curr->room;
-		room_b = curr->next->room;
+		room_a = curr->gen.room;
+		room_b = curr->next->gen.room;
 		ant_try_move(room_b, room_a, solution, ants_for_routes);
 		curr = curr->next;
 	}

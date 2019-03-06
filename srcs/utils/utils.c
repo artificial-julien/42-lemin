@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/02/26 14:18:27 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:31:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	print_nodes(t_glist *nodes)
 	curr = nodes;
 	while (curr != NULL)
 	{
-		room = curr->room;
+		room = curr->gen.room;
 		if (room->type == start)
 			label = "[S]";
 		else if (room->type == end)

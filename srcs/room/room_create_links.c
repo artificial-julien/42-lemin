@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   room_create_links.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/06 16:21:12 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:31:59 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static t_bool	room_find_duplicate_link(t_room *room, char *name)
 	curr = room->links;
 	while (curr)
 	{
-		if (ft_strequ(curr->room->name, name))
+		if (ft_strequ(curr->gen.room->name, name))
 			return (true);
 		curr = curr->next;
 	}
@@ -67,7 +67,7 @@ void			room_remove_link(t_room *room, t_room *link)
 	curr = &room->links;
 	while (*curr != NULL)
 	{
-		if ((*curr)->room == link)
+		if ((*curr)->gen.room == link)
 		{
 			ft_glstdelone(curr, NULL);
 			room->links_count--;

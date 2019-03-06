@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/05 18:38:13 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 18:39:35 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:31:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int		routes_count(t_room *start)
 	curr = start->links;
 	while (curr != NULL)
 	{
-		if (curr->room->next != NULL || curr->room->type == end)
+		if (curr->gen.room->next != NULL || curr->gen.room->type == end)
 		{
 			res++;
 		}
@@ -50,9 +50,9 @@ static void		create_routes(t_lem_in *lem_in, t_group *group)
 	curr = lem_in->start->links;
 	while (curr != NULL)
 	{
-		if (curr->room->next != NULL || curr->room->type == end)
+		if (curr->gen.room->next != NULL || curr->gen.room->type == end)
 		{
-			route = route_build(lem_in->start, curr->room);
+			route = route_build(lem_in->start, curr->gen.room);
 			group->routes[i] = route;
 			i++;
 		}

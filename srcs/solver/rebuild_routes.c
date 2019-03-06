@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/20 16:13:44 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 15:55:34 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/06 19:31:39 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,19 +87,19 @@ void			rebuild_routes(t_lem_in *lem_in, t_route *route)
 	prev = NULL;
 	while (curr != NULL)
 	{
-		if (has_route(curr->room))
+		if (has_route(curr->gen.room))
 		{
-			break_route(curr->room);
+			break_route(curr->gen.room);
 		}
-		prev = curr->room;
+		prev = curr->gen.room;
 		curr = curr->next;
 	}
 	curr = route->rooms;
 	prev = NULL;
 	while (curr != NULL)
 	{
-		connect(prev, curr->room);
-		prev = curr->room;
+		connect(prev, curr->gen.room);
+		prev = curr->gen.room;
 		curr = curr->next;
 	}
 }
