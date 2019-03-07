@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:47:09 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:15:17 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,4 +86,3 @@ void			solve(t_lem_in *lem_in, t_solution *solution)
 	build_solution(lem_in, best_group, solution);
 	group_free(best_group, sizeof(t_group));
 }
-

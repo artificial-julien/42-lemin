@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 13:59:02 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:17:21 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,7 @@ t_route		*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes,
 	t_glist **next_nodes);
 t_route		*extend_node(t_lem_in *lem_in,
 	t_tree *node, t_glist **next_nodes);
-t_route		*try_finalize_traverse(t_lem_in *lem_in, t_tree *node);
+t_route		*try_finalize_traverse(t_tree *node);
 t_tree		*traverse_end(t_lem_in *lem_in, t_tree *node);
 t_tree		*traverse(t_lem_in *lem_in, t_tree *node, t_room *dst);
 
