@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
+#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/05 19:26:51 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/07 14:55:59 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
 
-CFLAGS = -Wall -Wextra -Werror -I $(IDIR) -O3
+CFLAGS = -Wall -Wextra -Werror -I $(IDIR)
 
 NAME = libft.a
 
