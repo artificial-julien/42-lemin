@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:20:46 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void			reset_visited(t_lem_in *lem_in)
 
 static t_glist		*init_first_level(t_lem_in *lem_in)
 {
-	t_glist			*res;
+	t_glist	*res;
 	t_tree	*tree;
 
 	res = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:20:05 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ t_bool			out_intersection(t_room *src, t_room *dst)
 **	Returns null if the last intersection is the first node of the route.
 */
 
-t_tree	*go_to_start(t_lem_in *lem_in, t_tree *tree)
+t_tree			*go_to_start(t_lem_in *lem_in, t_tree *tree)
 {
-	t_room			*room;
+	t_room	*room;
 	t_tree	*res;
 
 	room = tree->parent->room;

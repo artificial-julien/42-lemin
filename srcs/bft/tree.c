@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tree.c                                       :+:      :+:    :+:   */
+/*   tree.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/28 15:57:17 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 20:06:01 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:19:30 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_tree	*tree_new(t_lem_in *lem_in)
 {
-	t_tree	*res;
+	t_tree			*res;
 	static int		id;
 
 	(void)lem_in;
@@ -27,7 +27,7 @@ t_tree	*tree_new(t_lem_in *lem_in)
 **	Deletes the specified tree element ands its parents if there is no child.
 */
 
-void			tree_del(t_lem_in *lem_in, t_tree *tree)
+void	tree_del(t_lem_in *lem_in, t_tree *tree)
 {
 	t_tree	*del;
 	t_tree	*curr;
@@ -59,10 +59,10 @@ t_tree	*tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room)
 	return (res);
 }
 
-t_route			*tree_to_route(t_tree *tree)
+t_route	*tree_to_route(t_tree *tree)
 {
 	t_tree	*curr;
-	t_route			*res;
+	t_route	*res;
 
 	res = route_new();
 	curr = tree;

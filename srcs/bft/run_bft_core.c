@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:50 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:18:44 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_tree	*traverse(t_lem_in *lem_in, t_tree *node, t_room *dst)
 {
-	t_tree	*res;
+	t_tree			*res;
 	int				augmentation;
 	t_room			*intersection;
 
@@ -50,9 +50,8 @@ t_tree	*traverse_end(t_lem_in *lem_in, t_tree *node)
 	return (NULL);
 }
 
-t_route		*try_finalize_traverse(t_lem_in *lem_in, t_tree *node)
+t_route	*try_finalize_traverse(t_tree *node)
 {
-	(void)lem_in;
 	if (node->augmentation > 0)
 	{
 		return (tree_to_route(node));
@@ -66,11 +65,11 @@ t_route		*try_finalize_traverse(t_lem_in *lem_in, t_tree *node)
 **	Returns the found path if any.
 */
 
-t_route		*extend_node(t_lem_in *lem_in, t_tree *node,
+t_route	*extend_node(t_lem_in *lem_in, t_tree *node,
 	t_glist **next_nodes)
 {
 	t_glist			*curr;
-	t_tree	*new_node;
+	t_tree			*new_node;
 	t_route			*res;
 
 	new_node = NULL;
@@ -78,7 +77,7 @@ t_route		*extend_node(t_lem_in *lem_in, t_tree *node,
 		node->room->visited = true;
 	if (node && node->room->type == end)
 	{
-		if ((res = try_finalize_traverse(lem_in, node)) != NULL)
+		if ((res = try_finalize_traverse(node)) != NULL)
 			return (res);
 		new_node = traverse_end(lem_in, node);
 		if (new_node != NULL)
@@ -102,8 +101,8 @@ t_route		*extend_node(t_lem_in *lem_in, t_tree *node,
 **	Returns the tree leaf of the first found path if any.
 */
 
-t_route		*extend_nodes_list(t_lem_in *lem_in,
-	t_glist *nodes, t_glist **next_nodes)
+t_route	*extend_nodes_list(t_lem_in *lem_in, t_glist *nodes,
+	t_glist **next_nodes)
 {
 	t_glist		*curr;
 	t_route		*res;
