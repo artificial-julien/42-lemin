@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 14:41:57 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 18:39:07 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:43:14 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,11 @@ int			main(int ac, char **av)
 		printf_help();
 		return (0);
 	}
-	time_profiling(&lem_in, true, NULL);
 	parse(&lem_in);
 	solution_init(&solution);
 	solve(&lem_in, &solution);
-	time_profiling(&lem_in, false, "Solving");
 	print_display(&lem_in);
 	solution_print(lem_in, &solution);
-	time_profiling(&lem_in, false, "Writing result");
 	solution_free(&solution);
 	lem_in_free(&lem_in);
 	return (0);
