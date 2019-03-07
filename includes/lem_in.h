@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 20:12:42 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 13:59:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,10 +109,10 @@ struct	s_lem_in
 **	id:			Room id.
 **	type:		Start / end / standard (intermediate node)
 **	ants:		Ants count in the current room. Up to 1 for standard type.
-**	ant_id:		Present ant id going from 1 to ants_count
+**	ant_id:		Present ant id from 1 to ants_count.
 **				0 when no ants are present.
 **	links:		Connected rooms list.
-**	distance:	Distance to end if a route is present.
+**	visited:	True if the room has been visited by the breathd-first traverse.
 */
 
 struct	s_room
@@ -128,7 +128,6 @@ struct	s_room
 	t_room		*prev;
 	t_room		*next;
 	t_bool		visited;
-	int			distance;
 };
 
 /*
@@ -290,16 +289,15 @@ t_bool		out_intersection(t_room *src, t_room *dst);
 t_tree		*go_to_start(t_lem_in *lem_in, t_tree *tree);
 
 /*
-**	Route tree.
+**	Breadth-first traverse tree.
 */
 
-t_tree		*route_tree_new(t_lem_in *lem_in);
-void		route_tree_del(t_lem_in *lem_in, t_tree *route_tree);
-void		route_tree_del_list(t_lem_in *lem_in, t_glist **trees);
-t_tree		*route_tree_create_child(t_lem_in *lem_in,
-	t_tree *parent, t_room *room);
-void		route_tree_print(t_tree *route_tree);
-t_route		*route_tree_to_route(t_tree *route_tree);
+t_tree		*tree_new(t_lem_in *lem_in);
+void		tree_del(t_lem_in *lem_in, t_tree *tree);
+void		tree_del_list(t_lem_in *lem_in, t_glist **trees);
+t_tree		*tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room);
+void		tree_print(t_tree *tree);
+t_route		*tree_to_route(t_tree *tree);
 
 /*
 **	Route.
@@ -357,6 +355,7 @@ void		solution_add_round(t_solution *solution);
 void		solution_add_move(t_solution *solution, t_room *dst);
 void		solution_free(t_solution *solution);
 void		round_free(void *content, size_t size);
+
 /*
 **	Utils.
 */

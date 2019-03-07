@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
+#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/06 19:49:54 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,8 +38,8 @@ _SRC =	room/room.c \
 		bft/run_bft.c \
 		bft/run_bft_core.c \
 		bft/run_bft_utils.c \
-		bft/route_tree.c \
-		bft/route_tree_utils.c \
+		bft/tree.c \
+		bft/tree_utils.c \
 		parser/parse.c \
 		parser/parse_core.c \
 		solver/solve.c \

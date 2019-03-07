@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 20:04:29 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_glist		*init_first_level(t_lem_in *lem_in)
 	t_tree	*tree;
 
 	res = NULL;
-	tree = route_tree_new(lem_in);
+	tree = tree_new(lem_in);
 	tree->room = lem_in->start;
 	tree->augmentation = 1;
 	ft_glstadd(&res, ft_glstnew(tree, sizeof(t_tree)));
@@ -67,10 +67,10 @@ t_route				*run_bft(t_lem_in *lem_in)
 	while (1)
 	{
 		res = extend_nodes_list(lem_in, nodes, &next_nodes);
-		route_tree_del_list(lem_in, &nodes);
+		tree_del_list(lem_in, &nodes);
 		if (res != NULL)
 		{
-			route_tree_del_list(lem_in, &next_nodes);
+			tree_del_list(lem_in, &next_nodes);
 			return (res);
 		}
 		if (next_nodes == NULL)

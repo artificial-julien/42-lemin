@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:50 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 20:06:02 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ t_tree	*traverse(t_lem_in *lem_in, t_tree *node, t_room *dst)
 		intersection = NULL;
 	else
 		intersection = node->intersection;
-	res = route_tree_create_child(lem_in, node, dst);
+	res = tree_create_child(lem_in, node, dst);
 	res->augmentation = augmentation;
 	res->intersection = intersection;
 	return (res);
@@ -55,7 +55,7 @@ t_route		*try_finalize_traverse(t_lem_in *lem_in, t_tree *node)
 	(void)lem_in;
 	if (node->augmentation > 0)
 	{
-		return (route_tree_to_route(node));
+		return (tree_to_route(node));
 	}
 	return (NULL);
 }

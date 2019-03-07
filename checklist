@@ -18,7 +18,6 @@ print :
 	-(FAIT)print_display risque avec stack ? a verifier.
 	- verifier securite free_display
 General :
-	Renommer route_tree -> tree
 	Se debarrasser du paramettre jamais utilisé de ft_glstdelone() et ft_glstdel()
 Leaks:
 	Leak sur GNL

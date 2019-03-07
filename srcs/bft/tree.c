@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   route_tree.c                                       :+:      :+:    :+:   */
+/*   tree.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "lem_in.h"
 
-t_tree	*route_tree_new(t_lem_in *lem_in)
+t_tree	*tree_new(t_lem_in *lem_in)
 {
 	t_tree	*res;
 	static int		id;
@@ -27,13 +27,13 @@ t_tree	*route_tree_new(t_lem_in *lem_in)
 **	Deletes the specified tree element ands its parents if there is no child.
 */
 
-void			route_tree_del(t_lem_in *lem_in, t_tree *route_tree)
+void			tree_del(t_lem_in *lem_in, t_tree *tree)
 {
 	t_tree	*del;
 	t_tree	*curr;
 
 	(void)lem_in;
-	curr = route_tree;
+	curr = tree;
 	while (curr != NULL && curr->child_count == 0)
 	{
 		del = curr;
@@ -44,12 +44,12 @@ void			route_tree_del(t_lem_in *lem_in, t_tree *route_tree)
 	}
 }
 
-t_tree	*route_tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room)
+t_tree	*tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room)
 {
 	t_tree	*res;
 
 	(void)lem_in;
-	res = route_tree_new(lem_in);
+	res = tree_new(lem_in);
 	res->parent = parent;
 	res->intersection = parent->intersection;
 	res->augmentation = parent->augmentation;
@@ -59,13 +59,13 @@ t_tree	*route_tree_create_child(t_lem_in *lem_in, t_tree *parent, t_room *room)
 	return (res);
 }
 
-t_route			*route_tree_to_route(t_tree *route_tree)
+t_route			*tree_to_route(t_tree *tree)
 {
 	t_tree	*curr;
 	t_route			*res;
 
 	res = route_new();
-	curr = route_tree;
+	curr = tree;
 	while (curr != NULL)
 	{
 		route_add_node(res, curr->room);

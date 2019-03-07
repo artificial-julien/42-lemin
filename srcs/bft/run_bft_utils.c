@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 20:04:26 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ t_tree	*go_to_start(t_lem_in *lem_in, t_tree *tree)
 	{
 		return (NULL);
 	}
-	res = route_tree_create_child(lem_in, tree, lem_in->start);
-	res = route_tree_create_child(lem_in, res, room);
+	res = tree_create_child(lem_in, tree, lem_in->start);
+	res = tree_create_child(lem_in, res, room);
 	res->augmentation++;
 	return (res);
 }
