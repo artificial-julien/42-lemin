@@ -22,7 +22,7 @@ LIBFTDIR = libft
 LIBFTIDIR = $(LIBFTDIR)/includes
 LIBFT = libft.a
 
-NAME = lem_in
+NAME = lem-in
 
 DEPS = $(IDIR)/lem_in.h Makefile
 
