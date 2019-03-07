@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:17:21 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/07 14:31:00 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,39 +46,39 @@ typedef struct s_tree		t_tree;
 **	Project generic list.
 */
 
-union	u_generic
+union		u_generic
 {
-	void			*content;
-	t_room			*room;
-	t_route			*route;
-	t_group			*group;
-	t_round			*round;
-	t_move			*move;
-	t_glist			*glist;
-	t_tree			*tree;
+	void	*content;
+	t_room	*room;
+	t_route	*route;
+	t_group	*group;
+	t_round	*round;
+	t_move	*move;
+	t_glist	*glist;
+	t_tree	*tree;
 };
 
-struct	s_glist
+struct		s_glist
 {
 	union u_generic	gen;
 	size_t			content_size;
 	struct s_glist	*next;
 };
 
-struct	s_point
+struct		s_point
 {
-	int	x;
-	int	y;
+	int		x;
+	int		y;
 };
 
-enum	e_roomtype
+enum		e_roomtype
 {
 	standard,
 	start,
 	end,
 };
 
-struct	s_opt
+struct		s_opt
 {
 	t_bool	debug;
 	t_bool	print_room;
@@ -88,7 +88,7 @@ struct	s_opt
 	t_bool	print_time;
 };
 
-struct	s_lem_in
+struct		s_lem_in
 {
 	int		total_ants;
 	int		max_routes;
@@ -115,7 +115,7 @@ struct	s_lem_in
 **	visited:	True if the room has been visited by the breathd-first traverse.
 */
 
-struct	s_room
+struct		s_room
 {
 	char		*name;
 	int			id;
@@ -135,7 +135,7 @@ struct	s_room
 **	Contains a list of rounds.
 */
 
-struct	s_solution
+struct		s_solution
 {
 	int		round;
 	int		route;
@@ -147,7 +147,7 @@ struct	s_solution
 **	Contains a list of moves.
 */
 
-struct	s_round
+struct		s_round
 {
 	t_dlist	*moves;
 };
@@ -160,7 +160,7 @@ struct	s_round
 **	intersection:	node where the traverse starts cutting an existant route.
 */
 
-struct	s_tree
+struct		s_tree
 {
 	t_room	*room;
 	t_tree	*parent;
@@ -173,18 +173,18 @@ struct	s_tree
 **	Ant move going from origin to target.
 */
 
-struct	s_move
+struct		s_move
 {
 	int		id_route;
 	int		ant_id;
 	t_room	*dst;
 };
 
-struct	s_route
+struct		s_route
 {
-	int			id_route;
-	int			len;
-	t_glist		*rooms;
+	int		id_route;
+	int		len;
+	t_glist	*rooms;
 };
 
 /*
@@ -196,7 +196,7 @@ struct	s_route
 **	routes:				group routes array.
 */
 
-struct	s_group
+struct		s_group
 {
 	int		route_count;
 	int		total_rounds;
