@@ -1,28 +1,34 @@
 # 42-Lem-in project
 Lemin is about finding the shortest solution for the ants to traverse an ant colony (or a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))) from one cell to another in as few turns as possible.
 We need to find the shortest path (and not the simplest) to achieve this.
+
 Both the program input and output are text formatted and have a specific format.
 Input contains : number of ants, rooms, connections.
 Output contains : the input + the solution.
+
 The project must by written in C language.
+
 The constraints are:
-- An ant can only move once per turn
+- An ant can only move once per turn.
 - A cell can only contain up to one ant (except the start and end cells).
-- The program must take less than 8 seconds (ours never takes more than 1 second).
+- The program must take less than 8 seconds (ours never takes more than 0.5 seconds).
 Therefore the algorithm has to avoid trafic jam and overlapping.
 ## Usage
 ```console
 make
 ./lem_in < maps/3-groups.map
 ```
-## The Edmonds-Karp algorithm
-We are using custom adaption of the [Edmonds-Karp algorithm](https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm).
-E-K finds the highest flow in a **directed graph** : the best set of paths between 2 **edges** (or cells).
-We need to adapt the E-K algorithm because of the following differences:
+## The [Edmonds-Karp algorithm](https://en.wikipedia.org/wiki/Edmonds%E2%80%93Karp_algorithm)
+### Introduction
+EK finds the highest possible flow in a **directed graph** between 2 **edges** (start + end) where **vertices** have a flow limit.
+For Lemin, we are using a custom adaption of EK.
+### Our adaptation
+We need to adapt the EK algorithm because of the following differences with project:
 - Our graph is undirected.
-- We do not only need to find the highest flow **but also the right balance with the shortest path** since we need to reach the end in a few turns as possible.
-- E-K flow limits are defined by **vertices** (links between cells) but is to 1 by cell.
-## Project organisation
+- EK does not care about the distances but we do because we need to reach the end as fast as possible.
+So we do not only need to find the highest flow **but also the right balance with the shortest paths** .
+- EK flow limits are defined by **vertices** (links between cells) instead **edges** (cells) but in Lemin is set to 1 by cell.
+## Data model
 ### t_lem_in
 Contains the core project informations :
 - Total number of ants
@@ -47,9 +53,7 @@ Contains:
 ### t_solution
 Contains the final solution information to be written as text.
 Contains a list of turns which contains a list of moves.
-### t_move
-An ant move information.
-Contains an ant id and its room destination.
+A "move" contains an ant id and its room destination.
 ## Our algorithm
 - Parse the input and builds a graph.
 - Delete dead-ends, isolated rooms and duplicate connections for performance.
