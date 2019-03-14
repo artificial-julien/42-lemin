@@ -6,7 +6,7 @@
 #    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/07 13:54:40 by juazouz          ###   ########.fr        #
+#    Updated: 2019/03/14 15:57:54 by agoulas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIBFTDIR = libft
 LIBFTIDIR = $(LIBFTDIR)/includes
 LIBFT = libft.a
 
-NAME = lem_in
+NAME = lem-in
 
 DEPS = $(IDIR)/lem_in.h Makefile
 
