@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:43:26 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/15 13:13:56 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ struct		s_opt
 	t_bool	print_route;
 	t_bool	print_groups;
 	t_bool	print_help;
-	t_bool	print_time;
 };
 
 struct		s_lem_in

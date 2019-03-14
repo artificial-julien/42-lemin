@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_opt_print_help.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 16:51:20 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/06 18:38:43 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/14 15:59:09 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	printf_help(void)
 	ft_fprintf(2, "	|    -R,--route: print the route used by ant.  |\n");
 	ft_fprintf(2, "	|    -g,--groups: print the group chosen.      |\n");
 	ft_fprintf(2, "	|    -d,--debug: print all for debug.          |\n");
-	ft_fprintf(2, "	|    -t,--time: print steps timing information.|\n");
 	ft_fprintf(2, "	|   extra info on stderr (2)                   |\n");
 	ft_fprintf(2, "	|______________________________________________|\n");
 }
