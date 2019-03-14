@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:15:17 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/14 15:57:53 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 static void		debug_print_new_route(t_lem_in *lem_in, t_route *traverse)
 {
-	if (lem_in->opt.debug || lem_in->opt.print_groups)
+	if (lem_in->opt.debug)
 	{
 		ft_putendl_fd("=========================================", 2);
 		ft_fprintf(2, "Created virtual route :\n");
