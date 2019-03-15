@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_opt.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/15 16:51:20 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/15 13:14:50 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/15 18:20:29 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	init_opt(t_lem_in *lem_in)
 	lem_in->opt.debug = false;
 	lem_in->opt.print_room = false;
 	lem_in->opt.print_groups = false;
+	lem_in->opt.print_nblines = false;
 	lem_in->opt.print_help = false;
 }
 
@@ -37,6 +38,8 @@ void	parse_arg_sym(t_lem_in *lem_in, char *s)
 			lem_in->opt.print_groups = true;
 		else if (s[i] == 'R')
 			lem_in->opt.print_route = true;
+		else if (s[i] == 'n')
+			lem_in->opt.print_nblines = true;
 		else
 			print_unknow(s);
 		i++;
@@ -63,6 +66,8 @@ void	parse_arg(char *s, t_lem_in *lem_in)
 			lem_in->opt.print_groups = true;
 		else if (ft_strequ("--route", s))
 			lem_in->opt.print_route = true;
+		else if (ft_strequ("--nblines", s))
+			lem_in->opt.print_nblines = true;
 		else
 			parse_arg_sym(lem_in, s);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solution_print.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 12:33:38 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:39:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/15 18:24:10 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,6 @@ void		solution_print(t_lem_in lem_in, t_solution *solution)
 		print_round(lem_in, (t_round*)curr->content);
 		curr = curr->prev;
 	}
+	if (lem_in.opt.print_nblines == true)
+		ft_printf("#-> Number of line written :%d \n",solution->round);
 }
