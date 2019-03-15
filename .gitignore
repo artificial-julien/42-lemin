@@ -11,6 +11,5 @@ libft/libft.a
 libftprintf.a
 
 # User
-lem_in
-lem_in_test_*
+lem-in
 *.tmp
