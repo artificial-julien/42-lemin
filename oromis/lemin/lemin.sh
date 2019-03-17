@@ -22,7 +22,8 @@ testmap () {
 	find "$BASE/maps" -regex ".*$1[0-9]*" -print0 | while read -d $'\0' f
 	do
 		estimated=`grep -m 1 -E "#Here is the number of lines required:" $f | rev | cut -d " " -f1 | rev`
-		got=`$PROJECT_PATH/lem-in < $f 2>/dev/null | grep -E "L[0-9]+" | wc -l`
+		$PROJECT_PATH/lem-in < $f 2>/dev/null | sed -E 's/[ '$'\t'']+$//' > $f.output
+		got=`$PROJECT_PATH/lem-in < $f.output 2>/dev/null | grep -E "L[0-9]+" | wc -l`
 		printf "%8d ${C_GRY}|${C_RES} %3d ${C_GRY}|${C_RES} %s ${C_GRY}|${C_RES} " $estimated $got $f
 		if [ "$got" -eq "$estimated" ]; then
 			printf "${C_GRN}Perfect${C_RES}\n"
