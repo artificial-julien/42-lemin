@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   build_solution.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:36:32 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/17 14:32:43 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@
 t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
 	int *ants_for_routes)
 {
-	if (src->ants > 0 && ant_can_move(dest))
+	int cpt;
+
+	cpt = 0;
+	while (src->ants > 0 && ant_can_move(dest))
 	{
 		if (src->type == start)
 		{
@@ -32,9 +35,9 @@ t_bool		ant_try_move(t_room *src, t_room *dest, t_solution *solution,
 		dest->ants++;
 		dest->ant_id = src->ant_id;
 		solution_add_move(solution, dest);
-		return (true);
+		cpt++;
 	}
-	return (false);
+	return ((cpt != 0) ? true : false);
 }
 
 /*
