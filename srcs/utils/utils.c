@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/15 13:15:40 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/18 16:55:58 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void	print_nodes(t_glist *nodes)
 		else
 			label = "";
 		if (curr->next != NULL)
-			padding = " - ";
+			padding = "-";
 		else
 			padding = "";
-		ft_fprintf(2, "(%s)%s%s", room->name, label, padding);
+		ft_fprintf(2, "%s%s%s", room->name, label, padding);
 		curr = curr->next;
 	}
 	ft_fprintf(2, "\n");
