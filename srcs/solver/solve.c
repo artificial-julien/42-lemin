@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/14 15:57:53 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:45:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 	{
 		debug_print_new_route(lem_in, traverse);
 		rebuild_routes(lem_in, traverse);
-		route_free(traverse, sizeof(t_route));
 		group = group_build(lem_in);
+		route_free(traverse, sizeof(t_route));
 		if (best_group == NULL)
 			best_group = group;
 		else if (best_group->total_rounds > group->total_rounds)

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 16:39:09 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/06 19:32:21 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:59:50 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	lem_in_free(t_lem_in *lem_in)
 {
 	ft_glstdel(&lem_in->rooms, room_free);
 	free(lem_in->array_room);
-	free_saved_display(lem_in);
+	free_saved_output(lem_in);
 }
 
 /*

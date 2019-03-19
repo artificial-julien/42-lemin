@@ -9,6 +9,8 @@ obj/
 tests/
 libft/libft.a
 libftprintf.a
+.DS_STORE
+*.output
 
 # User
 lem-in

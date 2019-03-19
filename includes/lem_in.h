@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lem_in.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/15 18:18:30 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:59:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ struct		s_lem_in
 **				0 when no ants are present.
 **	links:		Connected rooms list.
 **	visited:	True if the room has been visited by the breathd-first traverse.
+**	visited2:	Like "visited" but for yet non augmenting traverse.
 */
 
 struct		s_room
@@ -128,6 +129,7 @@ struct		s_room
 	t_room		*prev;
 	t_room		*next;
 	t_bool		visited;
+	t_bool		visited2;
 };
 
 /*
@@ -287,6 +289,7 @@ t_bool		can_traverse(t_tree *tree, t_room *dst);
 t_bool		in_intersection(t_room *src, t_room *dst);
 t_bool		out_intersection(t_room *src, t_room *dst);
 t_tree		*go_to_start(t_lem_in *lem_in, t_tree *tree);
+void		mark_as_visited(t_tree *tree);
 
 /*
 **	Breadth-first traverse tree.
@@ -362,7 +365,7 @@ void		round_free(void *content, size_t size);
 
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
-int			gnl_no_comm(const int fd, char **line);
+int			gnl_no_comm(t_lem_in *lem_in, const int fd, char **line);
 void		print_nodes(t_glist *nodes);
 t_bool		is_number(char *s);
 
@@ -401,9 +404,9 @@ void		lem_in_print_all_rooms(t_lem_in *lem_in);
 **	Lines saving and display.
 */
 
-void		save_display(t_lem_in *lem_in, char *line);
-void		print_display(t_lem_in *lem_in);
-void		free_saved_display(t_lem_in *lem_in);
+void		save_output(t_lem_in *lem_in, char *line);
+void		print_output(t_lem_in *lem_in);
+void		free_saved_output(t_lem_in *lem_in);
 
 /*
 **	Array utils.

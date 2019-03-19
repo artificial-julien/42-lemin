@@ -1,4 +1,5 @@
 3
+##comment
 ##start
 start 0 0
 ##end
@@ -6,3 +7,4 @@ end 1 1
 ##invalidcommand
 room 2 2
 start-end
+#comment
