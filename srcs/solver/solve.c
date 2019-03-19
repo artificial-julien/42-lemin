@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/18 16:52:57 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 11:41:19 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		debug_print_new_route(lem_in, traverse);
 		rebuild_routes(lem_in, traverse);
 		group = group_build(lem_in);
-		ft_fprintf(2, "==============================\n");
-		route_print(traverse);
 		route_free(traverse, sizeof(t_route));
 		group_print(group);
 		if (best_group == NULL)
