@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_optimizer.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/17 15:06:53 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:47:40 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	parse_optimizer(t_lem_in *lem_in)
 	while (curr && curr->gen.room)
 	{
 		room = curr->gen.room;
-		if (room->links_count <= 1 /*&& room->links*/ && room->type == standard)
+		if (room->links_count <= 1 && room->type == standard)
 		{
 			delete_dead_end(lem_in, room);
 			curr = lem_in->rooms;
