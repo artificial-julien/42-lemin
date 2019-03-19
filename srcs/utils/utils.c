@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/18 16:55:58 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:57:10 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int		ft_strindex(const char *hay, char c)
 **	"##" are NOT comments
 */
 
-int		gnl_no_comm(const int fd, char **line)
+int		gnl_no_comm(t_lem_in *lem_in, const int fd, char **line)
 {
 	int	res;
 
@@ -73,6 +73,7 @@ int		gnl_no_comm(const int fd, char **line)
 			&& !(ft_strequ("##start", *line))
 			&& !(ft_strequ("##end", *line)))
 	{
+		save_output(lem_in, *line);
 		ft_strdel(line);
 	}
 	if (res == -1)

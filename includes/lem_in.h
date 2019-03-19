@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/17 13:32:25 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 11:58:06 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:59:52 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -365,7 +365,7 @@ void		round_free(void *content, size_t size);
 
 void		ft_free_tab(char ***tab);
 int			ft_strindex(const char *hay, char c);
-int			gnl_no_comm(const int fd, char **line);
+int			gnl_no_comm(t_lem_in *lem_in, const int fd, char **line);
 void		print_nodes(t_glist *nodes);
 t_bool		is_number(char *s);
 
@@ -404,9 +404,9 @@ void		lem_in_print_all_rooms(t_lem_in *lem_in);
 **	Lines saving and display.
 */
 
-void		save_display(t_lem_in *lem_in, char *line);
-void		print_display(t_lem_in *lem_in);
-void		free_saved_display(t_lem_in *lem_in);
+void		save_output(t_lem_in *lem_in, char *line);
+void		print_output(t_lem_in *lem_in);
+void		free_saved_output(t_lem_in *lem_in);
 
 /*
 **	Array utils.

@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 14:41:27 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/06 18:39:13 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:50:12 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 	int i;
 
 	i = 0;
-	if ((i = gnl_no_comm(0, line)) != -1)
+	if ((i = gnl_no_comm(lem_in, 0, line)) != -1)
 	{
 		if (ft_strlen(*line) <= MAX_NB_SIZE
 			&& (i = parse_number_safe(*line)) > 0)
@@ -31,7 +31,6 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 			ft_strdel(line);
 			lem_in_die();
 		}
-		save_display(lem_in, *line);
 		ft_strdel(line);
 	}
 	else
@@ -44,8 +43,7 @@ void	parse_ants_count(t_lem_in *lem_in, char **line)
 
 int		read_room_line(t_lem_in *lem_in, char **line, t_roomtype type)
 {
-	save_display(lem_in, *line);
-	if (gnl_no_comm(0, line) == -1)
+	if (gnl_no_comm(lem_in, 0, line) == -1)
 		lem_in_die();
 	parse_room(lem_in, *line, type);
 	return (1);
@@ -59,7 +57,7 @@ void	parse_rooms(t_lem_in *lem_in, char **line)
 {
 	int		state;
 
-	while ((state = gnl_no_comm(0, line)) != -1)
+	while ((state = gnl_no_comm(lem_in, 0, line)) != -1)
 	{
 		if (parse_is_link(*line))
 		{
@@ -95,7 +93,7 @@ void	parse_links(t_lem_in *lem_in, char **line)
 			break ;
 		}
 		parse_link(lem_in, line);
-		if (gnl_no_comm(0, line) == -1)
+		if (gnl_no_comm(lem_in, 0, line) == -1)
 		{
 			lem_in_die();
 		}
