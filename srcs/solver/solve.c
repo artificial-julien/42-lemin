@@ -6,7 +6,7 @@
 /*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/28 18:33:02 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/19 11:41:19 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/19 12:45:09 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ static t_group	*create_best_group(t_lem_in *lem_in)
 		rebuild_routes(lem_in, traverse);
 		group = group_build(lem_in);
 		route_free(traverse, sizeof(t_route));
-		group_print(group);
 		if (best_group == NULL)
 			best_group = group;
 		else if (best_group->total_rounds > group->total_rounds)
