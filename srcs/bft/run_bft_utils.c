@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:08 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:20:05 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 11:58:42 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,9 @@
 
 t_bool			can_traverse(t_tree *tree, t_room *dst)
 {
-	if (dst->visited)
+	if (tree->augmentation > 0 && dst->visited)
+		return (false);
+	if (tree->augmentation == 0 && dst->visited2)
 		return (false);
 	if (tree->room->prev != NULL && tree->room->prev == dst)
 		return (false);
@@ -86,4 +88,19 @@ t_tree			*go_to_start(t_lem_in *lem_in, t_tree *tree)
 	res = tree_create_child(lem_in, res, room);
 	res->augmentation++;
 	return (res);
+}
+
+/*
+**	Mark the specified room of the traverse tree if needed.
+*/
+
+void			mark_as_visited(t_tree *tree)
+{
+	if (tree->room->type == standard && tree->room->next == NULL)
+	{
+		if (tree->augmentation > 0)
+			tree->room->visited = true;
+		else
+			tree->room->visited2 = true;
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/18 17:35:28 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:20:46 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 11:37:27 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static void			reset_visited(t_lem_in *lem_in)
 	while (curr != NULL)
 	{
 		curr->gen.room->visited = false;
+		curr->gen.room->visited2 = false;
 		curr = curr->next;
 	}
 }

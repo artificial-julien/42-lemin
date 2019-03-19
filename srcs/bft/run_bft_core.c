@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_bft_core.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
+/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/06 18:56:50 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/07 14:18:44 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/19 11:59:02 by juazouz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ t_route	*extend_node(t_lem_in *lem_in, t_tree *node,
 	t_route			*res;
 
 	new_node = NULL;
-	if (node->room->type == standard && node->room->next == NULL)
-		node->room->visited = true;
+	mark_as_visited(node);
 	if (node && node->room->type == end)
 	{
 		if ((res = try_finalize_traverse(node)) != NULL)
