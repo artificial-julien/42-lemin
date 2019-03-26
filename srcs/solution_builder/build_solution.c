@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:50:22 by juazouz           #+#    #+#             */
-/*   Updated: 2019/03/17 14:32:43 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 14:30:02 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ void		build_solution(t_lem_in *lem_in, t_group *group,
 {
 	if (lem_in->opt.print_groups == true)
 	{
-		ft_printf("/******/\n");
+		ft_fprintf(2, "/===================================/\n");
 		group_print(group);
-		ft_printf("/******/\n");
+		ft_fprintf(2, "/===================================/\n");
 	}
 	while ((lem_in->start->ants) >= 0
 		&& lem_in->end->ants != lem_in->total_ants)
