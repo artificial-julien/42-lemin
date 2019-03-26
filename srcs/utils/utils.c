@@ -6,14 +6,11 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/26 14:00:18 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 14:02:35 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
-#if DEBUG
-# include <time.h>
-#endif
 
 /*
 ** Fonction to free a tab of char of 2 dimension
