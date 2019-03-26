@@ -6,7 +6,7 @@
 /*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/26 14:02:35 by agoulas          ###   ########.fr       */
+/*   Updated: 2019/03/26 14:18:28 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,18 +65,20 @@ int		gnl_no_comm(t_lem_in *lem_in, const int fd, char **line)
 
 	res = 0;
 	ft_strdel(line);
-	while ((res = get_next_line(fd, line)) >= 0
-			&& ft_strnequ("#", *line, 1)
-			&& !(ft_strequ("##start", *line))
-			&& !(ft_strequ("##end", *line)))
+	while (1)
 	{
+		res = get_next_line(fd, line);
+		if (res <= 0)
+		{
+			return (res);
+		}
 		save_output(lem_in, *line);
+		if (!ft_strnequ("#", *line, 1)
+			|| (ft_strequ("##start", *line))
+			|| (ft_strequ("##end", *line)))
+			return (res);
 		ft_strdel(line);
 	}
-	save_output(lem_in, *line);
-	if (res == -1)
-		return (-1);
-	return (res);
 }
 
 /*
