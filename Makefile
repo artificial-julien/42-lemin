@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+         #
+#    By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/10/17 17:47:32 by juazouz           #+#    #+#              #
-#    Updated: 2019/03/26 13:58:34 by agoulas          ###   ########.fr        #
+#    Updated: 2019/03/26 14:25:19 by juazouz          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRCS_DR		= srcs
 SRCS		= $(addprefix $(SRCS_DR)/, $(SOURCES))
 
 CC			= clang
-CFLAGS		= -Wall -Werror -Wextra -I libft/includes  -I $(INC_DR)
+CFLAGS		= -Wall -Werror -Wextra -I libft/includes -O3 -I $(INC_DR)
 
 OBJS_DR		= objs
 OBJS		= $(SRCS:$(SRCS_DR)/%.c=$(OBJS_DR)/%.o)
