@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   room_create_links.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 16:51:25 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/06 19:31:59 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/26 14:20:42 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lem_in.h"
 
 /*
-** FInd if a room is already in the list links.
+** Find if a room is already in the list links.
 */
 
 static t_bool	room_find_duplicate_link(t_room *room, char *name)
