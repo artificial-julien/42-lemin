@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: juazouz <juazouz@student.42.fr>            +#+  +:+       +#+        */
+/*   By: agoulas <agoulas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/07 09:59:35 by agoulas           #+#    #+#             */
-/*   Updated: 2019/03/19 12:57:10 by juazouz          ###   ########.fr       */
+/*   Updated: 2019/03/26 14:00:18 by agoulas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int		gnl_no_comm(t_lem_in *lem_in, const int fd, char **line)
 		save_output(lem_in, *line);
 		ft_strdel(line);
 	}
+	save_output(lem_in, *line);
 	if (res == -1)
 		return (-1);
 	return (res);
